@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-10T00:00:00Z",
+  "projects": [
+    {
+      "slug": "party-kitty",
+      "name": "PartyKitty",
+      "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
+      "status": "active",
+      "stack": ["Expo (React Native)", "Supabase", "PostHog", "EAS"],
+      "links": {
+        "live": "https://partykitty.expo.app"
+      },
+      "currentMilestone": "Play Store internal release — verifying everything on a real device before the first real party runs on the app.",
+      "started": "2026-05-17",
+      "lastActive": "2026-06-08",
+      "timeline": [
+        {
+          "date": "2026-06-08",
+          "title": "Hardening after real-world use",
+          "summary": "Fixed the failures only real usage finds: an onboarding deadlock, auth flows hanging on spinners, sign-out breaking on web (React Native's Alert is a silent no-op there), and phone-number paste handling."
+        },
+        {
+          "date": "2026-06-03",
+          "dateEnd": "2026-06-05",
+          "title": "WhatsApp share-outs and first production build",
+          "summary": "Built a share layer that pushes generated images into the group's WhatsApp — live party-status snapshots and month-end settled-ledger summaries — plus handover flows for date polls and food preferences. First production Android build completed. Deliberately deferred deep-link infrastructure as premature at current scale."
+        },
+        {
+          "date": "2026-06-01",
+          "dateEnd": "2026-06-02",
+          "title": "Design system: Velvet Gulmohar",
+          "summary": "A bold-festive design reset, landed safely: backward-compatible design tokens first, then a full component layer (buttons, cards, sheets, chips and more), then every screen migrated. Dark mode became the default with an in-place reactive toggle."
+        },
+        {
+          "date": "2026-05-29",
+          "dateEnd": "2026-05-31",
+          "title": "New information architecture",
+          "summary": "Rebuilt navigation around how a real host describes the app: a home listing all your kitty groups, each opening into a stack of months, each month a party hub where the coordination features live. Added multi-kitty membership, admin settings, and archived groups."
+        },
+        {
+          "date": "2026-05-23",
+          "dateEnd": "2026-05-26",
+          "title": "Five features, Hinglish copy, analytics",
+          "summary": "Shipped date-decide polls, food preferences, tambola with themed tickets and a calling board, and a living party card. Rewrote every user-facing string in Hinglish for the actual audience. Wired a PostHog event funnel to measure whether the core ledger loop is really used. Closed with a documentation audit reconciling plans with the shipped app."
+        },
+        {
+          "date": "2026-05-17",
+          "dateEnd": "2026-05-22",
+          "title": "Kickoff to working ledger in six days",
+          "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+        }
+      ]
+    },
+    {
+      "slug": "wrong-is-right",
+      "name": "Wrong Is Right",
+      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
+      "status": "active",
+      "stack": ["Expo (React Native)", "Expo Router", "Zustand", "Supabase"],
+      "links": {},
+      "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
+      "started": "2026-04-22",
+      "lastActive": "2026-06-09",
+      "timeline": [
+        {
+          "date": "2026-06-09",
+          "title": "2,700-question bank and a schoolwork section",
+          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
+        },
+        {
+          "date": "2026-05-02",
+          "dateEnd": "2026-05-16",
+          "title": "Leagues, an AI question pipeline, and a hardening pass",
+          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
+        },
+        {
+          "date": "2026-04-22",
+          "dateEnd": "2026-04-28",
+          "title": "Zero to released v1 in a week",
+          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
+        }
+      ]
+    },
+    {
+      "slug": "nsrl-crm",
+      "name": "NSRL CRM",
+      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices and documents for a transport operation.",
+      "status": "active",
+      "stack": ["Next.js 15", "React 19", "TypeScript", "Supabase", "Zod"],
+      "links": {},
+      "currentMilestone": "Staged rollout of the relational modules (trips, shipments, bookings, invoices, documents).",
+      "started": "2025-09-02",
+      "lastActive": "2026-05-30",
+      "timeline": [
+        {
+          "date": "2026-05-27",
+          "dateEnd": "2026-05-30",
+          "title": "Full relational CRM in four days",
+          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+        },
+        {
+          "date": "2025-10-02",
+          "dateEnd": "2025-10-30",
+          "title": "Tenancy and CRUD architecture",
+          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+        },
+        {
+          "date": "2025-09-02",
+          "dateEnd": "2025-09-29",
+          "title": "Foundation",
+          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+        }
+      ]
+    }
+  ]
+}
