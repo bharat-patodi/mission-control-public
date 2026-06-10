@@ -1,7 +1,42 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-10T00:00:00Z",
+  "generatedAt": "2026-06-10T17:30:00Z",
   "projects": [
+    {
+      "slug": "wrong-is-right",
+      "name": "Wrong Is Right",
+      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
+      "status": "active",
+      "stack": ["Expo (React Native)", "Expo Router", "Zustand", "Supabase"],
+      "links": {},
+      "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
+      "started": "2026-04-22",
+      "lastActive": "2026-06-10",
+      "timeline": [
+        {
+          "date": "2026-06-10",
+          "title": "Build maintenance: Expo SDK rollback",
+          "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
+        },
+        {
+          "date": "2026-06-09",
+          "title": "2,700-question bank and a schoolwork section",
+          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
+        },
+        {
+          "date": "2026-05-02",
+          "dateEnd": "2026-05-16",
+          "title": "Leagues, an AI question pipeline, and a hardening pass",
+          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
+        },
+        {
+          "date": "2026-04-22",
+          "dateEnd": "2026-04-28",
+          "title": "Zero to released v1 in a week",
+          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
+        }
+      ]
+    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -49,36 +84,6 @@
           "dateEnd": "2026-05-22",
           "title": "Kickoff to working ledger in six days",
           "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
-        }
-      ]
-    },
-    {
-      "slug": "wrong-is-right",
-      "name": "Wrong Is Right",
-      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
-      "status": "active",
-      "stack": ["Expo (React Native)", "Expo Router", "Zustand", "Supabase"],
-      "links": {},
-      "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
-      "started": "2026-04-22",
-      "lastActive": "2026-06-09",
-      "timeline": [
-        {
-          "date": "2026-06-09",
-          "title": "2,700-question bank and a schoolwork section",
-          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
-        },
-        {
-          "date": "2026-05-02",
-          "dateEnd": "2026-05-16",
-          "title": "Leagues, an AI question pipeline, and a hardening pass",
-          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
-        },
-        {
-          "date": "2026-04-22",
-          "dateEnd": "2026-04-28",
-          "title": "Zero to released v1 in a week",
-          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
         }
       ]
     },
