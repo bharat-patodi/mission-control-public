@@ -1,7 +1,25 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-10T17:30:00Z",
+  "generatedAt": "2026-06-11T18:30:00Z",
   "projects": [
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
+      "status": "active",
+      "stack": ["WhatsApp (Wizard-of-Oz, no code yet)", "Claude (content drafting)"],
+      "links": {},
+      "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
+      "started": "2026-06-11",
+      "lastActive": "2026-06-11",
+      "timeline": [
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+        }
+      ]
+    },
     {
       "slug": "wrong-is-right",
       "name": "Wrong Is Right",
