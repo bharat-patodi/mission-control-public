@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-11T18:30:00Z",
+  "generatedAt": "2026-06-12T14:30:00Z",
   "projects": [
     {
       "slug": "aaj-kya-seekha",
@@ -11,8 +11,13 @@
       "links": {},
       "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
       "started": "2026-06-11",
-      "lastActive": "2026-06-11",
+      "lastActive": "2026-06-12",
       "timeline": [
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
         {
           "date": "2026-06-11",
           "title": "Idea to a runnable pilot kit in one day",
