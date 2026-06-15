@@ -1,35 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-13T16:40:00Z",
+  "generatedAt": "2026-06-15T17:40:00Z",
   "projects": [
-    {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
-      "status": "active",
-      "stack": ["WhatsApp (Wizard-of-Oz, no code yet)", "Claude (content drafting)"],
-      "links": {},
-      "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
-      "started": "2026-06-11",
-      "lastActive": "2026-06-13",
-      "timeline": [
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
-    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -41,8 +13,13 @@
       },
       "currentMilestone": "Play Store internal release — verifying everything on a real device before the first real party runs on the app.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-13",
+      "lastActive": "2026-06-15",
       "timeline": [
+        {
+          "date": "2026-06-15",
+          "title": "A spin-the-wheel host picker, and tidying the party screen",
+          "summary": "Added a spin-the-wheel alternative to the existing draw for picking the next host — a real choice the user can flip between, remembered on their device. Restructured the screen so switching is instant: the data loads once in a shell that stays put while only the picker swaps, after a first version that reloaded everything on every toggle. Also surfaced the chosen menu and games on the party card and its shareable status image, pulled every action onto that one card, gave the date screen a one-tap way back to the party, and replaced the placeholder app icons with the real branded set. Refreshed the live web build."
+        },
         {
           "date": "2026-06-13",
           "title": "\"Pick the next host\" — a fair, animated draw",
@@ -82,6 +59,34 @@
           "dateEnd": "2026-05-22",
           "title": "Kickoff to working ledger in six days",
           "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+        }
+      ]
+    },
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
+      "status": "active",
+      "stack": ["WhatsApp (Wizard-of-Oz, no code yet)", "Claude (content drafting)"],
+      "links": {},
+      "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
+      "started": "2026-06-11",
+      "lastActive": "2026-06-13",
+      "timeline": [
+        {
+          "date": "2026-06-13",
+          "title": "First family interview — logged as a counter-signal",
+          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+        },
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
         }
       ]
     },
