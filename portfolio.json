@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-15T17:40:00Z",
+  "generatedAt": "2026-06-17T17:45:00Z",
   "projects": [
     {
       "slug": "party-kitty",
@@ -13,8 +13,13 @@
       },
       "currentMilestone": "Play Store internal release — verifying everything on a real device before the first real party runs on the app.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-15",
+      "lastActive": "2026-06-17",
       "timeline": [
+        {
+          "date": "2026-06-17",
+          "title": "Three-language support across the whole app",
+          "summary": "Added English, Hinglish and Kannada across the entire app, with a switcher in the profile that repaints every screen in place the instant you change language. Built a small in-house translation system rather than pulling in a library: one canonical English key set that the other languages are type-checked against, so a piece of text can't quietly ship half-translated. Then worked through every screen and shared component — the dues ledger, date polls, food and menu planning, the host picker, tambola, and the rest. One deliberate rule throughout: anything that leaves the app for the whole group — the WhatsApp messages, the shareable status images, the printable tambola tickets — stays in a single fixed language, so a mixed-language group all reads the same thing whoever sent it; dates stay in English too. The Kannada is a machine draft awaiting a native-speaker review, and one set of food-preference labels is queued for a later pass. Verified by the type-checker, linter and tests; on-device verification still to come."
+        },
         {
           "date": "2026-06-15",
           "title": "A spin-the-wheel host picker, and tidying the party screen",
