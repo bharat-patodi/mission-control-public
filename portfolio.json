@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-17T17:45:00Z",
+  "generatedAt": "2026-06-18T10:13:47Z",
   "projects": [
     {
       "slug": "party-kitty",
@@ -13,8 +13,13 @@
       },
       "currentMilestone": "Play Store internal release — verifying everything on a real device before the first real party runs on the app.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-17",
+      "lastActive": "2026-06-18",
       "timeline": [
+        {
+          "date": "2026-06-18",
+          "title": "English as the default language, and a code-cleanup pass",
+          "summary": "Switched the app's default language to English, with Hinglish and Kannada now opt-in from the profile — a product call that English should be the baseline while the regional voices stay one tap away. None of the existing translations changed, only which one shows first. Finished the last untranslated corner from the day before — the food and drink preference labels — so the whole app now follows the language switcher. Then ran a cleanup pass over the recently written code: folded nine copies of an identical screen wrapper into one shared component, merged two byte-for-byte identical data modules into a single parameterised one, and removed some now-unnecessary type escape hatches — all pure restructuring with no change in behaviour, kept honest by the type-checker, linter and tests. One rule held throughout: anything the app sends out to the whole group stays in a single fixed language, so everyone reads the same message whoever sent it."
+        },
         {
           "date": "2026-06-17",
           "title": "Three-language support across the whole app",
