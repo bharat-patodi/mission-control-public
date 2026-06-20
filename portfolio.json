@@ -1,7 +1,43 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-18T10:13:47Z",
+  "generatedAt": "2026-06-20T17:05:41Z",
   "projects": [
+    {
+      "slug": "nsrl-crm",
+      "name": "NSRL CRM",
+      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
+      "status": "active",
+      "stack": ["Next.js 15", "React 19", "TypeScript", "Supabase", "Zod"],
+      "links": {},
+      "currentMilestone": "Staged rollout of the relational modules — driver attendance is the newest, alongside trips, shipments, bookings, invoices and documents.",
+      "started": "2025-09-02",
+      "lastActive": "2026-06-20",
+      "timeline": [
+        {
+          "date": "2026-06-20",
+          "title": "Driver attendance, end to end",
+          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+        },
+        {
+          "date": "2026-05-27",
+          "dateEnd": "2026-05-30",
+          "title": "Full relational CRM in four days",
+          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+        },
+        {
+          "date": "2025-10-02",
+          "dateEnd": "2025-10-30",
+          "title": "Tenancy and CRUD architecture",
+          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+        },
+        {
+          "date": "2025-09-02",
+          "dateEnd": "2025-09-29",
+          "title": "Foundation",
+          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+        }
+      ]
+    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -11,10 +47,15 @@
       "links": {
         "live": "https://partykitty.expo.app"
       },
-      "currentMilestone": "Play Store internal release — verifying everything on a real device before the first real party runs on the app.",
+      "currentMilestone": "Getting onto the Play Store — first build uploaded for internal testing and the required privacy pages now live; store setup to finish next.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-18",
+      "lastActive": "2026-06-20",
       "timeline": [
+        {
+          "date": "2026-06-20",
+          "title": "First build uploaded to the Play Store",
+          "summary": "Uploaded the first Android build for internal testing, and published the privacy-policy and account-deletion pages a store listing requires. Polished the profile screen along the way — the light/dark toggle now leads with a sun/moon icon and a clear label, and some food and payment wording was tidied across all three languages."
+        },
         {
           "date": "2026-06-18",
           "title": "English as the default language, and a code-cleanup pass",
@@ -132,37 +173,6 @@
           "dateEnd": "2026-04-28",
           "title": "Zero to released v1 in a week",
           "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
-        }
-      ]
-    },
-    {
-      "slug": "nsrl-crm",
-      "name": "NSRL CRM",
-      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices and documents for a transport operation.",
-      "status": "active",
-      "stack": ["Next.js 15", "React 19", "TypeScript", "Supabase", "Zod"],
-      "links": {},
-      "currentMilestone": "Staged rollout of the relational modules (trips, shipments, bookings, invoices, documents).",
-      "started": "2025-09-02",
-      "lastActive": "2026-05-30",
-      "timeline": [
-        {
-          "date": "2026-05-27",
-          "dateEnd": "2026-05-30",
-          "title": "Full relational CRM in four days",
-          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
-        },
-        {
-          "date": "2025-10-02",
-          "dateEnd": "2025-10-30",
-          "title": "Tenancy and CRUD architecture",
-          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
-        },
-        {
-          "date": "2025-09-02",
-          "dateEnd": "2025-09-29",
-          "title": "Foundation",
-          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
         }
       ]
     }
