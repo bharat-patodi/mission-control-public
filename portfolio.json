@@ -1,56 +1,30 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-20T17:05:41Z",
+  "generatedAt": "2026-06-21T10:37:55Z",
   "projects": [
-    {
-      "slug": "nsrl-crm",
-      "name": "NSRL CRM",
-      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
-      "status": "active",
-      "stack": ["Next.js 15", "React 19", "TypeScript", "Supabase", "Zod"],
-      "links": {},
-      "currentMilestone": "Staged rollout of the relational modules — driver attendance is the newest, alongside trips, shipments, bookings, invoices and documents.",
-      "started": "2025-09-02",
-      "lastActive": "2026-06-20",
-      "timeline": [
-        {
-          "date": "2026-06-20",
-          "title": "Driver attendance, end to end",
-          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
-        },
-        {
-          "date": "2026-05-27",
-          "dateEnd": "2026-05-30",
-          "title": "Full relational CRM in four days",
-          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
-        },
-        {
-          "date": "2025-10-02",
-          "dateEnd": "2025-10-30",
-          "title": "Tenancy and CRUD architecture",
-          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
-        },
-        {
-          "date": "2025-09-02",
-          "dateEnd": "2025-09-29",
-          "title": "Foundation",
-          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
-        }
-      ]
-    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
       "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
       "status": "active",
-      "stack": ["Expo (React Native)", "Supabase", "PostHog", "EAS"],
+      "stack": [
+        "Expo (React Native)",
+        "Supabase",
+        "PostHog",
+        "EAS"
+      ],
       "links": {
         "live": "https://partykitty.expo.app"
       },
-      "currentMilestone": "Getting onto the Play Store — first build uploaded for internal testing and the required privacy pages now live; store setup to finish next.",
+      "currentMilestone": "Getting onto the Play Store — first build in internal testing; working through the store data-safety and content review, with a privacy fix queued for the next build before on-device testing.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-20",
+      "lastActive": "2026-06-21",
       "timeline": [
+        {
+          "date": "2026-06-21",
+          "title": "Play Store data-safety prep, a privacy fix, and welcome messages",
+          "summary": "Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo."
+        },
         {
           "date": "2026-06-20",
           "title": "First build uploaded to the Play Store",
@@ -114,11 +88,56 @@
       ]
     },
     {
+      "slug": "nsrl-crm",
+      "name": "NSRL CRM",
+      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
+      "status": "active",
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase",
+        "Zod"
+      ],
+      "links": {},
+      "currentMilestone": "Staged rollout of the relational modules — driver attendance is the newest, alongside trips, shipments, bookings, invoices and documents.",
+      "started": "2025-09-02",
+      "lastActive": "2026-06-20",
+      "timeline": [
+        {
+          "date": "2026-06-20",
+          "title": "Driver attendance, end to end",
+          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+        },
+        {
+          "date": "2026-05-27",
+          "dateEnd": "2026-05-30",
+          "title": "Full relational CRM in four days",
+          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+        },
+        {
+          "date": "2025-10-02",
+          "dateEnd": "2025-10-30",
+          "title": "Tenancy and CRUD architecture",
+          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+        },
+        {
+          "date": "2025-09-02",
+          "dateEnd": "2025-09-29",
+          "title": "Foundation",
+          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+        }
+      ]
+    },
+    {
       "slug": "aaj-kya-seekha",
       "name": "Aaj Kya Seekha",
       "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
       "status": "active",
-      "stack": ["WhatsApp (Wizard-of-Oz, no code yet)", "Claude (content drafting)"],
+      "stack": [
+        "WhatsApp (Wizard-of-Oz, no code yet)",
+        "Claude (content drafting)"
+      ],
       "links": {},
       "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
       "started": "2026-06-11",
@@ -146,7 +165,12 @@
       "name": "Wrong Is Right",
       "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
       "status": "active",
-      "stack": ["Expo (React Native)", "Expo Router", "Zustand", "Supabase"],
+      "stack": [
+        "Expo (React Native)",
+        "Expo Router",
+        "Zustand",
+        "Supabase"
+      ],
       "links": {},
       "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
       "started": "2026-04-22",
