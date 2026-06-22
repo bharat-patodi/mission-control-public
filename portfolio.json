@@ -16,19 +16,19 @@
       "links": {
         "live": "https://partykitty.expo.app"
       },
-      “currentMilestone”: “The Play Store listing is complete — feature graphic, store tags, and privacy URL all set; working through the final review steps before the app goes live on the store.”,
-      “started”: “2026-05-17”,
-      “lastActive”: “2026-06-22”,
-      “timeline”: [
+      "currentMilestone": "The Play Store listing is complete — feature graphic, store tags, and privacy URL all set; working through the final review steps before the app goes live on the store.",
+      "started": "2026-05-17",
+      "lastActive": "2026-06-22",
+      "timeline": [
         {
-          “date”: “2026-06-22”,
-          “title”: “Live member updates, a revamped date flow, and the store listing finished”,
-          “summary”: “Membership changes now propagate live to all open screens via a realtime channel — renames, new additions — so no one needs to manually reload. Added a per-person food-and-drink preferences view in the party coordination screen, and made phone numbers visible in the members list with one-tap calling and WhatsApp. Reworked the date-decision flow to match how it actually gets used: proposing a single fixed date now runs a proper confirm-and-RSVP rather than a one-option comparison poll, and hosts can re-open a vote after a date has already been agreed. Completed the Play Store listing — a branded 1024×500 feature graphic, finalized store tags and privacy URL, and scripts to normalize the screenshot set.”
+          "date": "2026-06-22",
+          "title": "Live member updates, a revamped date flow, and the store listing finished",
+          "summary": "Membership changes now propagate live to all open screens via a realtime channel — renames, new additions — so no one needs to manually reload. Added a per-person food-and-drink preferences view in the party coordination screen, and made phone numbers visible in the members list with one-tap calling and WhatsApp. Reworked the date-decision flow to match how it actually gets used: proposing a single fixed date now runs a proper confirm-and-RSVP rather than a one-option comparison poll, and hosts can re-open a vote after a date has already been agreed. Completed the Play Store listing — a branded 1024×500 feature graphic, finalized store tags and privacy URL, and scripts to normalize the screenshot set."
         },
         {
-          “date”: “2026-06-21”,
-          “title”: “Play Store data-safety prep, a privacy fix, and welcome messages”,
-          “summary”: “Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo.”
+          "date": "2026-06-21",
+          "title": "Play Store data-safety prep, a privacy fix, and welcome messages",
+          "summary": "Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo."
         },
         {
           "date": "2026-06-20",
