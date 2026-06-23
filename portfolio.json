@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-22T16:00:00Z",
+  "generatedAt": "2026-06-23T16:30:00Z",
   "projects": [
     {
       "slug": "party-kitty",
@@ -16,10 +16,15 @@
       "links": {
         "live": "https://partykitty.expo.app"
       },
-      "currentMilestone": "The Play Store listing is complete — feature graphic, store tags, and privacy URL all set; working through the final review steps before the app goes live on the store.",
+      "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-22",
+      "lastActive": "2026-06-23",
       "timeline": [
+        {
+          "date": "2026-06-23",
+          "title": "A review-and-cleanup sweep: hardening, doc accuracy, and a privacy fix",
+          "summary": "Ran a thorough review pass over the whole codebase. Tightened a few security edges — phone numbers are now sanitised before being dropped into dialer and WhatsApp links, and a powerful internal database-maintenance function was locked down so ordinary app users can't reach it. Removed some duplicated code and brought the project's documentation back in line with what the app actually does today, after a few weeks of fast changes had let it drift. A multi-pass review of the changes turned up no real bugs — the one flagged issue was checked and proven a false alarm. Finally, corrected the privacy policy: the analytics tool does receive members' names as a label, so that's now disclosed plainly in both the in-repo policy and the public privacy page, rather than describing the analytics as fully anonymous."
+        },
         {
           "date": "2026-06-22",
           "title": "Live member updates, a revamped date flow, and the store listing finished",
