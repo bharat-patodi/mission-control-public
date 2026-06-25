@@ -1,7 +1,34 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-23T16:30:00Z",
+  "generatedAt": "2026-06-26T12:00:00Z",
   "projects": [
+    {
+      "slug": "founder-hub",
+      "name": "Founder Hub",
+      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Supabase Edge Functions",
+        "PostHog"
+      ],
+      "links": {},
+      "currentMilestone": "All three sections built — live metrics, a synced todo list, and an architecture handbook; next is a fresh build to put the new tabs on the phone.",
+      "started": "2026-06-25",
+      "lastActive": "2026-06-26",
+      "timeline": [
+        {
+          "date": "2026-06-26",
+          "title": "Todo list and handbook tabs, synced through Git",
+          "summary": "Turned the last two placeholder tabs into working features. The todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other, with the repository itself acting as the merge point. Also finished the three headline ratio metrics so they are computed on the server, which means a metric can be changed by redeploying a function with no new app build."
+        },
+        {
+          "date": "2026-06-25",
+          "title": "A private metrics dashboard that keeps secrets off the phone",
+          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
+        }
+      ]
+    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -18,8 +45,13 @@
       },
       "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-23",
+      "lastActive": "2026-06-25",
       "timeline": [
+        {
+          "date": "2026-06-25",
+          "title": "The web app no longer blanks on cold start or after a redeploy",
+          "summary": "Fixed two ways the web build could show a blank screen. Startup no longer waits indefinitely on resources like fonts and settings — it shows a splash, offers a retry after a few seconds, and as a last resort renders with whatever has loaded, so one stalled step can't freeze the screen. And after a new web deploy, a returning visitor whose browser had cached the old page now recovers automatically instead of breaking on a file that no longer exists. Added lightweight startup tracking to confirm the real cause in production."
+        },
         {
           "date": "2026-06-23",
           "title": "A review-and-cleanup sweep: hardening, doc accuracy, and a privacy fix",
@@ -110,10 +142,15 @@
         "Zod"
       ],
       "links": {},
-      "currentMilestone": "Staged rollout of the relational modules — driver attendance is the newest, alongside trips, shipments, bookings, invoices and documents.",
+      "currentMilestone": "Extending driver attendance into a monthly summary for payroll — counting paid rest days like Sundays and holidays.",
       "started": "2025-09-02",
-      "lastActive": "2026-06-20",
+      "lastActive": "2026-06-24",
       "timeline": [
+        {
+          "date": "2026-06-24",
+          "title": "Started a monthly attendance summary for payroll",
+          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs. Work in progress."
+        },
         {
           "date": "2026-06-20",
           "title": "Driver attendance, end to end",

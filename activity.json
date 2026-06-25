@@ -1,7 +1,48 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-23T16:35:56Z",
+  "generatedAt": "2026-06-25T20:50:50Z",
   "days": [
+    {
+      "date": "2026-06-26",
+      "count": 1,
+      "items": [
+        {
+          "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 3
+        }
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "count": 2,
+      "items": [
+        {
+          "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 5
+        },
+        {
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 2
+        }
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "count": 1,
+      "items": [
+        {
+          "project": "nsrl-crm",
+          "type": "design",
+          "label": "Design system direction (Bauhaus)"
+        }
+      ]
+    },
     {
       "date": "2026-06-23",
       "count": 3,
@@ -10,7 +51,7 @@
           "project": "party-kitty",
           "type": "commit",
           "label": "Commits",
-          "commits": 8
+          "commits": 10
         },
         {
           "project": "party-kitty",
