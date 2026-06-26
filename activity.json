@@ -1,16 +1,26 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-25T20:50:50Z",
+  "generatedAt": "2026-06-26T17:03:26Z",
   "days": [
     {
       "date": "2026-06-26",
-      "count": 1,
+      "count": 3,
       "items": [
         {
           "project": "founder-hub",
           "type": "commit",
           "label": "Commits",
-          "commits": 3
+          "commits": 6
+        },
+        {
+          "project": "founder-hub",
+          "type": "research",
+          "label": "Integration + voice-feature scoping"
+        },
+        {
+          "project": "founder-hub",
+          "type": "design",
+          "label": "App icon design"
         }
       ]
     },
