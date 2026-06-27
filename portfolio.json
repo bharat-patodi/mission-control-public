@@ -1,34 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-26T17:02:18Z",
+  "generatedAt": "2026-06-28T00:00:00Z",
   "projects": [
-    {
-      "slug": "founder-hub",
-      "name": "Founder Hub",
-      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Supabase Edge Functions",
-        "PostHog"
-      ],
-      "links": {},
-      "currentMilestone": "Four sections now — metrics, a YouTube view, a synced todo list, and an architecture handbook — with a custom icon and swipe-between-tabs navigation; Google Play and YouTube numbers are wired in and waiting on their access keys and a fresh build.",
-      "started": "2026-06-25",
-      "lastActive": "2026-06-26",
-      "timeline": [
-        {
-          "date": "2026-06-26",
-          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
-          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "A private metrics dashboard that keeps secrets off the phone",
-          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
-        }
-      ]
-    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -45,8 +18,13 @@
       },
       "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-25",
+      "lastActive": "2026-06-27",
       "timeline": [
+        {
+          "date": "2026-06-27",
+          "title": "Sharing a party update as an image now works on the web",
+          "summary": "Fixed the image-share feature on the web version, which had been quietly failing for every web user. When you send a party update or a settled-month summary, the app turns the on-screen card into a picture and hands it to your phone or browser's share menu to post into WhatsApp. On the web this had three separate breakages stacked on top of each other — the underlying screenshot tool doesn't run in a browser, the browser's share couldn't carry the generated picture, and the share was being triggered a fraction too late for the browser to permit it. Reworked the web path to capture the card directly in the browser and to show a small preview-and-share step, so the share menu opens reliably; on browsers that can't share a picture, it now saves it so you can attach it yourself. Also replaced a raw technical error on the sign-in screen with a plain 'check the number and try again' message. Still to be confirmed on a real device."
+        },
         {
           "date": "2026-06-25",
           "title": "The web app no longer blanks on cold start or after a redeploy",
@@ -126,6 +104,33 @@
           "dateEnd": "2026-05-22",
           "title": "Kickoff to working ledger in six days",
           "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+        }
+      ]
+    },
+    {
+      "slug": "founder-hub",
+      "name": "Founder Hub",
+      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Supabase Edge Functions",
+        "PostHog"
+      ],
+      "links": {},
+      "currentMilestone": "Four sections now — metrics, a YouTube view, a synced todo list, and an architecture handbook — with a custom icon and swipe-between-tabs navigation; Google Play and YouTube numbers are wired in and waiting on their access keys and a fresh build.",
+      "started": "2026-06-25",
+      "lastActive": "2026-06-26",
+      "timeline": [
+        {
+          "date": "2026-06-26",
+          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
+          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
+        },
+        {
+          "date": "2026-06-25",
+          "title": "A private metrics dashboard that keeps secrets off the phone",
+          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
         }
       ]
     },
