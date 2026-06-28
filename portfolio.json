@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-28T00:00:00Z",
+  "generatedAt": "2026-06-28T10:00:00Z",
   "projects": [
     {
       "slug": "party-kitty",
@@ -18,8 +18,13 @@
       },
       "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-27",
+      "lastActive": "2026-06-28",
       "timeline": [
+        {
+          "date": "2026-06-28",
+          "title": "A design-system pipeline and an auto-checked screen registry",
+          "summary": "Put the project's visual design system on rails: it can now be pushed to a shared design canvas as a single source of truth, and a new check verifies — automatically, at the end of each work session — that every screen in the app is accounted for, with its design and its code kept in step (it currently tracks all 28 screens). Also introduced a lightweight planning step before any new feature is built: a short, recorded brief that weighs whether it's worth it, what could break, and which screens it touches, so a feature gets thought through before code rather than during. Built as a reusable setup so the same workflow carries across projects."
+        },
         {
           "date": "2026-06-27",
           "title": "Sharing a party update as an image now works on the web",
