@@ -1,7 +1,29 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-28T10:00:00Z",
+  "generatedAt": "2026-06-29T18:30:00Z",
   "projects": [
+    {
+      "slug": "mister-tutor",
+      "name": "mister-tutor",
+      "oneLiner": "A mobile-first study companion for a CBSE class-10 student preparing for board exams — a daily focus, a colour-coded topic-mastery map, and interactive per-chapter teaching pages.",
+      "status": "active",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "links": {},
+      "currentMilestone": "An early working version is built and freshly redesigned into a proper design system, with the first maths chapter turned into an interactive teaching page; user research with the student is up next.",
+      "started": "2026-06-29",
+      "lastActive": "2026-06-29",
+      "timeline": [
+        {
+          "date": "2026-06-29",
+          "title": "From idea to a designed, usable study-companion v0 in a day",
+          "summary": "Kicked off a study companion for a CBSE class-10 student: wrote the one-pager, then built a mobile-first web app — a daily focus card, a colour-coded topic-mastery map, and practice and progress views — running on placeholder data as a stimulus for upcoming user interviews. Turned the first maths chapter (Real Numbers) into an interactive teaching page built from the official textbook: the core theorems, a worked irrationality proof, textbook practice, and a ready-to-run 40-minute session plan. Then rebuilt the whole interface into a real design system — colour tokens, a distinctive type pairing, a shared component layer, consistent icons, and considered motion — after a first flat draft didn't hold up. Kept the bulky textbook files out of version control."
+        }
+      ]
+    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
