@@ -1,22 +1,30 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-29T18:30:00Z",
+  "generatedAt": "2026-06-30T18:30:00Z",
   "projects": [
     {
       "slug": "mister-tutor",
       "name": "mister-tutor",
-      "oneLiner": "A mobile-first study companion for a CBSE class-10 student preparing for board exams — a daily focus, a colour-coded topic-mastery map, and interactive per-chapter teaching pages.",
+      "oneLiner": "A teaching companion for a CBSE class-10 student preparing for boards — a single, fluid page that walks through a maths chapter end to end, built and refined during real tutoring sessions.",
       "status": "active",
       "stack": [
         "Next.js",
         "TypeScript",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "Vercel"
       ],
-      "links": {},
-      "currentMilestone": "An early working version is built and freshly redesigned into a proper design system, with the first maths chapter turned into an interactive teaching page; user research with the student is up next.",
+      "links": {
+        "live": "https://tuition-one.vercel.app"
+      },
+      "currentMilestone": "Reshaped from a multi-screen prototype into a single, focused teaching page for one student and tutor — in a bold two-colour theme, now deployed and live, used during real sessions.",
       "started": "2026-06-29",
-      "lastActive": "2026-06-29",
+      "lastActive": "2026-06-30",
       "timeline": [
+        {
+          "date": "2026-06-30",
+          "title": "Reshaped into one focused teaching page — and deployed it live",
+          "summary": "Collapsed an earlier multi-screen prototype into a single, fluid page that teaches one maths chapter (Real Numbers) end to end — the key idea, the core theorems with worked examples, a full irrationality proof, the textbook exercises, and a ready-to-run session plan — with the official textbook and exemplar PDFs one tap away in a sticky bar. Gave it a bold two-colour design sampled from a reference image and tuned for readability, then deployed it live so it can be used during real tutoring sessions. Also refocused the project around one real student and tutor using it continuously rather than a round of user interviews."
+        },
         {
           "date": "2026-06-29",
           "title": "From idea to a designed, usable study-companion v0 in a day",
