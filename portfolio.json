@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-30T18:30:00Z",
+  "generatedAt": "2026-07-01T18:30:00Z",
   "projects": [
     {
       "slug": "mister-tutor",
@@ -16,10 +16,15 @@
       "links": {
         "live": "https://tuition-one.vercel.app"
       },
-      "currentMilestone": "Reshaped from a multi-screen prototype into a single, focused teaching page for one student and tutor — in a bold two-colour theme, now deployed and live, used during real sessions.",
+      "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
       "started": "2026-06-29",
-      "lastActive": "2026-06-30",
+      "lastActive": "2026-07-01",
       "timeline": [
+        {
+          "date": "2026-07-01",
+          "title": "Made the Real Numbers page interactive — practice and manipulatives",
+          "summary": "Turned the Real Numbers teaching page from something you read into something you do: a practice engine that walks through questions with hints that unfold one step at a time, and live, hands-on manipulatives — an interactive factor tree and a Highest-Common-Factor / Lowest-Common-Multiple explorer — so a student can work the ideas rather than only watch them. Also began preparing the chapter's teaching material the way it's actually taught in a session: broken into progressively smaller pieces until each one clicks, ahead of the first live tutoring session."
+        },
         {
           "date": "2026-06-30",
           "title": "Reshaped into one focused teaching page — and deployed it live",
