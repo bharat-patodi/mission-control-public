@@ -1,39 +1,138 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-01T18:30:00Z",
+  "generatedAt": "2026-07-03T18:00:00Z",
   "projects": [
     {
-      "slug": "mister-tutor",
-      "name": "mister-tutor",
-      "oneLiner": "A teaching companion for a CBSE class-10 student preparing for boards — a single, fluid page that walks through a maths chapter end to end, built and refined during real tutoring sessions.",
+      "slug": "founder-hub",
+      "name": "Founder Hub",
+      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
       "status": "active",
       "stack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Vercel"
+        "Expo (React Native)",
+        "Supabase Edge Functions",
+        "PostHog"
       ],
-      "links": {
-        "live": "https://tuition-one.vercel.app"
-      },
-      "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
-      "started": "2026-06-29",
-      "lastActive": "2026-07-01",
+      "links": {},
+      "currentMilestone": "Four sections now — metrics, a YouTube view, a synced todo list, and an architecture handbook — with a custom icon and swipe-between-tabs navigation, all shipped. Google Play and YouTube numbers are wired in and waiting on their access keys and a fresh build.",
+      "started": "2026-06-25",
+      "lastActive": "2026-07-03",
       "timeline": [
         {
-          "date": "2026-07-01",
-          "title": "Made the Real Numbers page interactive — practice and manipulatives",
-          "summary": "Turned the Real Numbers teaching page from something you read into something you do: a practice engine that walks through questions with hints that unfold one step at a time, and live, hands-on manipulatives — an interactive factor tree and a Highest-Common-Factor / Lowest-Common-Multiple explorer — so a student can work the ideas rather than only watch them. Also began preparing the chapter's teaching material the way it's actually taught in a session: broken into progressively smaller pieces until each one clicks, ahead of the first live tutoring session."
+          "date": "2026-07-03",
+          "title": "Shipped the YouTube + Google Play features, then a size pass",
+          "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
         },
         {
-          "date": "2026-06-30",
-          "title": "Reshaped into one focused teaching page — and deployed it live",
-          "summary": "Collapsed an earlier multi-screen prototype into a single, fluid page that teaches one maths chapter (Real Numbers) end to end — the key idea, the core theorems with worked examples, a full irrationality proof, the textbook exercises, and a ready-to-run session plan — with the official textbook and exemplar PDFs one tap away in a sticky bar. Gave it a bold two-colour design sampled from a reference image and tuned for readability, then deployed it live so it can be used during real tutoring sessions. Also refocused the project around one real student and tutor using it continuously rather than a round of user interviews."
+          "date": "2026-06-26",
+          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
+          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
         },
         {
-          "date": "2026-06-29",
-          "title": "From idea to a designed, usable study-companion v0 in a day",
-          "summary": "Kicked off a study companion for a CBSE class-10 student: wrote the one-pager, then built a mobile-first web app — a daily focus card, a colour-coded topic-mastery map, and practice and progress views — running on placeholder data as a stimulus for upcoming user interviews. Turned the first maths chapter (Real Numbers) into an interactive teaching page built from the official textbook: the core theorems, a worked irrationality proof, textbook practice, and a ready-to-run 40-minute session plan. Then rebuilt the whole interface into a real design system — colour tokens, a distinctive type pairing, a shared component layer, consistent icons, and considered motion — after a first flat draft didn't hold up. Kept the bulky textbook files out of version control."
+          "date": "2026-06-25",
+          "title": "A private metrics dashboard that keeps secrets off the phone",
+          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
+        }
+      ]
+    },
+    {
+      "slug": "nsrl-crm",
+      "name": "NSRL CRM",
+      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
+      "status": "active",
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase",
+        "Zod"
+      ],
+      "links": {},
+      "currentMilestone": "The monthly payroll attendance summary is finished, and every form now shows plain, friendly error messages instead of raw validation output. Just closed out a security and code-quality review.",
+      "started": "2025-09-02",
+      "lastActive": "2026-07-03",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "title": "A security and code-quality audit, closed out",
+          "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
+        },
+        {
+          "date": "2026-07-02",
+          "title": "Finished the payroll attendance summary; friendly error messages everywhere",
+          "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
+        },
+        {
+          "date": "2026-06-24",
+          "title": "Started a monthly attendance summary for payroll",
+          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
+        },
+        {
+          "date": "2026-06-20",
+          "title": "Driver attendance, end to end",
+          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+        },
+        {
+          "date": "2026-05-27",
+          "dateEnd": "2026-05-30",
+          "title": "Full relational CRM in four days",
+          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+        },
+        {
+          "date": "2025-10-02",
+          "dateEnd": "2025-10-30",
+          "title": "Tenancy and CRUD architecture",
+          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+        },
+        {
+          "date": "2025-09-02",
+          "dateEnd": "2025-09-29",
+          "title": "Foundation",
+          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+        }
+      ]
+    },
+    {
+      "slug": "wrong-is-right",
+      "name": "Wrong Is Right",
+      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Expo Router",
+        "Zustand",
+        "Supabase"
+      ],
+      "links": {},
+      "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
+      "started": "2026-04-22",
+      "lastActive": "2026-07-03",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "title": "A rendering bug fixed, a live-match dead end closed, and a lighter bundle",
+          "summary": "Reviewed the whole app for bugs and size. Found a real one: the colour feedback on a correct/wrong pick was being silently overridden by a styling-order mistake, so it never actually showed. Also added a way to leave a live head-to-head match once it's started — previously the only exit was from the waiting room, so backing out any other way left your opponent stuck waiting forever. On size, stripped about 7MB of illustration images that were still being bundled even though the feature using them is switched off, and adopted a faster image-loading library."
+        },
+        {
+          "date": "2026-06-10",
+          "title": "Build maintenance: Expo SDK rollback",
+          "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
+        },
+        {
+          "date": "2026-06-09",
+          "title": "2,700-question bank and a schoolwork section",
+          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
+        },
+        {
+          "date": "2026-05-02",
+          "dateEnd": "2026-05-16",
+          "title": "Leagues, an AI question pipeline, and a hardening pass",
+          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
+        },
+        {
+          "date": "2026-04-22",
+          "dateEnd": "2026-04-28",
+          "title": "Zero to released v1 in a week",
+          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
         }
       ]
     },
@@ -53,8 +152,13 @@
       },
       "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
       "started": "2026-05-17",
-      "lastActive": "2026-06-28",
+      "lastActive": "2026-07-02",
       "timeline": [
+        {
+          "date": "2026-07-02",
+          "title": "A full-codebase review turns up five real bugs",
+          "summary": "Ran a thorough pass over the whole app looking for bugs and rough edges, and found five worth fixing: a dismissed welcome card in one group was silently hiding it in every other group; a screen meant to show \"everyone's responded\" could never actually reach that state; a light-mode flash on startup; a payment screen that didn't live-update when someone else marked themselves paid; and a create-group button that stayed clickable while silently doing nothing on empty input. Alongside the fixes, tightened up the money-handling code paths so the balance display goes through one shared calculation everywhere instead of separate copies, and a badly-formatted payment ID now gets caught with a friendly message instead of silently breaking the pay link. Also trimmed one more unused native dependency."
+        },
         {
           "date": "2026-06-28",
           "title": "A design-system pipeline and an auto-checked screen registry",
@@ -148,76 +252,37 @@
       ]
     },
     {
-      "slug": "founder-hub",
-      "name": "Founder Hub",
-      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+      "slug": "mister-tutor",
+      "name": "mister-tutor",
+      "oneLiner": "A teaching companion for a CBSE class-10 student preparing for boards — a single, fluid page that walks through a maths chapter end to end, built and refined during real tutoring sessions.",
       "status": "active",
       "stack": [
-        "Expo (React Native)",
-        "Supabase Edge Functions",
-        "PostHog"
-      ],
-      "links": {},
-      "currentMilestone": "Four sections now — metrics, a YouTube view, a synced todo list, and an architecture handbook — with a custom icon and swipe-between-tabs navigation; Google Play and YouTube numbers are wired in and waiting on their access keys and a fresh build.",
-      "started": "2026-06-25",
-      "lastActive": "2026-06-26",
-      "timeline": [
-        {
-          "date": "2026-06-26",
-          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
-          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "A private metrics dashboard that keeps secrets off the phone",
-          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
-        }
-      ]
-    },
-    {
-      "slug": "nsrl-crm",
-      "name": "NSRL CRM",
-      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
-      "status": "active",
-      "stack": [
-        "Next.js 15",
-        "React 19",
+        "Next.js",
         "TypeScript",
-        "Supabase",
-        "Zod"
+        "Tailwind CSS",
+        "Vercel"
       ],
-      "links": {},
-      "currentMilestone": "Extending driver attendance into a monthly summary for payroll — counting paid rest days like Sundays and holidays.",
-      "started": "2025-09-02",
-      "lastActive": "2026-06-24",
+      "links": {
+        "live": "https://tuition-one.vercel.app"
+      },
+      "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
+      "started": "2026-06-29",
+      "lastActive": "2026-07-01",
       "timeline": [
         {
-          "date": "2026-06-24",
-          "title": "Started a monthly attendance summary for payroll",
-          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs. Work in progress."
+          "date": "2026-07-01",
+          "title": "Made the Real Numbers page interactive — practice and manipulatives",
+          "summary": "Turned the Real Numbers teaching page from something you read into something you do: a practice engine that walks through questions with hints that unfold one step at a time, and live, hands-on manipulatives — an interactive factor tree and a Highest-Common-Factor / Lowest-Common-Multiple explorer — so a student can work the ideas rather than only watch them. Also began preparing the chapter's teaching material the way it's actually taught in a session: broken into progressively smaller pieces until each one clicks, ahead of the first live tutoring session."
         },
         {
-          "date": "2026-06-20",
-          "title": "Driver attendance, end to end",
-          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+          "date": "2026-06-30",
+          "title": "Reshaped into one focused teaching page — and deployed it live",
+          "summary": "Collapsed an earlier multi-screen prototype into a single, fluid page that teaches one maths chapter (Real Numbers) end to end — the key idea, the core theorems with worked examples, a full irrationality proof, the textbook exercises, and a ready-to-run session plan — with the official textbook and exemplar PDFs one tap away in a sticky bar. Gave it a bold two-colour design sampled from a reference image and tuned for readability, then deployed it live so it can be used during real tutoring sessions. Also refocused the project around one real student and tutor using it continuously rather than a round of user interviews."
         },
         {
-          "date": "2026-05-27",
-          "dateEnd": "2026-05-30",
-          "title": "Full relational CRM in four days",
-          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
-        },
-        {
-          "date": "2025-10-02",
-          "dateEnd": "2025-10-30",
-          "title": "Tenancy and CRUD architecture",
-          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
-        },
-        {
-          "date": "2025-09-02",
-          "dateEnd": "2025-09-29",
-          "title": "Foundation",
-          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+          "date": "2026-06-29",
+          "title": "From idea to a designed, usable study-companion v0 in a day",
+          "summary": "Kicked off a study companion for a CBSE class-10 student: wrote the one-pager, then built a mobile-first web app — a daily focus card, a colour-coded topic-mastery map, and practice and progress views — running on placeholder data as a stimulus for upcoming user interviews. Turned the first maths chapter (Real Numbers) into an interactive teaching page built from the official textbook: the core theorems, a worked irrationality proof, textbook practice, and a ready-to-run 40-minute session plan. Then rebuilt the whole interface into a real design system — colour tokens, a distinctive type pairing, a shared component layer, consistent icons, and considered motion — after a first flat draft didn't hold up. Kept the bulky textbook files out of version control."
         }
       ]
     },
@@ -249,46 +314,6 @@
           "date": "2026-06-11",
           "title": "Idea to a runnable pilot kit in one day",
           "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
-    },
-    {
-      "slug": "wrong-is-right",
-      "name": "Wrong Is Right",
-      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Expo Router",
-        "Zustand",
-        "Supabase"
-      ],
-      "links": {},
-      "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
-      "started": "2026-04-22",
-      "lastActive": "2026-06-10",
-      "timeline": [
-        {
-          "date": "2026-06-10",
-          "title": "Build maintenance: Expo SDK rollback",
-          "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
-        },
-        {
-          "date": "2026-06-09",
-          "title": "2,700-question bank and a schoolwork section",
-          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
-        },
-        {
-          "date": "2026-05-02",
-          "dateEnd": "2026-05-16",
-          "title": "Leagues, an AI question pipeline, and a hardening pass",
-          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
-        },
-        {
-          "date": "2026-04-22",
-          "dateEnd": "2026-04-28",
-          "title": "Zero to released v1 in a week",
-          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
         }
       ]
     }
