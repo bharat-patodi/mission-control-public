@@ -148,7 +148,8 @@
         "EAS"
       ],
       "links": {
-        "live": "https://partykitty.expo.app"
+        "live": "https://partykitty.expo.app",
+        "Test on Android": "https://play.google.com/apps/internaltest/4701407934167275299"
       },
       "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
       "started": "2026-05-17",
