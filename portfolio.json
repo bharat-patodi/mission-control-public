@@ -1,365 +1,387 @@
 {
-  "version": 1,
-  "generatedAt": "2026-07-07T18:30:00Z",
-  "projects": [
+ "version": 1,
+ "generatedAt": "2026-07-07T19:56:17Z",
+ "projects": [
+  {
+   "slug": "das-material",
+   "name": "Das Material",
+   "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
+   "status": "active",
+   "stack": [
+    "Expo (React Native)",
+    "TypeScript",
+    "three.js"
+   ],
+   "links": {},
+   "currentMilestone": "Building the v0 — a clickable stimulus centred on a stunning 3D vehicle profile you can spin. It runs on a phone; the visual treatment of the 3D display is heading into a dedicated design pass.",
+   "started": "2026-07-07",
+   "lastActive": "2026-07-08",
+   "timeline": [
     {
-      "slug": "founder-hub",
-      "name": "Founder Hub",
-      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Supabase Edge Functions",
-        "PostHog"
-      ],
-      "links": {},
-      "currentMilestone": "Five sections now — product metrics, a marketing view, a synced todo list, an architecture handbook, and a new Mission view that shows all my projects with a tap-to-expand activity heatmap, read live from my public portfolio so it updates itself. Fresh custom icon and a design pass across every tab, all in a newly sideloaded build. The Google Play and YouTube number feeds stay wired and waiting on their access keys.",
-      "started": "2026-06-25",
-      "lastActive": "2026-07-07",
-      "timeline": [
-        {
-          "date": "2026-07-07",
-          "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
-          "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
-        },
-        {
-          "date": "2026-07-03",
-          "title": "Shipped the YouTube + Google Play features, then a size pass",
-          "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
-        },
-        {
-          "date": "2026-06-26",
-          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
-          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "A private metrics dashboard that keeps secrets off the phone",
-          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
-        }
-      ]
-    },
-    {
-      "slug": "party-kitty",
-      "name": "PartyKitty",
-      "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Supabase",
-        "PostHog",
-        "EAS"
-      ],
-      "links": {
-        "live": "https://partykitty.expo.app",
-        "Test on Android": "https://play.google.com/apps/internaltest/4701407934167275299"
-      },
-      "currentMilestone": "On the Play Store's closed-testing track with a fresh build up and testers being added, working toward the threshold that unlocks a public release. Added a Venues tab — a curated, browsable directory of party venues for one city with tap-to-call, though it needs its venue list filled in before it's useful. Also branded the launch screen and fixed a startup hang.",
-      "started": "2026-05-17",
-      "lastActive": "2026-07-07",
-      "timeline": [
-        {
-          "date": "2026-07-07",
-          "title": "A curated venues directory, a new build, and launch-screen fixes",
-          "summary": "Built a new Venues tab: a read-only, browsable directory of party venues for one city to start, each with a tap-to-call or WhatsApp contact and a host action to set one as this month's venue. It's a hand-curated list rather than scraped, so it can ship with genuinely real places — which also means it stays empty and needs its venue list populated before it's useful, the one thing gating the feature. Put a fresh build on the Play Store's testing track, and fixed two launch problems a tester hit: replaced the stock loading screen with a branded splash so there's no flash into the app, and capped a startup step that could otherwise hang the app open until it was force-closed and reopened."
-        },
-        {
-          "date": "2026-07-02",
-          "title": "A full-codebase review turns up five real bugs",
-          "summary": "Ran a thorough pass over the whole app looking for bugs and rough edges, and found five worth fixing: a dismissed welcome card in one group was silently hiding it in every other group; a screen meant to show \"everyone's responded\" could never actually reach that state; a light-mode flash on startup; a payment screen that didn't live-update when someone else marked themselves paid; and a create-group button that stayed clickable while silently doing nothing on empty input. Alongside the fixes, tightened up the money-handling code paths so the balance display goes through one shared calculation everywhere instead of separate copies, and a badly-formatted payment ID now gets caught with a friendly message instead of silently breaking the pay link. Also trimmed one more unused native dependency."
-        },
-        {
-          "date": "2026-06-28",
-          "title": "A design-system pipeline and an auto-checked screen registry",
-          "summary": "Put the project's visual design system on rails: it can now be pushed to a shared design canvas as a single source of truth, and a new check verifies — automatically, at the end of each work session — that every screen in the app is accounted for, with its design and its code kept in step (it currently tracks all 28 screens). Also introduced a lightweight planning step before any new feature is built: a short, recorded brief that weighs whether it's worth it, what could break, and which screens it touches, so a feature gets thought through before code rather than during. Built as a reusable setup so the same workflow carries across projects."
-        },
-        {
-          "date": "2026-06-27",
-          "title": "Sharing a party update as an image now works on the web",
-          "summary": "Fixed the image-share feature on the web version, which had been quietly failing for every web user. When you send a party update or a settled-month summary, the app turns the on-screen card into a picture and hands it to your phone or browser's share menu to post into WhatsApp. On the web this had three separate breakages stacked on top of each other — the underlying screenshot tool doesn't run in a browser, the browser's share couldn't carry the generated picture, and the share was being triggered a fraction too late for the browser to permit it. Reworked the web path to capture the card directly in the browser and to show a small preview-and-share step, so the share menu opens reliably; on browsers that can't share a picture, it now saves it so you can attach it yourself. Also replaced a raw technical error on the sign-in screen with a plain 'check the number and try again' message. Still to be confirmed on a real device."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "The web app no longer blanks on cold start or after a redeploy",
-          "summary": "Fixed two ways the web build could show a blank screen. Startup no longer waits indefinitely on resources like fonts and settings — it shows a splash, offers a retry after a few seconds, and as a last resort renders with whatever has loaded, so one stalled step can't freeze the screen. And after a new web deploy, a returning visitor whose browser had cached the old page now recovers automatically instead of breaking on a file that no longer exists. Added lightweight startup tracking to confirm the real cause in production."
-        },
-        {
-          "date": "2026-06-23",
-          "title": "A review-and-cleanup sweep: hardening, doc accuracy, and a privacy fix",
-          "summary": "Ran a thorough review pass over the whole codebase. Tightened a few security edges — phone numbers are now sanitised before being dropped into dialer and WhatsApp links, and a powerful internal database-maintenance function was locked down so ordinary app users can't reach it. Removed some duplicated code and brought the project's documentation back in line with what the app actually does today, after a few weeks of fast changes had let it drift. A multi-pass review of the changes turned up no real bugs — the one flagged issue was checked and proven a false alarm. Finally, corrected the privacy policy: the analytics tool does receive members' names as a label, so that's now disclosed plainly in both the in-repo policy and the public privacy page, rather than describing the analytics as fully anonymous."
-        },
-        {
-          "date": "2026-06-22",
-          "title": "Live member updates, a revamped date flow, and the store listing finished",
-          "summary": "Membership changes now propagate live to all open screens via a realtime channel — renames, new additions — so no one needs to manually reload. Added a per-person food-and-drink preferences view in the party coordination screen, and made phone numbers visible in the members list with one-tap calling and WhatsApp. Reworked the date-decision flow to match how it actually gets used: proposing a single fixed date now runs a proper confirm-and-RSVP rather than a one-option comparison poll, and hosts can re-open a vote after a date has already been agreed. Completed the Play Store listing — a branded 1024×500 feature graphic, finalized store tags and privacy URL, and scripts to normalize the screenshot set."
-        },
-        {
-          "date": "2026-06-21",
-          "title": "Play Store data-safety prep, a privacy fix, and welcome messages",
-          "summary": "Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo."
-        },
-        {
-          "date": "2026-06-20",
-          "title": "First build uploaded to the Play Store",
-          "summary": "Uploaded the first Android build for internal testing, and published the privacy-policy and account-deletion pages a store listing requires. Polished the profile screen along the way — the light/dark toggle now leads with a sun/moon icon and a clear label, and some food and payment wording was tidied across all three languages."
-        },
-        {
-          "date": "2026-06-18",
-          "title": "English as the default language, and a code-cleanup pass",
-          "summary": "Switched the app's default language to English, with Hinglish and Kannada now opt-in from the profile — a product call that English should be the baseline while the regional voices stay one tap away. None of the existing translations changed, only which one shows first. Finished the last untranslated corner from the day before — the food and drink preference labels — so the whole app now follows the language switcher. Then ran a cleanup pass over the recently written code: folded nine copies of an identical screen wrapper into one shared component, merged two byte-for-byte identical data modules into a single parameterised one, and removed some now-unnecessary type escape hatches — all pure restructuring with no change in behaviour, kept honest by the type-checker, linter and tests. One rule held throughout: anything the app sends out to the whole group stays in a single fixed language, so everyone reads the same message whoever sent it."
-        },
-        {
-          "date": "2026-06-17",
-          "title": "Three-language support across the whole app",
-          "summary": "Added English, Hinglish and Kannada across the entire app, with a switcher in the profile that repaints every screen in place the instant you change language. Built a small in-house translation system rather than pulling in a library: one canonical English key set that the other languages are type-checked against, so a piece of text can't quietly ship half-translated. Then worked through every screen and shared component — the dues ledger, date polls, food and menu planning, the host picker, tambola, and the rest. One deliberate rule throughout: anything that leaves the app for the whole group — the WhatsApp messages, the shareable status images, the printable tambola tickets — stays in a single fixed language, so a mixed-language group all reads the same thing whoever sent it; dates stay in English too. The Kannada is a machine draft awaiting a native-speaker review, and one set of food-preference labels is queued for a later pass. Verified by the type-checker, linter and tests; on-device verification still to come."
-        },
-        {
-          "date": "2026-06-15",
-          "title": "A spin-the-wheel host picker, and tidying the party screen",
-          "summary": "Added a spin-the-wheel alternative to the existing draw for picking the next host — a real choice the user can flip between, remembered on their device. Restructured the screen so switching is instant: the data loads once in a shell that stays put while only the picker swaps, after a first version that reloaded everything on every toggle. Also surfaced the chosen menu and games on the party card and its shareable status image, pulled every action onto that one card, gave the date screen a one-tap way back to the party, and replaced the placeholder app icons with the real branded set. Refreshed the live web build."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "\"Pick the next host\" — a fair, animated draw",
-          "summary": "Built a feature straight from a customer request: a playful draw that picks who hosts the next gathering from whoever hasn't hosted yet this rotation, then sets up the next month with that host. Who's eligible is derived from the group's real history — everyone hosts once, then the rotation resets on its own — and is covered by unit tests. The draw stays re-rollable for fun while the step that actually creates the next month is the binding one, and it sits alongside the existing path for when the host is already known. Shipped to the live web build."
-        },
-        {
-          "date": "2026-06-08",
-          "title": "Hardening after real-world use",
-          "summary": "Fixed the failures only real usage finds: an onboarding deadlock, auth flows hanging on spinners, sign-out breaking on web (React Native's Alert is a silent no-op there), and phone-number paste handling."
-        },
-        {
-          "date": "2026-06-03",
-          "dateEnd": "2026-06-05",
-          "title": "WhatsApp share-outs and first production build",
-          "summary": "Built a share layer that pushes generated images into the group's WhatsApp — live party-status snapshots and month-end settled-ledger summaries — plus handover flows for date polls and food preferences. First production Android build completed. Deliberately deferred deep-link infrastructure as premature at current scale."
-        },
-        {
-          "date": "2026-06-01",
-          "dateEnd": "2026-06-02",
-          "title": "Design system: Velvet Gulmohar",
-          "summary": "A bold-festive design reset, landed safely: backward-compatible design tokens first, then a full component layer (buttons, cards, sheets, chips and more), then every screen migrated. Dark mode became the default with an in-place reactive toggle."
-        },
-        {
-          "date": "2026-05-29",
-          "dateEnd": "2026-05-31",
-          "title": "New information architecture",
-          "summary": "Rebuilt navigation around how a real host describes the app: a home listing all your kitty groups, each opening into a stack of months, each month a party hub where the coordination features live. Added multi-kitty membership, admin settings, and archived groups."
-        },
-        {
-          "date": "2026-05-23",
-          "dateEnd": "2026-05-26",
-          "title": "Five features, Hinglish copy, analytics",
-          "summary": "Shipped date-decide polls, food preferences, tambola with themed tickets and a calling board, and a living party card. Rewrote every user-facing string in Hinglish for the actual audience. Wired a PostHog event funnel to measure whether the core ledger loop is really used. Closed with a documentation audit reconciling plans with the shipped app."
-        },
-        {
-          "date": "2026-05-17",
-          "dateEnd": "2026-05-22",
-          "title": "Kickoff to working ledger in six days",
-          "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
-        }
-      ]
-    },
-    {
-      "slug": "pyoopel",
-      "name": "Pyoopel",
-      "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "React",
-        "TypeScript"
-      ],
-      "links": {},
-      "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets.",
-      "started": "2025-09-03",
-      "lastActive": "2026-07-07",
-      "timeline": [
-        {
-          "date": "2026-07-07",
-          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
-          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
-        },
-        {
-          "date": "2025-09-03",
-          "dateEnd": "2026-06-23",
-          "title": "Course catalogue and the apps' landing pages (backfilled)",
-          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
-        }
-      ]
-    },
-    {
-      "slug": "wrong-is-right",
-      "name": "Wrong Is Right",
-      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Expo Router",
-        "Zustand",
-        "Supabase"
-      ],
-      "links": {},
-      "currentMilestone": "In progress: an optional email sign-in so a player can back up and restore their profile and stats across devices, landing alongside a code-tidying pass.",
-      "started": "2026-04-22",
-      "lastActive": "2026-07-07",
-      "timeline": [
-        {
-          "date": "2026-07-07",
-          "title": "In progress: save-your-progress sign-in, and a cleanup pass",
-          "summary": "Started adding an optional email sign-in so a player can back up and restore their profile and stats rather than being tied to a single phone — verifying by one-time code, then re-homing the on-device profile under the real account and backing it up to the cloud immediately so nothing is lost mid-flow. Alongside it, folded repeated logic (answer feedback, the category images) into shared reusable pieces and slimmed down the profile and first-run screens. Still mid-flight and not yet committed."
-        },
-        {
-          "date": "2026-07-03",
-          "title": "A rendering bug fixed, a live-match dead end closed, and a lighter bundle",
-          "summary": "Reviewed the whole app for bugs and size. Found a real one: the colour feedback on a correct/wrong pick was being silently overridden by a styling-order mistake, so it never actually showed. Also added a way to leave a live head-to-head match once it's started — previously the only exit was from the waiting room, so backing out any other way left your opponent stuck waiting forever. On size, stripped about 7MB of illustration images that were still being bundled even though the feature using them is switched off, and adopted a faster image-loading library."
-        },
-        {
-          "date": "2026-06-10",
-          "title": "Build maintenance: Expo SDK rollback",
-          "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
-        },
-        {
-          "date": "2026-06-09",
-          "title": "2,700-question bank and a schoolwork section",
-          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
-        },
-        {
-          "date": "2026-05-02",
-          "dateEnd": "2026-05-16",
-          "title": "Leagues, an AI question pipeline, and a hardening pass",
-          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
-        },
-        {
-          "date": "2026-04-22",
-          "dateEnd": "2026-04-28",
-          "title": "Zero to released v1 in a week",
-          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
-        }
-      ]
-    },
-    {
-      "slug": "nsrl-crm",
-      "name": "NSRL CRM",
-      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
-      "status": "active",
-      "stack": [
-        "Next.js 15",
-        "React 19",
-        "TypeScript",
-        "Supabase",
-        "Zod"
-      ],
-      "links": {},
-      "currentMilestone": "The monthly payroll attendance summary is finished, and every form now shows plain, friendly error messages instead of raw validation output. Just closed out a security and code-quality review.",
-      "started": "2025-09-02",
-      "lastActive": "2026-07-03",
-      "timeline": [
-        {
-          "date": "2026-07-03",
-          "title": "A security and code-quality audit, closed out",
-          "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
-        },
-        {
-          "date": "2026-07-02",
-          "title": "Finished the payroll attendance summary; friendly error messages everywhere",
-          "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
-        },
-        {
-          "date": "2026-06-24",
-          "title": "Started a monthly attendance summary for payroll",
-          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
-        },
-        {
-          "date": "2026-06-20",
-          "title": "Driver attendance, end to end",
-          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
-        },
-        {
-          "date": "2026-05-27",
-          "dateEnd": "2026-05-30",
-          "title": "Full relational CRM in four days",
-          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
-        },
-        {
-          "date": "2025-10-02",
-          "dateEnd": "2025-10-30",
-          "title": "Tenancy and CRUD architecture",
-          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
-        },
-        {
-          "date": "2025-09-02",
-          "dateEnd": "2025-09-29",
-          "title": "Foundation",
-          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
-        }
-      ]
-    },
-    {
-      "slug": "mister-tutor",
-      "name": "mister-tutor",
-      "oneLiner": "A teaching companion for a CBSE class-10 student preparing for boards — a single, fluid page that walks through a maths chapter end to end, built and refined during real tutoring sessions.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Vercel"
-      ],
-      "links": {
-        "live": "https://tuition-one.vercel.app"
-      },
-      "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
-      "started": "2026-06-29",
-      "lastActive": "2026-07-01",
-      "timeline": [
-        {
-          "date": "2026-07-01",
-          "title": "Made the Real Numbers page interactive — practice and manipulatives",
-          "summary": "Turned the Real Numbers teaching page from something you read into something you do: a practice engine that walks through questions with hints that unfold one step at a time, and live, hands-on manipulatives — an interactive factor tree and a Highest-Common-Factor / Lowest-Common-Multiple explorer — so a student can work the ideas rather than only watch them. Also began preparing the chapter's teaching material the way it's actually taught in a session: broken into progressively smaller pieces until each one clicks, ahead of the first live tutoring session."
-        },
-        {
-          "date": "2026-06-30",
-          "title": "Reshaped into one focused teaching page — and deployed it live",
-          "summary": "Collapsed an earlier multi-screen prototype into a single, fluid page that teaches one maths chapter (Real Numbers) end to end — the key idea, the core theorems with worked examples, a full irrationality proof, the textbook exercises, and a ready-to-run session plan — with the official textbook and exemplar PDFs one tap away in a sticky bar. Gave it a bold two-colour design sampled from a reference image and tuned for readability, then deployed it live so it can be used during real tutoring sessions. Also refocused the project around one real student and tutor using it continuously rather than a round of user interviews."
-        },
-        {
-          "date": "2026-06-29",
-          "title": "From idea to a designed, usable study-companion v0 in a day",
-          "summary": "Kicked off a study companion for a CBSE class-10 student: wrote the one-pager, then built a mobile-first web app — a daily focus card, a colour-coded topic-mastery map, and practice and progress views — running on placeholder data as a stimulus for upcoming user interviews. Turned the first maths chapter (Real Numbers) into an interactive teaching page built from the official textbook: the core theorems, a worked irrationality proof, textbook practice, and a ready-to-run 40-minute session plan. Then rebuilt the whole interface into a real design system — colour tokens, a distinctive type pairing, a shared component layer, consistent icons, and considered motion — after a first flat draft didn't hold up. Kept the bulky textbook files out of version control."
-        }
-      ]
-    },
-    {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
-      "status": "active",
-      "stack": [
-        "WhatsApp (Wizard-of-Oz, no code yet)",
-        "Claude (content drafting)"
-      ],
-      "links": {},
-      "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
-      "started": "2026-06-11",
-      "lastActive": "2026-06-13",
-      "timeline": [
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
+     "date": "2026-07-08",
+     "title": "A v0 you can hold — 3D vehicle profiles you can spin",
+     "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
     }
-  ]
+   ]
+  },
+  {
+   "slug": "founder-hub",
+   "name": "Founder Hub",
+   "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+   "status": "active",
+   "stack": [
+    "Expo (React Native)",
+    "Supabase Edge Functions",
+    "PostHog"
+   ],
+   "links": {},
+   "currentMilestone": "Five sections now — product metrics, a marketing view, a synced todo list, an architecture handbook, and a new Mission view that shows all my projects with a tap-to-expand activity heatmap, read live from my public portfolio so it updates itself. Fresh custom icon and a design pass across every tab, all in a newly sideloaded build. The Google Play and YouTube number feeds stay wired and waiting on their access keys.",
+   "started": "2026-06-25",
+   "lastActive": "2026-07-07",
+   "timeline": [
+    {
+     "date": "2026-07-07",
+     "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
+     "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
+    },
+    {
+     "date": "2026-07-03",
+     "title": "Shipped the YouTube + Google Play features, then a size pass",
+     "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
+    },
+    {
+     "date": "2026-06-26",
+     "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
+     "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
+    },
+    {
+     "date": "2026-06-25",
+     "title": "A private metrics dashboard that keeps secrets off the phone",
+     "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
+    }
+   ]
+  },
+  {
+   "slug": "party-kitty",
+   "name": "PartyKitty",
+   "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
+   "status": "active",
+   "stack": [
+    "Expo (React Native)",
+    "Supabase",
+    "PostHog",
+    "EAS"
+   ],
+   "links": {
+    "live": "https://partykitty.expo.app",
+    "Test on Android": "https://play.google.com/apps/internaltest/4701407934167275299"
+   },
+   "currentMilestone": "On the Play Store's closed-testing track with a fresh build up and testers being added, working toward the threshold that unlocks a public release. Added a Venues tab — a curated, browsable directory of party venues for one city with tap-to-call, though it needs its venue list filled in before it's useful. Also branded the launch screen and fixed a startup hang.",
+   "started": "2026-05-17",
+   "lastActive": "2026-07-07",
+   "timeline": [
+    {
+     "date": "2026-07-07",
+     "title": "A curated venues directory, a new build, and launch-screen fixes",
+     "summary": "Built a new Venues tab: a read-only, browsable directory of party venues for one city to start, each with a tap-to-call or WhatsApp contact and a host action to set one as this month's venue. It's a hand-curated list rather than scraped, so it can ship with genuinely real places — which also means it stays empty and needs its venue list populated before it's useful, the one thing gating the feature. Put a fresh build on the Play Store's testing track, and fixed two launch problems a tester hit: replaced the stock loading screen with a branded splash so there's no flash into the app, and capped a startup step that could otherwise hang the app open until it was force-closed and reopened."
+    },
+    {
+     "date": "2026-07-02",
+     "title": "A full-codebase review turns up five real bugs",
+     "summary": "Ran a thorough pass over the whole app looking for bugs and rough edges, and found five worth fixing: a dismissed welcome card in one group was silently hiding it in every other group; a screen meant to show \"everyone's responded\" could never actually reach that state; a light-mode flash on startup; a payment screen that didn't live-update when someone else marked themselves paid; and a create-group button that stayed clickable while silently doing nothing on empty input. Alongside the fixes, tightened up the money-handling code paths so the balance display goes through one shared calculation everywhere instead of separate copies, and a badly-formatted payment ID now gets caught with a friendly message instead of silently breaking the pay link. Also trimmed one more unused native dependency."
+    },
+    {
+     "date": "2026-06-28",
+     "title": "A design-system pipeline and an auto-checked screen registry",
+     "summary": "Put the project's visual design system on rails: it can now be pushed to a shared design canvas as a single source of truth, and a new check verifies — automatically, at the end of each work session — that every screen in the app is accounted for, with its design and its code kept in step (it currently tracks all 28 screens). Also introduced a lightweight planning step before any new feature is built: a short, recorded brief that weighs whether it's worth it, what could break, and which screens it touches, so a feature gets thought through before code rather than during. Built as a reusable setup so the same workflow carries across projects."
+    },
+    {
+     "date": "2026-06-27",
+     "title": "Sharing a party update as an image now works on the web",
+     "summary": "Fixed the image-share feature on the web version, which had been quietly failing for every web user. When you send a party update or a settled-month summary, the app turns the on-screen card into a picture and hands it to your phone or browser's share menu to post into WhatsApp. On the web this had three separate breakages stacked on top of each other — the underlying screenshot tool doesn't run in a browser, the browser's share couldn't carry the generated picture, and the share was being triggered a fraction too late for the browser to permit it. Reworked the web path to capture the card directly in the browser and to show a small preview-and-share step, so the share menu opens reliably; on browsers that can't share a picture, it now saves it so you can attach it yourself. Also replaced a raw technical error on the sign-in screen with a plain 'check the number and try again' message. Still to be confirmed on a real device."
+    },
+    {
+     "date": "2026-06-25",
+     "title": "The web app no longer blanks on cold start or after a redeploy",
+     "summary": "Fixed two ways the web build could show a blank screen. Startup no longer waits indefinitely on resources like fonts and settings — it shows a splash, offers a retry after a few seconds, and as a last resort renders with whatever has loaded, so one stalled step can't freeze the screen. And after a new web deploy, a returning visitor whose browser had cached the old page now recovers automatically instead of breaking on a file that no longer exists. Added lightweight startup tracking to confirm the real cause in production."
+    },
+    {
+     "date": "2026-06-23",
+     "title": "A review-and-cleanup sweep: hardening, doc accuracy, and a privacy fix",
+     "summary": "Ran a thorough review pass over the whole codebase. Tightened a few security edges — phone numbers are now sanitised before being dropped into dialer and WhatsApp links, and a powerful internal database-maintenance function was locked down so ordinary app users can't reach it. Removed some duplicated code and brought the project's documentation back in line with what the app actually does today, after a few weeks of fast changes had let it drift. A multi-pass review of the changes turned up no real bugs — the one flagged issue was checked and proven a false alarm. Finally, corrected the privacy policy: the analytics tool does receive members' names as a label, so that's now disclosed plainly in both the in-repo policy and the public privacy page, rather than describing the analytics as fully anonymous."
+    },
+    {
+     "date": "2026-06-22",
+     "title": "Live member updates, a revamped date flow, and the store listing finished",
+     "summary": "Membership changes now propagate live to all open screens via a realtime channel — renames, new additions — so no one needs to manually reload. Added a per-person food-and-drink preferences view in the party coordination screen, and made phone numbers visible in the members list with one-tap calling and WhatsApp. Reworked the date-decision flow to match how it actually gets used: proposing a single fixed date now runs a proper confirm-and-RSVP rather than a one-option comparison poll, and hosts can re-open a vote after a date has already been agreed. Completed the Play Store listing — a branded 1024×500 feature graphic, finalized store tags and privacy URL, and scripts to normalize the screenshot set."
+    },
+    {
+     "date": "2026-06-21",
+     "title": "Play Store data-safety prep, a privacy fix, and welcome messages",
+     "summary": "Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo."
+    },
+    {
+     "date": "2026-06-20",
+     "title": "First build uploaded to the Play Store",
+     "summary": "Uploaded the first Android build for internal testing, and published the privacy-policy and account-deletion pages a store listing requires. Polished the profile screen along the way — the light/dark toggle now leads with a sun/moon icon and a clear label, and some food and payment wording was tidied across all three languages."
+    },
+    {
+     "date": "2026-06-18",
+     "title": "English as the default language, and a code-cleanup pass",
+     "summary": "Switched the app's default language to English, with Hinglish and Kannada now opt-in from the profile — a product call that English should be the baseline while the regional voices stay one tap away. None of the existing translations changed, only which one shows first. Finished the last untranslated corner from the day before — the food and drink preference labels — so the whole app now follows the language switcher. Then ran a cleanup pass over the recently written code: folded nine copies of an identical screen wrapper into one shared component, merged two byte-for-byte identical data modules into a single parameterised one, and removed some now-unnecessary type escape hatches — all pure restructuring with no change in behaviour, kept honest by the type-checker, linter and tests. One rule held throughout: anything the app sends out to the whole group stays in a single fixed language, so everyone reads the same message whoever sent it."
+    },
+    {
+     "date": "2026-06-17",
+     "title": "Three-language support across the whole app",
+     "summary": "Added English, Hinglish and Kannada across the entire app, with a switcher in the profile that repaints every screen in place the instant you change language. Built a small in-house translation system rather than pulling in a library: one canonical English key set that the other languages are type-checked against, so a piece of text can't quietly ship half-translated. Then worked through every screen and shared component — the dues ledger, date polls, food and menu planning, the host picker, tambola, and the rest. One deliberate rule throughout: anything that leaves the app for the whole group — the WhatsApp messages, the shareable status images, the printable tambola tickets — stays in a single fixed language, so a mixed-language group all reads the same thing whoever sent it; dates stay in English too. The Kannada is a machine draft awaiting a native-speaker review, and one set of food-preference labels is queued for a later pass. Verified by the type-checker, linter and tests; on-device verification still to come."
+    },
+    {
+     "date": "2026-06-15",
+     "title": "A spin-the-wheel host picker, and tidying the party screen",
+     "summary": "Added a spin-the-wheel alternative to the existing draw for picking the next host — a real choice the user can flip between, remembered on their device. Restructured the screen so switching is instant: the data loads once in a shell that stays put while only the picker swaps, after a first version that reloaded everything on every toggle. Also surfaced the chosen menu and games on the party card and its shareable status image, pulled every action onto that one card, gave the date screen a one-tap way back to the party, and replaced the placeholder app icons with the real branded set. Refreshed the live web build."
+    },
+    {
+     "date": "2026-06-13",
+     "title": "\"Pick the next host\" — a fair, animated draw",
+     "summary": "Built a feature straight from a customer request: a playful draw that picks who hosts the next gathering from whoever hasn't hosted yet this rotation, then sets up the next month with that host. Who's eligible is derived from the group's real history — everyone hosts once, then the rotation resets on its own — and is covered by unit tests. The draw stays re-rollable for fun while the step that actually creates the next month is the binding one, and it sits alongside the existing path for when the host is already known. Shipped to the live web build."
+    },
+    {
+     "date": "2026-06-08",
+     "title": "Hardening after real-world use",
+     "summary": "Fixed the failures only real usage finds: an onboarding deadlock, auth flows hanging on spinners, sign-out breaking on web (React Native's Alert is a silent no-op there), and phone-number paste handling."
+    },
+    {
+     "date": "2026-06-03",
+     "dateEnd": "2026-06-05",
+     "title": "WhatsApp share-outs and first production build",
+     "summary": "Built a share layer that pushes generated images into the group's WhatsApp — live party-status snapshots and month-end settled-ledger summaries — plus handover flows for date polls and food preferences. First production Android build completed. Deliberately deferred deep-link infrastructure as premature at current scale."
+    },
+    {
+     "date": "2026-06-01",
+     "dateEnd": "2026-06-02",
+     "title": "Design system: Velvet Gulmohar",
+     "summary": "A bold-festive design reset, landed safely: backward-compatible design tokens first, then a full component layer (buttons, cards, sheets, chips and more), then every screen migrated. Dark mode became the default with an in-place reactive toggle."
+    },
+    {
+     "date": "2026-05-29",
+     "dateEnd": "2026-05-31",
+     "title": "New information architecture",
+     "summary": "Rebuilt navigation around how a real host describes the app: a home listing all your kitty groups, each opening into a stack of months, each month a party hub where the coordination features live. Added multi-kitty membership, admin settings, and archived groups."
+    },
+    {
+     "date": "2026-05-23",
+     "dateEnd": "2026-05-26",
+     "title": "Five features, Hinglish copy, analytics",
+     "summary": "Shipped date-decide polls, food preferences, tambola with themed tickets and a calling board, and a living party card. Rewrote every user-facing string in Hinglish for the actual audience. Wired a PostHog event funnel to measure whether the core ledger loop is really used. Closed with a documentation audit reconciling plans with the shipped app."
+    },
+    {
+     "date": "2026-05-17",
+     "dateEnd": "2026-05-22",
+     "title": "Kickoff to working ledger in six days",
+     "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+    }
+   ]
+  },
+  {
+   "slug": "pyoopel",
+   "name": "Pyoopel",
+   "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
+   "status": "active",
+   "stack": [
+    "Next.js",
+    "React",
+    "TypeScript"
+   ],
+   "links": {},
+   "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets.",
+   "started": "2025-09-03",
+   "lastActive": "2026-07-07",
+   "timeline": [
+    {
+     "date": "2026-07-07",
+     "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+     "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+    },
+    {
+     "date": "2025-09-03",
+     "dateEnd": "2026-06-23",
+     "title": "Course catalogue and the apps' landing pages (backfilled)",
+     "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
+    }
+   ]
+  },
+  {
+   "slug": "wrong-is-right",
+   "name": "Wrong Is Right",
+   "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
+   "status": "active",
+   "stack": [
+    "Expo (React Native)",
+    "Expo Router",
+    "Zustand",
+    "Supabase"
+   ],
+   "links": {},
+   "currentMilestone": "In progress: an optional email sign-in so a player can back up and restore their profile and stats across devices, landing alongside a code-tidying pass.",
+   "started": "2026-04-22",
+   "lastActive": "2026-07-07",
+   "timeline": [
+    {
+     "date": "2026-07-07",
+     "title": "In progress: save-your-progress sign-in, and a cleanup pass",
+     "summary": "Started adding an optional email sign-in so a player can back up and restore their profile and stats rather than being tied to a single phone — verifying by one-time code, then re-homing the on-device profile under the real account and backing it up to the cloud immediately so nothing is lost mid-flow. Alongside it, folded repeated logic (answer feedback, the category images) into shared reusable pieces and slimmed down the profile and first-run screens. Still mid-flight and not yet committed."
+    },
+    {
+     "date": "2026-07-03",
+     "title": "A rendering bug fixed, a live-match dead end closed, and a lighter bundle",
+     "summary": "Reviewed the whole app for bugs and size. Found a real one: the colour feedback on a correct/wrong pick was being silently overridden by a styling-order mistake, so it never actually showed. Also added a way to leave a live head-to-head match once it's started — previously the only exit was from the waiting room, so backing out any other way left your opponent stuck waiting forever. On size, stripped about 7MB of illustration images that were still being bundled even though the feature using them is switched off, and adopted a faster image-loading library."
+    },
+    {
+     "date": "2026-06-10",
+     "title": "Build maintenance: Expo SDK rollback",
+     "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
+    },
+    {
+     "date": "2026-06-09",
+     "title": "2,700-question bank and a schoolwork section",
+     "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
+    },
+    {
+     "date": "2026-05-02",
+     "dateEnd": "2026-05-16",
+     "title": "Leagues, an AI question pipeline, and a hardening pass",
+     "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
+    },
+    {
+     "date": "2026-04-22",
+     "dateEnd": "2026-04-28",
+     "title": "Zero to released v1 in a week",
+     "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
+    }
+   ]
+  },
+  {
+   "slug": "nsrl-crm",
+   "name": "NSRL CRM",
+   "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
+   "status": "active",
+   "stack": [
+    "Next.js 15",
+    "React 19",
+    "TypeScript",
+    "Supabase",
+    "Zod"
+   ],
+   "links": {},
+   "currentMilestone": "The monthly payroll attendance summary is finished, and every form now shows plain, friendly error messages instead of raw validation output. Just closed out a security and code-quality review.",
+   "started": "2025-09-02",
+   "lastActive": "2026-07-03",
+   "timeline": [
+    {
+     "date": "2026-07-03",
+     "title": "A security and code-quality audit, closed out",
+     "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
+    },
+    {
+     "date": "2026-07-02",
+     "title": "Finished the payroll attendance summary; friendly error messages everywhere",
+     "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
+    },
+    {
+     "date": "2026-06-24",
+     "title": "Started a monthly attendance summary for payroll",
+     "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
+    },
+    {
+     "date": "2026-06-20",
+     "title": "Driver attendance, end to end",
+     "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+    },
+    {
+     "date": "2026-05-27",
+     "dateEnd": "2026-05-30",
+     "title": "Full relational CRM in four days",
+     "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+    },
+    {
+     "date": "2025-10-02",
+     "dateEnd": "2025-10-30",
+     "title": "Tenancy and CRUD architecture",
+     "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+    },
+    {
+     "date": "2025-09-02",
+     "dateEnd": "2025-09-29",
+     "title": "Foundation",
+     "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+    }
+   ]
+  },
+  {
+   "slug": "mister-tutor",
+   "name": "mister-tutor",
+   "oneLiner": "A teaching companion for a CBSE class-10 student preparing for boards — a single, fluid page that walks through a maths chapter end to end, built and refined during real tutoring sessions.",
+   "status": "active",
+   "stack": [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Vercel"
+   ],
+   "links": {
+    "live": "https://tuition-one.vercel.app"
+   },
+   "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
+   "started": "2026-06-29",
+   "lastActive": "2026-07-01",
+   "timeline": [
+    {
+     "date": "2026-07-01",
+     "title": "Made the Real Numbers page interactive — practice and manipulatives",
+     "summary": "Turned the Real Numbers teaching page from something you read into something you do: a practice engine that walks through questions with hints that unfold one step at a time, and live, hands-on manipulatives — an interactive factor tree and a Highest-Common-Factor / Lowest-Common-Multiple explorer — so a student can work the ideas rather than only watch them. Also began preparing the chapter's teaching material the way it's actually taught in a session: broken into progressively smaller pieces until each one clicks, ahead of the first live tutoring session."
+    },
+    {
+     "date": "2026-06-30",
+     "title": "Reshaped into one focused teaching page — and deployed it live",
+     "summary": "Collapsed an earlier multi-screen prototype into a single, fluid page that teaches one maths chapter (Real Numbers) end to end — the key idea, the core theorems with worked examples, a full irrationality proof, the textbook exercises, and a ready-to-run session plan — with the official textbook and exemplar PDFs one tap away in a sticky bar. Gave it a bold two-colour design sampled from a reference image and tuned for readability, then deployed it live so it can be used during real tutoring sessions. Also refocused the project around one real student and tutor using it continuously rather than a round of user interviews."
+    },
+    {
+     "date": "2026-06-29",
+     "title": "From idea to a designed, usable study-companion v0 in a day",
+     "summary": "Kicked off a study companion for a CBSE class-10 student: wrote the one-pager, then built a mobile-first web app — a daily focus card, a colour-coded topic-mastery map, and practice and progress views — running on placeholder data as a stimulus for upcoming user interviews. Turned the first maths chapter (Real Numbers) into an interactive teaching page built from the official textbook: the core theorems, a worked irrationality proof, textbook practice, and a ready-to-run 40-minute session plan. Then rebuilt the whole interface into a real design system — colour tokens, a distinctive type pairing, a shared component layer, consistent icons, and considered motion — after a first flat draft didn't hold up. Kept the bulky textbook files out of version control."
+    }
+   ]
+  },
+  {
+   "slug": "aaj-kya-seekha",
+   "name": "Aaj Kya Seekha",
+   "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
+   "status": "active",
+   "stack": [
+    "WhatsApp (Wizard-of-Oz, no code yet)",
+    "Claude (content drafting)"
+   ],
+   "links": {},
+   "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software.",
+   "started": "2026-06-11",
+   "lastActive": "2026-06-13",
+   "timeline": [
+    {
+     "date": "2026-06-13",
+     "title": "First family interview — logged as a counter-signal",
+     "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+    },
+    {
+     "date": "2026-06-12",
+     "title": "Schedule slipped a day — deadline held",
+     "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+    },
+    {
+     "date": "2026-06-11",
+     "title": "Idea to a runnable pilot kit in one day",
+     "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+    }
+   ]
+  }
+ ]
 }
