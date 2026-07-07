@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-03T18:00:00Z",
+  "generatedAt": "2026-07-07T18:30:00Z",
   "projects": [
     {
       "slug": "founder-hub",
@@ -13,10 +13,15 @@
         "PostHog"
       ],
       "links": {},
-      "currentMilestone": "Four sections now — metrics, a YouTube view, a synced todo list, and an architecture handbook — with a custom icon and swipe-between-tabs navigation, all shipped. Google Play and YouTube numbers are wired in and waiting on their access keys and a fresh build.",
+      "currentMilestone": "Five sections now — product metrics, a marketing view, a synced todo list, an architecture handbook, and a new Mission view that shows all my projects with a tap-to-expand activity heatmap, read live from my public portfolio so it updates itself. Fresh custom icon and a design pass across every tab, all in a newly sideloaded build. The Google Play and YouTube number feeds stay wired and waiting on their access keys.",
       "started": "2026-06-25",
-      "lastActive": "2026-07-03",
+      "lastActive": "2026-07-07",
       "timeline": [
+        {
+          "date": "2026-07-07",
+          "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
+          "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
+        },
         {
           "date": "2026-07-03",
           "title": "Shipped the YouTube + Google Play features, then a size pass",
@@ -35,108 +40,6 @@
       ]
     },
     {
-      "slug": "nsrl-crm",
-      "name": "NSRL CRM",
-      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
-      "status": "active",
-      "stack": [
-        "Next.js 15",
-        "React 19",
-        "TypeScript",
-        "Supabase",
-        "Zod"
-      ],
-      "links": {},
-      "currentMilestone": "The monthly payroll attendance summary is finished, and every form now shows plain, friendly error messages instead of raw validation output. Just closed out a security and code-quality review.",
-      "started": "2025-09-02",
-      "lastActive": "2026-07-03",
-      "timeline": [
-        {
-          "date": "2026-07-03",
-          "title": "A security and code-quality audit, closed out",
-          "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
-        },
-        {
-          "date": "2026-07-02",
-          "title": "Finished the payroll attendance summary; friendly error messages everywhere",
-          "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
-        },
-        {
-          "date": "2026-06-24",
-          "title": "Started a monthly attendance summary for payroll",
-          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
-        },
-        {
-          "date": "2026-06-20",
-          "title": "Driver attendance, end to end",
-          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
-        },
-        {
-          "date": "2026-05-27",
-          "dateEnd": "2026-05-30",
-          "title": "Full relational CRM in four days",
-          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
-        },
-        {
-          "date": "2025-10-02",
-          "dateEnd": "2025-10-30",
-          "title": "Tenancy and CRUD architecture",
-          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
-        },
-        {
-          "date": "2025-09-02",
-          "dateEnd": "2025-09-29",
-          "title": "Foundation",
-          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
-        }
-      ]
-    },
-    {
-      "slug": "wrong-is-right",
-      "name": "Wrong Is Right",
-      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Expo Router",
-        "Zustand",
-        "Supabase"
-      ],
-      "links": {},
-      "currentMilestone": "School-subjects mode — Class 10 chapters as playable categories.",
-      "started": "2026-04-22",
-      "lastActive": "2026-07-03",
-      "timeline": [
-        {
-          "date": "2026-07-03",
-          "title": "A rendering bug fixed, a live-match dead end closed, and a lighter bundle",
-          "summary": "Reviewed the whole app for bugs and size. Found a real one: the colour feedback on a correct/wrong pick was being silently overridden by a styling-order mistake, so it never actually showed. Also added a way to leave a live head-to-head match once it's started — previously the only exit was from the waiting room, so backing out any other way left your opponent stuck waiting forever. On size, stripped about 7MB of illustration images that were still being bundled even though the feature using them is switched off, and adopted a faster image-loading library."
-        },
-        {
-          "date": "2026-06-10",
-          "title": "Build maintenance: Expo SDK rollback",
-          "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
-        },
-        {
-          "date": "2026-06-09",
-          "title": "2,700-question bank and a schoolwork section",
-          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
-        },
-        {
-          "date": "2026-05-02",
-          "dateEnd": "2026-05-16",
-          "title": "Leagues, an AI question pipeline, and a hardening pass",
-          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
-        },
-        {
-          "date": "2026-04-22",
-          "dateEnd": "2026-04-28",
-          "title": "Zero to released v1 in a week",
-          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
-        }
-      ]
-    },
-    {
       "slug": "party-kitty",
       "name": "PartyKitty",
       "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
@@ -151,10 +54,15 @@
         "live": "https://partykitty.expo.app",
         "Test on Android": "https://play.google.com/apps/internaltest/4701407934167275299"
       },
-      "currentMilestone": "Now live on the Play Store's internal-testing track — the build, store listing and data-safety details are all submitted; the remaining step is installing and verifying it on a real device before the first real group uses it.",
+      "currentMilestone": "On the Play Store's closed-testing track with a fresh build up and testers being added, working toward the threshold that unlocks a public release. Added a Venues tab — a curated, browsable directory of party venues for one city with tap-to-call, though it needs its venue list filled in before it's useful. Also branded the launch screen and fixed a startup hang.",
       "started": "2026-05-17",
-      "lastActive": "2026-07-02",
+      "lastActive": "2026-07-07",
       "timeline": [
+        {
+          "date": "2026-07-07",
+          "title": "A curated venues directory, a new build, and launch-screen fixes",
+          "summary": "Built a new Venues tab: a read-only, browsable directory of party venues for one city to start, each with a tap-to-call or WhatsApp contact and a host action to set one as this month's venue. It's a hand-curated list rather than scraped, so it can ship with genuinely real places — which also means it stays empty and needs its venue list populated before it's useful, the one thing gating the feature. Put a fresh build on the Play Store's testing track, and fixed two launch problems a tester hit: replaced the stock loading screen with a branded splash so there's no flash into the app, and capped a startup step that could otherwise hang the app open until it was force-closed and reopened."
+        },
         {
           "date": "2026-07-02",
           "title": "A full-codebase review turns up five real bugs",
@@ -249,6 +157,141 @@
           "dateEnd": "2026-05-22",
           "title": "Kickoff to working ledger in six days",
           "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+        }
+      ]
+    },
+    {
+      "slug": "pyoopel",
+      "name": "Pyoopel",
+      "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
+      "status": "active",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript"
+      ],
+      "links": {},
+      "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets.",
+      "started": "2025-09-03",
+      "lastActive": "2026-07-07",
+      "timeline": [
+        {
+          "date": "2026-07-07",
+          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+        },
+        {
+          "date": "2025-09-03",
+          "dateEnd": "2026-06-23",
+          "title": "Course catalogue and the apps' landing pages (backfilled)",
+          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
+        }
+      ]
+    },
+    {
+      "slug": "wrong-is-right",
+      "name": "Wrong Is Right",
+      "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Expo Router",
+        "Zustand",
+        "Supabase"
+      ],
+      "links": {},
+      "currentMilestone": "In progress: an optional email sign-in so a player can back up and restore their profile and stats across devices, landing alongside a code-tidying pass.",
+      "started": "2026-04-22",
+      "lastActive": "2026-07-07",
+      "timeline": [
+        {
+          "date": "2026-07-07",
+          "title": "In progress: save-your-progress sign-in, and a cleanup pass",
+          "summary": "Started adding an optional email sign-in so a player can back up and restore their profile and stats rather than being tied to a single phone — verifying by one-time code, then re-homing the on-device profile under the real account and backing it up to the cloud immediately so nothing is lost mid-flow. Alongside it, folded repeated logic (answer feedback, the category images) into shared reusable pieces and slimmed down the profile and first-run screens. Still mid-flight and not yet committed."
+        },
+        {
+          "date": "2026-07-03",
+          "title": "A rendering bug fixed, a live-match dead end closed, and a lighter bundle",
+          "summary": "Reviewed the whole app for bugs and size. Found a real one: the colour feedback on a correct/wrong pick was being silently overridden by a styling-order mistake, so it never actually showed. Also added a way to leave a live head-to-head match once it's started — previously the only exit was from the waiting room, so backing out any other way left your opponent stuck waiting forever. On size, stripped about 7MB of illustration images that were still being bundled even though the feature using them is switched off, and adopted a faster image-loading library."
+        },
+        {
+          "date": "2026-06-10",
+          "title": "Build maintenance: Expo SDK rollback",
+          "summary": "Rolled the app back from an accidental Expo SDK 55 jump to the intended SDK 54 — major upgrades should be deliberate, not a side effect of a loose version range. Restored two missing router dependencies and fixed an iOS icon configuration key so the light/dark icon variants resolve correctly."
+        },
+        {
+          "date": "2026-06-09",
+          "title": "2,700-question bank and a schoolwork section",
+          "summary": "Grew all twelve trivia categories to 70 questions per difficulty — 2,700 questions total, enforced by a validator. Added Class 10 schoolwork as a new kind of section: each subject is its own walled-off section and each chapter a category, so adding a subject is a configuration change, not a refactor."
+        },
+        {
+          "date": "2026-05-02",
+          "dateEnd": "2026-05-16",
+          "title": "Leagues, an AI question pipeline, and a hardening pass",
+          "summary": "Added weekly leagues with automated closing — moved the scheduled job from CI cron to pg_cron so it lives next to the data. Built an AI-assisted question-generation pipeline. Followed with a code-review wave: centralized game rules and category definitions, tightened types."
+        },
+        {
+          "date": "2026-04-22",
+          "dateEnd": "2026-04-28",
+          "title": "Zero to released v1 in a week",
+          "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
+        }
+      ]
+    },
+    {
+      "slug": "nsrl-crm",
+      "name": "NSRL CRM",
+      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
+      "status": "active",
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase",
+        "Zod"
+      ],
+      "links": {},
+      "currentMilestone": "The monthly payroll attendance summary is finished, and every form now shows plain, friendly error messages instead of raw validation output. Just closed out a security and code-quality review.",
+      "started": "2025-09-02",
+      "lastActive": "2026-07-03",
+      "timeline": [
+        {
+          "date": "2026-07-03",
+          "title": "A security and code-quality audit, closed out",
+          "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
+        },
+        {
+          "date": "2026-07-02",
+          "title": "Finished the payroll attendance summary; friendly error messages everywhere",
+          "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
+        },
+        {
+          "date": "2026-06-24",
+          "title": "Started a monthly attendance summary for payroll",
+          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
+        },
+        {
+          "date": "2026-06-20",
+          "title": "Driver attendance, end to end",
+          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+        },
+        {
+          "date": "2026-05-27",
+          "dateEnd": "2026-05-30",
+          "title": "Full relational CRM in four days",
+          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+        },
+        {
+          "date": "2025-10-02",
+          "dateEnd": "2025-10-30",
+          "title": "Tenancy and CRUD architecture",
+          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+        },
+        {
+          "date": "2025-09-02",
+          "dateEnd": "2025-09-29",
+          "title": "Foundation",
+          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
         }
       ]
     },
