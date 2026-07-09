@@ -1,66 +1,7 @@
 {
  "version": 1,
- "generatedAt": "2026-07-07T19:56:17Z",
+ "generatedAt": "2026-07-10T20:30:00Z",
  "projects": [
-  {
-   "slug": "das-material",
-   "name": "Das Material",
-   "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
-   "status": "active",
-   "stack": [
-    "Expo (React Native)",
-    "TypeScript",
-    "three.js"
-   ],
-   "links": {},
-   "currentMilestone": "Building the v0 — a clickable stimulus centred on a stunning 3D vehicle profile you can spin. It runs on a phone; the visual treatment of the 3D display is heading into a dedicated design pass.",
-   "started": "2026-07-07",
-   "lastActive": "2026-07-08",
-   "timeline": [
-    {
-     "date": "2026-07-08",
-     "title": "A v0 you can hold — 3D vehicle profiles you can spin",
-     "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
-    }
-   ]
-  },
-  {
-   "slug": "founder-hub",
-   "name": "Founder Hub",
-   "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
-   "status": "active",
-   "stack": [
-    "Expo (React Native)",
-    "Supabase Edge Functions",
-    "PostHog"
-   ],
-   "links": {},
-   "currentMilestone": "Five sections now — product metrics, a marketing view, a synced todo list, an architecture handbook, and a new Mission view that shows all my projects with a tap-to-expand activity heatmap, read live from my public portfolio so it updates itself. Fresh custom icon and a design pass across every tab, all in a newly sideloaded build. The Google Play and YouTube number feeds stay wired and waiting on their access keys.",
-   "started": "2026-06-25",
-   "lastActive": "2026-07-07",
-   "timeline": [
-    {
-     "date": "2026-07-07",
-     "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
-     "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
-    },
-    {
-     "date": "2026-07-03",
-     "title": "Shipped the YouTube + Google Play features, then a size pass",
-     "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
-    },
-    {
-     "date": "2026-06-26",
-     "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
-     "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
-    },
-    {
-     "date": "2026-06-25",
-     "title": "A private metrics dashboard that keeps secrets off the phone",
-     "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
-    }
-   ]
-  },
   {
    "slug": "party-kitty",
    "name": "PartyKitty",
@@ -76,10 +17,15 @@
     "live": "https://partykitty.expo.app",
     "Test on Android": "https://play.google.com/apps/internaltest/4701407934167275299"
    },
-   "currentMilestone": "On the Play Store's closed-testing track with a fresh build up and testers being added, working toward the threshold that unlocks a public release. Added a Venues tab — a curated, browsable directory of party venues for one city with tap-to-call, though it needs its venue list filled in before it's useful. Also branded the launch screen and fixed a startup hang.",
+   "currentMilestone": "On the Play Store closed-testing track, working toward the threshold that unlocks a public release. Newest work: turned the in-app tambola (housie) from a single-phone number-caller into a real multiplayer game the whole group plays together on their own phones — built, reviewed for security and usability, and now waiting on a live try-out with real phones at an actual party. The Venues directory also went multi-city, though it still needs its venue lists filled in.",
    "started": "2026-05-17",
-   "lastActive": "2026-07-07",
+   "lastActive": "2026-07-10",
    "timeline": [
+    {
+     "date": "2026-07-10",
+     "title": "Live multiplayer tambola for the party room",
+     "summary": "Turned the app’s tambola (housie) from a single-phone number-caller into a game the whole group plays together on their own phones. The host draws numbers on her phone and every player’s ticket marks itself automatically in real time, with a private “you’ve got a line — call it!” nudge on the winner’s own screen — no public announcement, so she still shouts it out the way the game is meant to be played. Each player taps to claim which ticket is hers so the app knows whose is whose. It went through a full pre-build review (is it worth building now, what could break, how it flows), then the build, and closed with a security review (a player can’t grab someone else’s ticket mid-game) and a usability review (clearer wording so no one sits waiting for the app to announce a win). Also made the Venues directory work across two cities with a toggle. Next: trying it on real phones in an actual party."
+    },
     {
      "date": "2026-07-07",
      "title": "A curated venues directory, a new build, and launch-screen fixes",
@@ -183,34 +129,6 @@
    ]
   },
   {
-   "slug": "pyoopel",
-   "name": "Pyoopel",
-   "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
-   "status": "active",
-   "stack": [
-    "Next.js",
-    "React",
-    "TypeScript"
-   ],
-   "links": {},
-   "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets.",
-   "started": "2025-09-03",
-   "lastActive": "2026-07-07",
-   "timeline": [
-    {
-     "date": "2026-07-07",
-     "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
-     "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
-    },
-    {
-     "date": "2025-09-03",
-     "dateEnd": "2026-06-23",
-     "title": "Course catalogue and the apps' landing pages (backfilled)",
-     "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
-    }
-   ]
-  },
-  {
    "slug": "wrong-is-right",
    "name": "Wrong Is Right",
    "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
@@ -222,10 +140,15 @@
     "Supabase"
    ],
    "links": {},
-   "currentMilestone": "In progress: an optional email sign-in so a player can back up and restore their profile and stats across devices, landing alongside a code-tidying pass.",
+   "currentMilestone": "An optional email sign-in so a player can back up and restore their profile and stats across devices is now built and committed, alongside a code-tidying pass. Underlying track is still the Class 10 schoolwork per-subject sections.",
    "started": "2026-04-22",
-   "lastActive": "2026-07-07",
+   "lastActive": "2026-07-09",
    "timeline": [
+    {
+     "date": "2026-07-09",
+     "title": "Save-your-progress sign-in lands",
+     "summary": "The optional email sign-in from the previous session is now committed: a player can back up and restore their profile and stats across devices by verifying a one-time code, with the on-device profile re-homed under the real account and backed up to the cloud immediately so nothing is lost if they leave mid-flow. Landed alongside a cleanup pass that folded repeated answer-feedback and category-image logic into shared reusable pieces and slimmed the profile and first-run screens."
+    },
     {
      "date": "2026-07-07",
      "title": "In progress: save-your-progress sign-in, and a cleanup pass",
@@ -257,6 +180,93 @@
      "dateEnd": "2026-04-28",
      "title": "Zero to released v1 in a week",
      "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
+    }
+   ]
+  },
+  {
+   "slug": "das-material",
+   "name": "Das Material",
+   "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
+   "status": "active",
+   "stack": [
+    "Expo (React Native)",
+    "TypeScript",
+    "three.js"
+   ],
+   "links": {},
+   "currentMilestone": "Building the v0 — a clickable stimulus centred on a stunning 3D vehicle profile you can spin. It runs on a phone; the visual treatment of the 3D display is heading into a dedicated design pass.",
+   "started": "2026-07-07",
+   "lastActive": "2026-07-08",
+   "timeline": [
+    {
+     "date": "2026-07-08",
+     "title": "A v0 you can hold — 3D vehicle profiles you can spin",
+     "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
+    }
+   ]
+  },
+  {
+   "slug": "founder-hub",
+   "name": "Founder Hub",
+   "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+   "status": "active",
+   "stack": [
+    "Expo (React Native)",
+    "Supabase Edge Functions",
+    "PostHog"
+   ],
+   "links": {},
+   "currentMilestone": "Five sections now — product metrics, a marketing view, a synced todo list, an architecture handbook, and a new Mission view that shows all my projects with a tap-to-expand activity heatmap, read live from my public portfolio so it updates itself. Fresh custom icon and a design pass across every tab, all in a newly sideloaded build. The Google Play and YouTube number feeds stay wired and waiting on their access keys.",
+   "started": "2026-06-25",
+   "lastActive": "2026-07-07",
+   "timeline": [
+    {
+     "date": "2026-07-07",
+     "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
+     "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
+    },
+    {
+     "date": "2026-07-03",
+     "title": "Shipped the YouTube + Google Play features, then a size pass",
+     "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
+    },
+    {
+     "date": "2026-06-26",
+     "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
+     "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
+    },
+    {
+     "date": "2026-06-25",
+     "title": "A private metrics dashboard that keeps secrets off the phone",
+     "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
+    }
+   ]
+  },
+  {
+   "slug": "pyoopel",
+   "name": "Pyoopel",
+   "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
+   "status": "active",
+   "stack": [
+    "Next.js",
+    "React",
+    "TypeScript"
+   ],
+   "links": {},
+   "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets.",
+   "started": "2025-09-03",
+   "lastActive": "2026-07-07",
+   "timeline": [
+    {
+     "date": "2026-07-07",
+     "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+     "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+    },
+    {
+     "date": "2025-09-03",
+     "dateEnd": "2026-06-23",
+     "title": "Course catalogue and the apps' landing pages (backfilled)",
+     "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
     }
    ]
   },
