@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-14T01:29:44",
+  "generatedAt": "2026-07-14T15:27:42Z",
   "projects": [
     {
       "slug": "das-material",
@@ -17,13 +17,13 @@
         "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
         "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
       },
-      "currentMilestone": "Stage A on-device: adding a real vehicle takes ~50 seconds against a five-minute target. Store-release prep largely done; blocked on replacing a 3D model that turned out to be the wrong vehicle.",
+      "currentMilestone": "Adding a real vehicle takes ~50 seconds against a five-minute target. The 3D-model bug (a bike that rendered as a car) is fixed with a self-built, license-clean model, and vehicles can now be edited or deleted. Store-release prep is nearly done — what's left is on-device verification and real screenshots.",
       "started": "2026-07-07",
       "lastActive": "2026-07-14",
       "timeline": [
         {
           "date": "2026-07-14",
-          "text": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Then traced a bike rendering as a car all the way down to the 3D model file itself, which contains a car — and wrote a build-time check that reads each model's geometry and asserts it is the vehicle the code thinks it is."
+          "text": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
         },
         {
           "date": "2026-07-13",
