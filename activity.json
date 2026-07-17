@@ -1,13 +1,65 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-15T19:20:08Z",
+  "generatedAt": "2026-07-17T10:23:51Z",
   "days": [
     {
-      "date": "2026-07-16",
-      "count": 2,
+      "date": "2026-07-17",
+      "count": 4,
       "items": [
         {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 2
+        },
+        {
           "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 4
+        },
+        {
+          "project": "das-material",
+          "type": "design",
+          "label": "Model review rounds"
+        },
+        {
+          "project": "founder-hub",
+          "type": "design",
+          "label": "Design-system re-sync"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "count": 6,
+      "items": [
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 12
+        },
+        {
+          "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "nsrl-crm",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 8
+        },
+        {
+          "project": "wrong-is-right",
           "type": "commit",
           "label": "Commits",
           "commits": 1

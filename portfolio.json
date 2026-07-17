@@ -1,7 +1,62 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-16T12:00:00Z",
+  "generatedAt": "2026-07-17T12:00:00Z",
   "projects": [
+    {
+      "slug": "das-material",
+      "name": "Das Material",
+      "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Appwrite",
+        "PostHog",
+        "react-three-fiber"
+      ],
+      "links": {
+        "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
+        "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
+      },
+      "currentMilestone": "The model workshop now has a hand-authored hatchback — the control that the experimental rendering approaches have to be judged against. Three review rounds against a rendered contact sheet found only structural problems, never cosmetic ones, and they all turned out to be the same bug wearing different clothes: a part placed at a number someone remembered instead of measured against the surface it actually touches. That's now fixed at the root — the parts kit exports the answer, so a part asks where the body is rather than guessing. On-device verification is the pivotal open item and is two sessions overdue.",
+      "started": "2026-07-07",
+      "lastActive": "2026-07-17",
+      "timeline": [
+        {
+          "date": "2026-07-17",
+          "title": "Five bugs, one bug: teaching the parts kit to answer \"where is the body here?\"",
+          "summary": "Built a hand-authored hatchback as the control for the rendering bake-off, then reviewed it three times against a rendered contact sheet — and every round found structure, not polish. No wheel arches (the body's underside sat level with the tops of the tyres, so no wheel was ever inside an arch). Wheels standing clear of the bodywork in open air. A windscreen torn open by two surfaces fighting for the same 0.9mm. Mirrors floating a hand's width off the car with no stalk. A cabin sitting on the body like a hat — its roof width turned out to be the wheel-track measurement, copied. Underneath all of it was one recurring mistake, now on its fifth appearance: a part positioned at a remembered constant rather than against the surface it touches. Since the body tapers, any remembered number is wrong by construction — and the only reason to guess was that nothing published the real answer. It does now, so parts ask. Worth noting what didn't help: the automated model checker passes cleanly through every single one of these defects. Only looking at the rendered thing catches them."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Design-system cleanup: the last few hardcoded colours found, and the launch screen isn't quite finished",
+          "summary": "Cleaned up the last few colours that were hardcoded directly into components instead of pulling from the shared design system — one turned out to be legitimate (a car's actual paint colour, which correctly shouldn't repaint itself when the app's theme changes, so it moved to a data file instead), the other a real gap that's now fixed. That cleanup also surfaced something worth knowing: the app's launch screen still shows stock branding from the starter template rather than the app's own look — noted for whenever it's worth a design pass. This project is now the first in the lineup to pass every automated check clean."
+        },
+        {
+          "date": "2026-07-14",
+          "text": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
+        },
+        {
+          "date": "2026-07-13",
+          "title": "The roadmap ahead, written as buildable milestones",
+          "summary": "Turned the next two build stages — a private document vault with service history, and add-a-vehicle-by-photographing-a-document — into detailed, build-ready specs with explicit quality bars (a wrong extracted date counts worse than none). Then mapped nine milestones beyond them, each with its own start gate: store test release, the owed round of user interviews run against the real app, a render pipeline that makes any user's vehicle look showable, accurate per-vehicle facts with a zero-wrong-facts bar, a shareable pride card, light theme and polish, public release, iOS, and a deliberately code-free investigation of a second product category. Also fixed the 3D view so a black car is actually visible, and made the app degrade gracefully in the development sandbox."
+        },
+        {
+          "date": "2026-07-12",
+          "title": "Design pass closed; the core app built on a real component system",
+          "summary": "Closed the design milestone end to end: a style exploration across eight looks settled on a museum-inspired visual language (serif nameplates, a single mint accent, dark theme first), which was then audited — every text pairing passes accessibility contrast in both themes — and rendered as 24 real phone-sized screen mockups with per-screen build notes. Built it in the disciplined order: design tokens in code first, then a shared component kit with no raw colors or sizes anywhere, then the screens composed from that kit — sign-in on real authentication, an add-vehicle form whose save reveals a 3D profile of the car, a reminders view for insurance and emissions-check dates, and local notifications. The backend moved onto versioned, re-runnable database migrations instead of a one-shot setup script."
+        },
+        {
+          "date": "2026-07-10",
+          "title": "v0 confirmed on-device; interview kit ready; a render-realism bake-off planned",
+          "summary": "Closed out the v0 milestone after confirming the app runs on a real phone, and moved into user-interview mode: wrote the working question set — deep on vehicle ownership, anchored in stories about the last time something actually happened, with a short zoom-out testing the broader “own with pride” idea — plus outreach messages designed not to bias the answers, and rules for consent and anonymising notes. Separately, researched how realistic the 3D vehicle display can get, comparing scanning a real car, AI-generated 3D models, catalog models, and pre-rendered spins — and planned a bake-off: one cheap test per approach, scored on which one actually sparks pride, with the winner adopted in the upcoming design pass. Also did a privacy pass ahead of wiring real services: anonymous user ids instead of emails, analytics pinned to EU servers with session recording off, and a living privacy doc that records each decision as it's made."
+        },
+        {
+          "date": "2026-07-08",
+          "title": "A v0 you can hold — 3D vehicle profiles you can spin",
+          "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
+        }
+      ]
+    },
     {
       "slug": "founder-hub",
       "name": "Founder Hub",
@@ -13,10 +68,15 @@
         "PostHog"
       ],
       "links": {},
-      "currentMilestone": "Five sections — product metrics, a marketing view, a synced todo list, an architecture handbook, and a Mission view — now wrapped in a complete black-and-white redesign with a live light/dark toggle. A fresh sideloadable build is owed to get the redesign (and the platform-version fix that got the app opening on a real phone again) on-device; the Google Play and YouTube number feeds stay wired and waiting on their access keys.",
+      "currentMilestone": "Five sections — product metrics, a marketing view, a synced todo list, an architecture handbook, and a Mission view — now on a strict two-value design system: one near-black and one off-white, and nothing else. Depth comes from a 3px edge rather than a shadow, because a shadow needs a third tone the palette doesn't have. The app is back in step with the design tool that authors the system, and that link is finally recorded so drift gets caught automatically. A fresh sideloadable build is owed to get two sessions of redesign on-device; the Google Play and YouTube number feeds stay wired and waiting on their access keys.",
       "started": "2026-06-25",
-      "lastActive": "2026-07-16",
+      "lastActive": "2026-07-17",
       "timeline": [
+        {
+          "date": "2026-07-17",
+          "title": "The palette shrank to two values — and the fix was a missing layer, not a wrong colour",
+          "summary": "Re-synced the app with the design system that authors it, after last session's redesign had quietly drifted away from it. The interesting part was the diagnosis: the colours weren't wrong, the structure was. Screens were reading raw palette values directly, with no layer in between saying what each value was *for* — so the only way to build a dark mode was to swap the raw values, which is why it kept coming out inverted and wrong. Putting that role layer back makes dark mode a straight swap of two values, with no per-screen special-casing anywhere. The design system also dropped its soft-shadow card style, for a reason worth keeping: a shadow needs a third tone, and a two-value system doesn't have one. Depth is now a 3px edge in the opposite value, one hero card per screen carries the inverted fill, and a whole gradient library came out with the effect it existed to paint. Also recorded the link to the design project itself for the first time — nothing pointed at it before, which is exactly why the drift went unnoticed for a session."
+        },
         {
           "date": "2026-07-16",
           "title": "A full black-and-white redesign, and fixing why the app wouldn't open on the phone",
@@ -50,91 +110,6 @@
       ]
     },
     {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
-      "status": "active",
-      "stack": [
-        "WhatsApp (Wizard-of-Oz, no code yet)",
-        "Claude (content drafting)"
-      ],
-      "links": {},
-      "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software. Recruitment is still the open step.",
-      "started": "2026-06-11",
-      "lastActive": "2026-07-15",
-      "timeline": [
-        {
-          "date": "2026-07-15",
-          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
-    },
-    {
-      "slug": "das-material",
-      "name": "Das Material",
-      "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Appwrite",
-        "PostHog",
-        "react-three-fiber"
-      ],
-      "links": {
-        "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
-        "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
-      },
-      "currentMilestone": "Adding a real vehicle takes ~50 seconds against a five-minute target. The 3D-model bug (a bike that rendered as a car) is fixed with a self-built, license-clean model, and vehicles can now be edited or deleted. Design-system cleanup is done — first project to pass every automated check clean. What's left is on-device verification and real store screenshots.",
-      "started": "2026-07-07",
-      "lastActive": "2026-07-15",
-      "timeline": [
-        {
-          "date": "2026-07-15",
-          "title": "Design-system cleanup: the last few hardcoded colours found, and the launch screen isn't quite finished",
-          "summary": "Cleaned up the last few colours that were hardcoded directly into components instead of pulling from the shared design system — one turned out to be legitimate (a car's actual paint colour, which correctly shouldn't repaint itself when the app's theme changes, so it moved to a data file instead), the other a real gap that's now fixed. That cleanup also surfaced something worth knowing: the app's launch screen still shows stock branding from the starter template rather than the app's own look — noted for whenever it's worth a design pass. This project is now the first in the lineup to pass every automated check clean."
-        },
-        {
-          "date": "2026-07-14",
-          "text": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
-        },
-        {
-          "date": "2026-07-13",
-          "title": "The roadmap ahead, written as buildable milestones",
-          "summary": "Turned the next two build stages — a private document vault with service history, and add-a-vehicle-by-photographing-a-document — into detailed, build-ready specs with explicit quality bars (a wrong extracted date counts worse than none). Then mapped nine milestones beyond them, each with its own start gate: store test release, the owed round of user interviews run against the real app, a render pipeline that makes any user's vehicle look showable, accurate per-vehicle facts with a zero-wrong-facts bar, a shareable pride card, light theme and polish, public release, iOS, and a deliberately code-free investigation of a second product category. Also fixed the 3D view so a black car is actually visible, and made the app degrade gracefully in the development sandbox."
-        },
-        {
-          "date": "2026-07-12",
-          "title": "Design pass closed; the core app built on a real component system",
-          "summary": "Closed the design milestone end to end: a style exploration across eight looks settled on a museum-inspired visual language (serif nameplates, a single mint accent, dark theme first), which was then audited — every text pairing passes accessibility contrast in both themes — and rendered as 24 real phone-sized screen mockups with per-screen build notes. Built it in the disciplined order: design tokens in code first, then a shared component kit with no raw colors or sizes anywhere, then the screens composed from that kit — sign-in on real authentication, an add-vehicle form whose save reveals a 3D profile of the car, a reminders view for insurance and emissions-check dates, and local notifications. The backend moved onto versioned, re-runnable database migrations instead of a one-shot setup script."
-        },
-        {
-          "date": "2026-07-10",
-          "title": "v0 confirmed on-device; interview kit ready; a render-realism bake-off planned",
-          "summary": "Closed out the v0 milestone after confirming the app runs on a real phone, and moved into user-interview mode: wrote the working question set — deep on vehicle ownership, anchored in stories about the last time something actually happened, with a short zoom-out testing the broader “own with pride” idea — plus outreach messages designed not to bias the answers, and rules for consent and anonymising notes. Separately, researched how realistic the 3D vehicle display can get, comparing scanning a real car, AI-generated 3D models, catalog models, and pre-rendered spins — and planned a bake-off: one cheap test per approach, scored on which one actually sparks pride, with the winner adopted in the upcoming design pass. Also did a privacy pass ahead of wiring real services: anonymous user ids instead of emails, analytics pinned to EU servers with session recording off, and a living privacy doc that records each decision as it's made."
-        },
-        {
-          "date": "2026-07-08",
-          "title": "A v0 you can hold — 3D vehicle profiles you can spin",
-          "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
-        }
-      ]
-    },
-    {
       "slug": "nsrl-crm",
       "name": "NSRL CRM",
       "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
@@ -147,10 +122,15 @@
         "Zod"
       ],
       "links": {},
-      "currentMilestone": "New automated checks caught and closed a real access-control gap plus a date-validation bug. Retired a set of old hand-run database scripts in favour of the real, versioned migration history. A first layer of automated tests is in place, timezone-aware for an Indian audience.",
+      "currentMilestone": "Hardening phase, gates first. A new check reads the database's own record of which migrations are actually applied — and running it closed the repo's oldest open item by proving a pending fix had already gone live. Every gate now passes.",
       "started": "2025-09-02",
-      "lastActive": "2026-07-15",
+      "lastActive": "2026-07-16",
       "timeline": [
+        {
+          "date": "2026-07-16",
+          "title": "A gate that asks the database instead of trusting the commit message",
+          "summary": "Added a check that reads the live database's migration ledger and verifies a migration was genuinely applied, rather than trusting a note someone left in a commit message. It closed this project's oldest open item on its first run: the fix had in fact been applied days earlier, and the note saying otherwise simply had no way to find out. The point generalises — 'written and committed' and 'actually live' are different states, and only the second one counts."
+        },
         {
           "date": "2026-07-15",
           "title": "New automated checks catch a real security gap and a date-validation bug",
@@ -212,10 +192,15 @@
         "Test on Android": "https://play.google.com/apps/testing/com.beeoop.partykitty",
         "Test on Android (internal)": "https://play.google.com/apps/internaltest/4701407934167275299"
       },
-      "currentMilestone": "On the Play Store closed-testing track, working toward the threshold that unlocks a public release. Newest work: turned the in-app tambola (housie) from a single-phone number-caller into a real multiplayer game the whole group plays together on their own phones — built, reviewed for security and usability, and now waiting on a live try-out with real phones at an actual party. Also closed a gap where two real database pieces were living only in a data file instead of the proper migration history, and swept 22 stray colours back into the shared design system.",
+      "currentMilestone": "Closed testing on the Play Store. The version number is bumped for the next release build but the build itself was never made — what's live is still the early-July binary, now around 60 commits behind, and since there's no over-the-air update path the binary is the only way anything reaches a phone. Recent work hardened the dues ledger's server-side rules and made a group fee change all-or-nothing: it used to half-apply whenever the acting admin wasn't the current host, which — since hosting rotates and admin doesn't — was the normal case, not the edge case. Live-tambola still needs a real two-phone run before it counts as built.",
       "started": "2026-05-17",
-      "lastActive": "2026-07-15",
+      "lastActive": "2026-07-16",
       "timeline": [
+        {
+          "date": "2026-07-16",
+          "title": "A fee change that half-applied every time, and the rule that says no",
+          "summary": "Hardened the money side of the app, server-first. The headline bug: changing a group's monthly fee fired three separate writes with no transaction around them, and the third one was permitted under a different rule than the first two — so whenever the person making the change wasn't the current party host, the first two writes committed and the third was rejected. Since hosting rotates around the group and being an admin doesn't, that mismatch was the *normal* case, and it left the group's fee and its member dues disagreeing with no way to see or repair it from inside the app. It's now a single all-or-nothing operation that checks permission itself. The tempting fix — widening the existing rule to admit admins — was deliberately rejected: it would have opened a different hole, in the same shape as one closed a migration earlier. A separate pass also tightened the rules on what a member may change on her own ledger row, restoring what those rules had always claimed in their own comments but never actually enforced. Both are invisible from the app itself; no behaviour changed. Also ran the feature gate on a member-removal feature and the answer came back *don't build it* — no user has ever asked for it, it'd be used about once a year, and it would rewrite the permission layer underneath work that hasn't been verified on a phone yet."
+        },
         {
           "date": "2026-07-15",
           "title": "Closed a database drift gap, and pulled 22 stray colours back into the design system",
@@ -333,43 +318,6 @@
       ]
     },
     {
-      "slug": "pyoopel",
-      "name": "Pyoopel",
-      "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "React",
-        "TypeScript"
-      ],
-      "links": {},
-      "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets. A newly adopted code-quality check found some pre-existing colour-styling debt to work through.",
-      "started": "2025-09-03",
-      "lastActive": "2026-07-15",
-      "timeline": [
-        {
-          "date": "2026-07-15",
-          "title": "Adopted a new automated check — and found it's the one site still failing it",
-          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
-        },
-        {
-          "date": "2026-07-14",
-          "text": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
-          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
-        },
-        {
-          "date": "2025-09-03",
-          "dateEnd": "2026-06-23",
-          "title": "Course catalogue and the apps' landing pages (backfilled)",
-          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
-        }
-      ]
-    },
-    {
       "slug": "wrong-is-right",
       "name": "Wrong Is Right",
       "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
@@ -381,10 +329,15 @@
         "Supabase"
       ],
       "links": {},
-      "currentMilestone": "An optional email sign-in so a player can back up and restore their profile and stats across devices is now built and committed. A first real automated test suite is in place and already caught a genuine bug affecting long win streaks. Underlying track is still the Class 10 schoolwork per-subject sections.",
+      "currentMilestone": "Between features. Test suite and convention gates are in place and green. A new migration check reports an honest 'not set up here' rather than a false pass — this project was never linked to its database on this machine, which is worth knowing before trusting anything about its schema.",
       "started": "2026-04-22",
-      "lastActive": "2026-07-15",
+      "lastActive": "2026-07-16",
       "timeline": [
+        {
+          "date": "2026-07-16",
+          "title": "The gate reported a skip, and the skip was the finding",
+          "summary": "Added the same live-database migration check the other projects got. Here it reports a clean skip — and that's the useful result: the project turns out never to have been linked to its database on this machine, which surfaced only because something finally tried to look. It reports 'not set up' rather than passing or failing, on the principle that a check which can't see the database shouldn't claim the database is fine, and shouldn't cry wolf either."
+        },
         {
           "date": "2026-07-15",
           "title": "A real test suite catches a bug that was quietly resetting win streaks",
@@ -426,6 +379,78 @@
           "dateEnd": "2026-04-28",
           "title": "Zero to released v1 in a week",
           "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
+        }
+      ]
+    },
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
+      "status": "active",
+      "stack": [
+        "WhatsApp (Wizard-of-Oz, no code yet)",
+        "Claude (content drafting)"
+      ],
+      "links": {},
+      "currentMilestone": "A one-week manual pilot with a few real families — validate the habit before writing any software. Recruitment is still the open step.",
+      "started": "2026-06-11",
+      "lastActive": "2026-07-15",
+      "timeline": [
+        {
+          "date": "2026-07-15",
+          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
+        },
+        {
+          "date": "2026-06-13",
+          "title": "First family interview — logged as a counter-signal",
+          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+        },
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+        }
+      ]
+    },
+    {
+      "slug": "pyoopel",
+      "name": "Pyoopel",
+      "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
+      "status": "active",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript"
+      ],
+      "links": {},
+      "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets. A newly adopted code-quality check found some pre-existing colour-styling debt to work through.",
+      "started": "2025-09-03",
+      "lastActive": "2026-07-15",
+      "timeline": [
+        {
+          "date": "2026-07-15",
+          "title": "Adopted a new automated check — and found it's the one site still failing it",
+          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
+        },
+        {
+          "date": "2026-07-14",
+          "text": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+        },
+        {
+          "date": "2025-09-03",
+          "dateEnd": "2026-06-23",
+          "title": "Course catalogue and the apps' landing pages (backfilled)",
+          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
         }
       ]
     },
