@@ -1,13 +1,47 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-17T10:23:51Z",
+  "generatedAt": "2026-07-19T19:36:52Z",
   "days": [
     {
-      "date": "2026-07-17",
-      "count": 4,
+      "date": "2026-07-20",
+      "count": 2,
       "items": [
         {
-          "project": "das-material",
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 2
+        },
+        {
+          "project": "party-kitty",
+          "type": "writing",
+          "label": "New field-observations registry + feature reframe"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "count": 2,
+      "items": [
+        {
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 4
+        },
+        {
+          "project": "party-kitty",
+          "type": "ops",
+          "label": "Live data operation on a production group"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "count": 6,
+      "items": [
+        {
+          "project": "aaj-kya-seekha",
           "type": "commit",
           "label": "Commits",
           "commits": 2
@@ -16,7 +50,78 @@
           "project": "founder-hub",
           "type": "commit",
           "label": "Commits",
-          "commits": 4
+          "commits": 1
+        },
+        {
+          "project": "nsrl-crm",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 2
+        },
+        {
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 16
+        },
+        {
+          "project": "wrong-is-right",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "party-kitty",
+          "type": "ship",
+          "label": "Play release build"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "count": 9,
+      "items": [
+        {
+          "project": "aaj-kya-seekha",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 3
+        },
+        {
+          "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 11
+        },
+        {
+          "project": "nsrl-crm",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 3
+        },
+        {
+          "project": "pyoopel",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "wrong-is-right",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
         },
         {
           "project": "das-material",
