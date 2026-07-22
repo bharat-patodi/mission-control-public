@@ -1,7 +1,67 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-19T19:36:41Z",
+  "generatedAt": "2026-07-22T19:34:25Z",
   "projects": [
+    {
+      "slug": "das-material",
+      "name": "Das Material",
+      "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Appwrite",
+        "PostHog",
+        "react-three-fiber"
+      ],
+      "links": {
+        "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
+        "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
+      },
+      "currentMilestone": "The model workshop gained a second way to make a vehicle. Alongside hand-building a car from a parametric recipe, there is now a reconstruction route: a few AI-generated reference views of a real car are turned into a rough 3D model, then run through a small pipeline that gives it a paintable body, separates the glass and tyres so they stay dark whatever colour the owner picks, and bakes in soft shadow for depth without locking in a colour. Two real vehicles went through the machinery end to end — a Honda Activa scooter and a Hyundai Verna car — each added as an opt-in variant that leaves every existing vehicle untouched. On the rendering side, the paint was corrected from an accidental liquid-chrome look to a true car finish (colour under clear lacquer), glass and lamps now read as distinct materials, and a real on-device crash was fixed. The offline preview tool was rebuilt to run the actual renderer, because the old shortcut had been flattering a broken material and letting a bug reach the phone. Getting all of this onto a real device for verification is the pivotal open item, now three sessions overdue.",
+      "started": "2026-07-07",
+      "lastActive": "2026-07-22",
+      "timeline": [
+        {
+          "date": "2026-07-22",
+          "title": "A second way to build a vehicle — reconstruct one from reference views; two real models wired in",
+          "summary": "Added a reconstruction route to the model workshop: a handful of AI-generated reference views of a real car become a rough 3D model, which a new pipeline then makes app-ready — welding it into a single paintable body, separating the glass and tyres so they stay dark under whatever paint the owner picks, and baking soft ambient shadow into the recesses for depth without baking in a colour. Two real vehicles went through it end to end, a Honda Activa scooter and a Hyundai Verna car, each added as an opt-in variant that leaves everyone else's vehicles untouched. Also corrected the car paint from an accidental liquid-chrome look to a real finish (colour under clear lacquer, not metal), gave glass, lamps and trim distinct finishes, and fixed a genuine crash that only showed up on a real phone. Finally rebuilt the offline preview tool to run the actual renderer, after the old shortcut turned out to be flattering a broken material and letting a bug slip through to the device."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "Five bugs, one bug: teaching the parts kit to answer \"where is the body here?\"",
+          "summary": "Built a hand-authored hatchback as the control for the rendering bake-off, then reviewed it three times against a rendered contact sheet — and every round found structure, not polish. No wheel arches (the body's underside sat level with the tops of the tyres, so no wheel was ever inside an arch). Wheels standing clear of the bodywork in open air. A windscreen torn open by two surfaces fighting for the same 0.9mm. Mirrors floating a hand's width off the car with no stalk. A cabin sitting on the body like a hat — its roof width turned out to be the wheel-track measurement, copied. Underneath all of it was one recurring mistake, now on its fifth appearance: a part positioned at a remembered constant rather than against the surface it touches. Since the body tapers, any remembered number is wrong by construction — and the only reason to guess was that nothing published the real answer. It does now, so parts ask. Worth noting what didn't help: the automated model checker passes cleanly through every single one of these defects. Only looking at the rendered thing catches them."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Design-system cleanup: the last few hardcoded colours found, and the launch screen isn't quite finished",
+          "summary": "Cleaned up the last few colours that were hardcoded directly into components instead of pulling from the shared design system — one turned out to be legitimate (a car's actual paint colour, which correctly shouldn't repaint itself when the app's theme changes, so it moved to a data file instead), the other a real gap that's now fixed. That cleanup also surfaced something worth knowing: the app's launch screen still shows stock branding from the starter template rather than the app's own look — noted for whenever it's worth a design pass. This project is now the first in the lineup to pass every automated check clean."
+        },
+        {
+          "date": "2026-07-14",
+          "text": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
+        },
+        {
+          "date": "2026-07-13",
+          "title": "The roadmap ahead, written as buildable milestones",
+          "summary": "Turned the next two build stages — a private document vault with service history, and add-a-vehicle-by-photographing-a-document — into detailed, build-ready specs with explicit quality bars (a wrong extracted date counts worse than none). Then mapped nine milestones beyond them, each with its own start gate: store test release, the owed round of user interviews run against the real app, a render pipeline that makes any user's vehicle look showable, accurate per-vehicle facts with a zero-wrong-facts bar, a shareable pride card, light theme and polish, public release, iOS, and a deliberately code-free investigation of a second product category. Also fixed the 3D view so a black car is actually visible, and made the app degrade gracefully in the development sandbox."
+        },
+        {
+          "date": "2026-07-12",
+          "title": "Design pass closed; the core app built on a real component system",
+          "summary": "Closed the design milestone end to end: a style exploration across eight looks settled on a museum-inspired visual language (serif nameplates, a single mint accent, dark theme first), which was then audited — every text pairing passes accessibility contrast in both themes — and rendered as 24 real phone-sized screen mockups with per-screen build notes. Built it in the disciplined order: design tokens in code first, then a shared component kit with no raw colors or sizes anywhere, then the screens composed from that kit — sign-in on real authentication, an add-vehicle form whose save reveals a 3D profile of the car, a reminders view for insurance and emissions-check dates, and local notifications. The backend moved onto versioned, re-runnable database migrations instead of a one-shot setup script."
+        },
+        {
+          "date": "2026-07-10",
+          "title": "v0 confirmed on-device; interview kit ready; a render-realism bake-off planned",
+          "summary": "Closed out the v0 milestone after confirming the app runs on a real phone, and moved into user-interview mode: wrote the working question set — deep on vehicle ownership, anchored in stories about the last time something actually happened, with a short zoom-out testing the broader “own with pride” idea — plus outreach messages designed not to bias the answers, and rules for consent and anonymising notes. Separately, researched how realistic the 3D vehicle display can get, comparing scanning a real car, AI-generated 3D models, catalog models, and pre-rendered spins — and planned a bake-off: one cheap test per approach, scored on which one actually sparks pride, with the winner adopted in the upcoming design pass. Also did a privacy pass ahead of wiring real services: anonymous user ids instead of emails, analytics pinned to EU servers with session recording off, and a living privacy doc that records each decision as it's made."
+        },
+        {
+          "date": "2026-07-08",
+          "title": "A v0 you can hold — 3D vehicle profiles you can spin",
+          "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
+        }
+      ]
+    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -391,61 +451,6 @@
           "dateEnd": "2026-04-28",
           "title": "Zero to released v1 in a week",
           "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
-        }
-      ]
-    },
-    {
-      "slug": "das-material",
-      "name": "Das Material",
-      "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Appwrite",
-        "PostHog",
-        "react-three-fiber"
-      ],
-      "links": {
-        "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
-        "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
-      },
-      "currentMilestone": "The model workshop now has a hand-authored hatchback — the control that the experimental rendering approaches have to be judged against. Three review rounds against a rendered contact sheet found only structural problems, never cosmetic ones, and they all turned out to be the same bug wearing different clothes: a part placed at a number someone remembered instead of measured against the surface it actually touches. That's now fixed at the root — the parts kit exports the answer, so a part asks where the body is rather than guessing. On-device verification is the pivotal open item and is two sessions overdue.",
-      "started": "2026-07-07",
-      "lastActive": "2026-07-17",
-      "timeline": [
-        {
-          "date": "2026-07-17",
-          "title": "Five bugs, one bug: teaching the parts kit to answer \"where is the body here?\"",
-          "summary": "Built a hand-authored hatchback as the control for the rendering bake-off, then reviewed it three times against a rendered contact sheet — and every round found structure, not polish. No wheel arches (the body's underside sat level with the tops of the tyres, so no wheel was ever inside an arch). Wheels standing clear of the bodywork in open air. A windscreen torn open by two surfaces fighting for the same 0.9mm. Mirrors floating a hand's width off the car with no stalk. A cabin sitting on the body like a hat — its roof width turned out to be the wheel-track measurement, copied. Underneath all of it was one recurring mistake, now on its fifth appearance: a part positioned at a remembered constant rather than against the surface it touches. Since the body tapers, any remembered number is wrong by construction — and the only reason to guess was that nothing published the real answer. It does now, so parts ask. Worth noting what didn't help: the automated model checker passes cleanly through every single one of these defects. Only looking at the rendered thing catches them."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Design-system cleanup: the last few hardcoded colours found, and the launch screen isn't quite finished",
-          "summary": "Cleaned up the last few colours that were hardcoded directly into components instead of pulling from the shared design system — one turned out to be legitimate (a car's actual paint colour, which correctly shouldn't repaint itself when the app's theme changes, so it moved to a data file instead), the other a real gap that's now fixed. That cleanup also surfaced something worth knowing: the app's launch screen still shows stock branding from the starter template rather than the app's own look — noted for whenever it's worth a design pass. This project is now the first in the lineup to pass every automated check clean."
-        },
-        {
-          "date": "2026-07-14",
-          "text": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
-        },
-        {
-          "date": "2026-07-13",
-          "title": "The roadmap ahead, written as buildable milestones",
-          "summary": "Turned the next two build stages — a private document vault with service history, and add-a-vehicle-by-photographing-a-document — into detailed, build-ready specs with explicit quality bars (a wrong extracted date counts worse than none). Then mapped nine milestones beyond them, each with its own start gate: store test release, the owed round of user interviews run against the real app, a render pipeline that makes any user's vehicle look showable, accurate per-vehicle facts with a zero-wrong-facts bar, a shareable pride card, light theme and polish, public release, iOS, and a deliberately code-free investigation of a second product category. Also fixed the 3D view so a black car is actually visible, and made the app degrade gracefully in the development sandbox."
-        },
-        {
-          "date": "2026-07-12",
-          "title": "Design pass closed; the core app built on a real component system",
-          "summary": "Closed the design milestone end to end: a style exploration across eight looks settled on a museum-inspired visual language (serif nameplates, a single mint accent, dark theme first), which was then audited — every text pairing passes accessibility contrast in both themes — and rendered as 24 real phone-sized screen mockups with per-screen build notes. Built it in the disciplined order: design tokens in code first, then a shared component kit with no raw colors or sizes anywhere, then the screens composed from that kit — sign-in on real authentication, an add-vehicle form whose save reveals a 3D profile of the car, a reminders view for insurance and emissions-check dates, and local notifications. The backend moved onto versioned, re-runnable database migrations instead of a one-shot setup script."
-        },
-        {
-          "date": "2026-07-10",
-          "title": "v0 confirmed on-device; interview kit ready; a render-realism bake-off planned",
-          "summary": "Closed out the v0 milestone after confirming the app runs on a real phone, and moved into user-interview mode: wrote the working question set — deep on vehicle ownership, anchored in stories about the last time something actually happened, with a short zoom-out testing the broader “own with pride” idea — plus outreach messages designed not to bias the answers, and rules for consent and anonymising notes. Separately, researched how realistic the 3D vehicle display can get, comparing scanning a real car, AI-generated 3D models, catalog models, and pre-rendered spins — and planned a bake-off: one cheap test per approach, scored on which one actually sparks pride, with the winner adopted in the upcoming design pass. Also did a privacy pass ahead of wiring real services: anonymous user ids instead of emails, analytics pinned to EU servers with session recording off, and a living privacy doc that records each decision as it's made."
-        },
-        {
-          "date": "2026-07-08",
-          "title": "A v0 you can hold — 3D vehicle profiles you can spin",
-          "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
         }
       ]
     },
