@@ -1,7 +1,109 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-22T19:34:25Z",
+  "generatedAt": "2026-07-25T14:01:33Z",
   "projects": [
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
+      "status": "active",
+      "stack": [
+        "React Native (Expo)",
+        "Nhost (Postgres / GraphQL)",
+        "Push notifications"
+      ],
+      "links": {},
+      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. The open question is unchanged and recorded as such: demand is still unproven, and the only user conversation so far was a negative signal.",
+      "started": "2026-06-11",
+      "lastActive": "2026-07-25",
+      "timeline": [
+        {
+          "date": "2026-07-25",
+          "title": "Pivot: from a chat service to an app, reversing three decisions",
+          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "Still stalled",
+          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
+        },
+        {
+          "date": "2026-07-15",
+          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
+        },
+        {
+          "date": "2026-06-13",
+          "title": "First family interview — logged as a counter-signal",
+          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+        },
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+        }
+      ]
+    },
+    {
+      "slug": "pyoopel",
+      "name": "Pyoopel",
+      "oneLiner": "A self-paced online-course site — share trading plus a CBSE class-10 maths course that has grown into an adaptive tutor — alongside a catalogue of exam-prep courses and the public support pages for my apps.",
+      "status": "active",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Claude API"
+      ],
+      "links": {
+        "live": "https://www.pyoopel.com",
+        "Class 10 Maths course": "https://www.pyoopel.com/courses/cbse-10-maths"
+      },
+      "currentMilestone": "The class-10 maths course stopped being a set of static pages and became an adaptive tutor. Its 101 authored steps now sit on a concept graph, with a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. On top of that sits a decomposition engine: when a student gets a check wrong, a language model generates two to four smaller steps beneath the one she failed — but only behind a deterministic gate that recomputes every arithmetic claim before she sees it, and falls back to the hand-written hint ladder rather than showing anything unverified. It ships switched off until a key is configured, so it has not yet been graded against its own eval set. The course is also now the curriculum engine for a separate revision app, which is what is currently shaping its internals.",
+      "started": "2025-09-03",
+      "lastActive": "2026-07-25",
+      "timeline": [
+        {
+          "date": "2026-07-25",
+          "title": "A feature that had never once worked in production — and failed silently",
+          "summary": "The tutor's 'break this into smaller steps' feature turned out to have been broken on the live site since the day it shipped. It read its teaching spec from a file path assembled at runtime, which the build's dependency tracing could not see, so the file was never bundled into the deployed function and every single request failed. The interesting part is the failure mode: the error was caught inside a block that treats problems as 'the model produced bad content', so a missing-file deployment fault appeared in the logs as a content rejection and pointed the blame squarely at the prompt. The fix was as much about taxonomy as about tracing — failures are now classified by who has to act on them, so 'the deploy is wrong' can never again disguise itself as 'the model misbehaved'. The rest of the session opened the mastery model up for spaced review and made the step renderer chapter-agnostic, so a sister project can run short daily sessions over the same material."
+        },
+        {
+          "date": "2026-07-24",
+          "title": "The maths course becomes an adaptive tutor",
+          "summary": "Ten focused commits turned 101 static lesson steps into something that responds to the student: the teaching method written down as a spec, a concept graph tagging every step, a model that weights recent evidence more heavily than old, on-device progress, and a map of what is solid. The centrepiece is a generation pipeline with a deterministic verifier in front of it — every arithmetic claim a model writes is recomputed before a student sees it, and the gate rejects all-or-nothing, catching false equations, factorisations that don't multiply back, and worst of all wrong answer keys, which would tell a correct student she was wrong. It deliberately declines to judge what it cannot check, because unverifiable is not the same as wrong. A rejection is treated as a normal outcome rather than an error: the student simply gets the hand-written hints she would have had anyway. Also fixed the type-checking gate that had been reporting a meaningless red for weeks — it now genuinely passes."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "A green check that was never actually checking",
+          "summary": "Running the project's own quality gates for the weekly review turned up something worse than the known styling debt: the type-checking gate had never been running at all. Without the compiler installed locally the command was silently resolving to an unrelated placeholder package and failing for a reason that had nothing to do with the code — the most misleading kind of red, because it looks like debt you already know about."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Adopted a new automated check — and found it's the one site still failing it",
+          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
+        },
+        {
+          "date": "2026-07-14",
+          "text": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+        },
+        {
+          "date": "2025-09-03",
+          "dateEnd": "2026-06-23",
+          "title": "Course catalogue and the apps' landing pages (backfilled)",
+          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
+        }
+      ]
+    },
     {
       "slug": "das-material",
       "name": "Das Material",
@@ -214,46 +316,6 @@
       ]
     },
     {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision on WhatsApp for India — the kid plays a daily retrieval quiz, the parent gets one dinner-table question the kid just got right.",
-      "status": "active",
-      "stack": [
-        "WhatsApp (Wizard-of-Oz, no code yet)",
-        "Claude (content drafting)"
-      ],
-      "links": {},
-      "currentMilestone": "Pilot recruitment for a WhatsApp revision service, and honestly stalled. One discovery interview exists and it was a clear negative signal — the parent already taught the material, so the problem the product solves wasn't felt and there was no willingness to pay. The verdict this milestone was meant to reach is now weeks overdue, and every commit since has been shared workspace tooling rather than product work. The next real decision is whether to restart recruitment against a sharper segment or shelve it.",
-      "started": "2026-06-11",
-      "lastActive": "2026-07-18",
-      "timeline": [
-        {
-          "date": "2026-07-18",
-          "title": "Still stalled",
-          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
-        },
-        {
-          "date": "2026-07-15",
-          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
-    },
-    {
       "slug": "founder-hub",
       "name": "Founder Hub",
       "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
@@ -451,50 +513,6 @@
           "dateEnd": "2026-04-28",
           "title": "Zero to released v1 in a week",
           "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
-        }
-      ]
-    },
-    {
-      "slug": "pyoopel",
-      "name": "Pyoopel",
-      "oneLiner": "A self-paced online-course site — share trading, a new CBSE class-10 maths course, and a catalogue of exam-prep courses — currently getting a full revamp.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "React",
-        "TypeScript"
-      ],
-      "links": {
-        "live": "https://www.pyoopel.com"
-      },
-      "currentMilestone": "Mid-revamp. The homepage was rebuilt in a new visual style that spotlights two live courses — share trading and a brand-new CBSE class-10 maths course — while the wider catalogue stays reachable. The maths course teaches the Real Numbers chapter as 101 interactive steps with hands-on maths widgets. A newly adopted code-quality check found some pre-existing colour-styling debt to work through.",
-      "started": "2025-09-03",
-      "lastActive": "2026-07-17",
-      "timeline": [
-        {
-          "date": "2026-07-17",
-          "title": "A green check that was never actually checking",
-          "summary": "Running the project's own quality gates for the weekly review turned up something worse than the known styling debt: the type-checking gate had never been running at all. Without the compiler installed locally the command was silently resolving to an unrelated placeholder package and failing for a reason that had nothing to do with the code — the most misleading kind of red, because it looks like debt you already know about."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Adopted a new automated check — and found it's the one site still failing it",
-          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
-        },
-        {
-          "date": "2026-07-14",
-          "text": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
-          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
-        },
-        {
-          "date": "2025-09-03",
-          "dateEnd": "2026-06-23",
-          "title": "Course catalogue and the apps' landing pages (backfilled)",
-          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
         }
       ]
     },
