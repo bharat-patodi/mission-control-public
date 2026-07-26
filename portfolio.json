@@ -1,109 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-25T14:01:33Z",
+  "generatedAt": "2026-07-26T17:21:59Z",
   "projects": [
-    {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
-      "status": "active",
-      "stack": [
-        "React Native (Expo)",
-        "Nhost (Postgres / GraphQL)",
-        "Push notifications"
-      ],
-      "links": {},
-      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. The open question is unchanged and recorded as such: demand is still unproven, and the only user conversation so far was a negative signal.",
-      "started": "2026-06-11",
-      "lastActive": "2026-07-25",
-      "timeline": [
-        {
-          "date": "2026-07-25",
-          "title": "Pivot: from a chat service to an app, reversing three decisions",
-          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
-        },
-        {
-          "date": "2026-07-18",
-          "title": "Still stalled",
-          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
-        },
-        {
-          "date": "2026-07-15",
-          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
-    },
-    {
-      "slug": "pyoopel",
-      "name": "Pyoopel",
-      "oneLiner": "A self-paced online-course site — share trading plus a CBSE class-10 maths course that has grown into an adaptive tutor — alongside a catalogue of exam-prep courses and the public support pages for my apps.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Claude API"
-      ],
-      "links": {
-        "live": "https://www.pyoopel.com",
-        "Class 10 Maths course": "https://www.pyoopel.com/courses/cbse-10-maths"
-      },
-      "currentMilestone": "The class-10 maths course stopped being a set of static pages and became an adaptive tutor. Its 101 authored steps now sit on a concept graph, with a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. On top of that sits a decomposition engine: when a student gets a check wrong, a language model generates two to four smaller steps beneath the one she failed — but only behind a deterministic gate that recomputes every arithmetic claim before she sees it, and falls back to the hand-written hint ladder rather than showing anything unverified. It ships switched off until a key is configured, so it has not yet been graded against its own eval set. The course is also now the curriculum engine for a separate revision app, which is what is currently shaping its internals.",
-      "started": "2025-09-03",
-      "lastActive": "2026-07-25",
-      "timeline": [
-        {
-          "date": "2026-07-25",
-          "title": "A feature that had never once worked in production — and failed silently",
-          "summary": "The tutor's 'break this into smaller steps' feature turned out to have been broken on the live site since the day it shipped. It read its teaching spec from a file path assembled at runtime, which the build's dependency tracing could not see, so the file was never bundled into the deployed function and every single request failed. The interesting part is the failure mode: the error was caught inside a block that treats problems as 'the model produced bad content', so a missing-file deployment fault appeared in the logs as a content rejection and pointed the blame squarely at the prompt. The fix was as much about taxonomy as about tracing — failures are now classified by who has to act on them, so 'the deploy is wrong' can never again disguise itself as 'the model misbehaved'. The rest of the session opened the mastery model up for spaced review and made the step renderer chapter-agnostic, so a sister project can run short daily sessions over the same material."
-        },
-        {
-          "date": "2026-07-24",
-          "title": "The maths course becomes an adaptive tutor",
-          "summary": "Ten focused commits turned 101 static lesson steps into something that responds to the student: the teaching method written down as a spec, a concept graph tagging every step, a model that weights recent evidence more heavily than old, on-device progress, and a map of what is solid. The centrepiece is a generation pipeline with a deterministic verifier in front of it — every arithmetic claim a model writes is recomputed before a student sees it, and the gate rejects all-or-nothing, catching false equations, factorisations that don't multiply back, and worst of all wrong answer keys, which would tell a correct student she was wrong. It deliberately declines to judge what it cannot check, because unverifiable is not the same as wrong. A rejection is treated as a normal outcome rather than an error: the student simply gets the hand-written hints she would have had anyway. Also fixed the type-checking gate that had been reporting a meaningless red for weeks — it now genuinely passes."
-        },
-        {
-          "date": "2026-07-17",
-          "title": "A green check that was never actually checking",
-          "summary": "Running the project's own quality gates for the weekly review turned up something worse than the known styling debt: the type-checking gate had never been running at all. Without the compiler installed locally the command was silently resolving to an unrelated placeholder package and failing for a reason that had nothing to do with the code — the most misleading kind of red, because it looks like debt you already know about."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Adopted a new automated check — and found it's the one site still failing it",
-          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
-        },
-        {
-          "date": "2026-07-14",
-          "text": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
-          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
-        },
-        {
-          "date": "2025-09-03",
-          "dateEnd": "2026-06-23",
-          "title": "Course catalogue and the apps' landing pages (backfilled)",
-          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
-        }
-      ]
-    },
     {
       "slug": "das-material",
       "name": "Das Material",
@@ -119,10 +17,15 @@
         "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
         "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
       },
-      "currentMilestone": "The model workshop gained a second way to make a vehicle. Alongside hand-building a car from a parametric recipe, there is now a reconstruction route: a few AI-generated reference views of a real car are turned into a rough 3D model, then run through a small pipeline that gives it a paintable body, separates the glass and tyres so they stay dark whatever colour the owner picks, and bakes in soft shadow for depth without locking in a colour. Two real vehicles went through the machinery end to end — a Honda Activa scooter and a Hyundai Verna car — each added as an opt-in variant that leaves every existing vehicle untouched. On the rendering side, the paint was corrected from an accidental liquid-chrome look to a true car finish (colour under clear lacquer), glass and lamps now read as distinct materials, and a real on-device crash was fixed. The offline preview tool was rebuilt to run the actual renderer, because the old shortcut had been flattering a broken material and letting a bug reach the phone. Getting all of this onto a real device for verification is the pivotal open item, now three sessions overdue.",
+      "currentMilestone": "The long-open question of how to make a vehicle look genuinely like the owner's car got answered, and it turned out not to be a question about picking a better image generator. What makes a car recognisable — the grille pattern, the badge, the light signature, the chrome line around the windows, the panel gaps — is only a few millimetres of surface relief. That detail lives in a photograph and is destroyed by turning the photograph into 3D geometry: a model small enough to ship to a phone simply cannot hold it, no matter which tool builds the model. So the 3D reconstruction route was retired in favour of one that keeps the picture's own pixels and repaints only the bodywork, working out which pixels are paint by comparing the same car in two colours — whatever changed is paint, whatever stayed is glass, tyres, chrome, badges and lamps. The result recolours across the full palette while every identifying detail survives, and ships smaller than the 3D model it replaces. The tool now scores its own input and refuses source images it does not trust, and the whole process is written down so the next vehicle is a repeat rather than a rediscovery. Seeing it on a real phone is the pivotal open item.",
       "started": "2026-07-07",
-      "lastActive": "2026-07-22",
+      "lastActive": "2026-07-26",
       "timeline": [
+        {
+          "date": "2026-07-26",
+          "title": "The render bet, settled: a car’s identity lives in pixels, not geometry",
+          "summary": "Spent months treating “make the render look like the owner’s actual car” as a question of finding a better 3D reconstruction. It is not. What makes a car recognisable — grille pattern, badge, light signature, the chrome line around the windows, the panel gaps — is a few millimetres of surface relief, which survives in a photograph and dies when that photograph becomes geometry small enough to ship to a phone. The previously built reconstruction route proved it by shipping a car with no grille, no badge and flat disc wheels. The replacement keeps the picture’s pixels and repaints only the bodywork: given the same studio render of a car in a light and a dark colour, the pixels that changed are paint and the pixels that did not are glass, tyres, chrome, badges and lamps — a split derived from evidence rather than guessed from the shape of the model. It recolours across the whole palette with every identifying detail intact, and ships smaller than the 3D model it replaced. Two lessons were expensive enough to write down: a workaround added for a bad input stayed after the input was fixed and quietly became the defect it was hiding, and four wrong diagnoses in a row came from reasoning off a rendered picture instead of printing the numbers — so the tool now reports what it measured and refuses source images it does not trust."
+        },
         {
           "date": "2026-07-22",
           "title": "A second way to build a vehicle — reconstruct one from reference views; two real models wired in",
@@ -180,10 +83,15 @@
         "Test on Android": "https://play.google.com/apps/testing/com.beeoop.partykitty",
         "Test on Android (internal)": "https://play.google.com/apps/internaltest/4701407934167275299"
       },
-      "currentMilestone": "Closed testing on the Play Store, and the app now has real groups using it for real money — which is where this month's most useful lessons came from. The release build that had been outstanding for two weeks is finally made, and the live tambola game's end-game loop is complete: recorded winners, a landscape ticket view, replay on the same tickets. A first real month of use then surfaced two problems no amount of design had predicted, both about who is actually in a given month rather than who is in the group: someone on the dues list who had never joined, and someone added after the party who the group agreed should still be included. Both had to be fixed by hand, so there's now an operator tool for it — with guards that refuse outright when real money is attached, and a single narrow override for the one judgement a database cannot make.",
+      "currentMilestone": "Closed testing on the Play Store, and the app now has real groups using it for real money — which is where this month's most useful lessons came from. The release build that had been outstanding for two weeks is finally made, and the live tambola game's end-game loop is complete: recorded winners, a landscape ticket view, replay on the same tickets. A first real month of use then surfaced two problems no amount of design had predicted, both about who is actually in a given month rather than who is in the group: someone on the dues list who had never joined, and someone added after the party who the group agreed should still be included. Both had to be fixed by hand, so there's now an operator tool for it — with guards that refuse outright when real money is attached, and a single narrow override for the one judgement a database cannot make. Since then, a defect found in ordinary use was fixed: opening the date-planning flow from the main card dead-ended the host on a screen saying no poll existed, while backing out and trying again worked — the screen was re-deriving which party it meant from a cache that answers instantly with slightly stale data, so the first read committed to the wrong one. The venue list also grew into a second city, with a review pass that cut two entries which had good contact details but no evidence they actually host this kind of party.",
       "started": "2026-05-17",
-      "lastActive": "2026-07-20",
+      "lastActive": "2026-07-26",
       "timeline": [
+        {
+          "date": "2026-07-26",
+          "title": "A dead end that only appeared on first tap, and a venue list that reached a second city",
+          "summary": "Tapping “decide the date” from the main card dropped the host on a screen insisting no date poll existed; backing out and tapping again worked every time. The launcher passed no identifier, so the screen re-derived which party it meant from a cache keyed to the group — the kind that answers instantly with possibly-stale data and then refreshes — and the very first read committed to whatever was already there. Now the screen is told which party it is for, rather than inferring it. Logged as a known issue with the root cause written out, since the interesting part is the failure mode rather than the fix. Separately, venue seeding reached a second city: four entries added there, five more in an outer suburb of the first, and a review that cut two previously-added rows — both had solid contact details but nothing showing they actually host this kind of party, and fit alone is not the bar. Contact numbers are taken from each venue’s own website after finding that one aggregator number fronts several unrelated venues, and that one hotel publishes a different number on a booking site than on its own."
+        },
         {
           "date": "2026-07-20",
           "title": "Two things the software could not say, and the feature that got redesigned because of them",
@@ -312,6 +220,108 @@
           "dateEnd": "2026-05-22",
           "title": "Kickoff to working ledger in six days",
           "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+        }
+      ]
+    },
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
+      "status": "active",
+      "stack": [
+        "React Native (Expo)",
+        "Nhost (Postgres / GraphQL)",
+        "Push notifications"
+      ],
+      "links": {},
+      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. The open question is unchanged and recorded as such: demand is still unproven, and the only user conversation so far was a negative signal.",
+      "started": "2026-06-11",
+      "lastActive": "2026-07-25",
+      "timeline": [
+        {
+          "date": "2026-07-25",
+          "title": "Pivot: from a chat service to an app, reversing three decisions",
+          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "Still stalled",
+          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
+        },
+        {
+          "date": "2026-07-15",
+          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
+        },
+        {
+          "date": "2026-06-13",
+          "title": "First family interview — logged as a counter-signal",
+          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+        },
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+        }
+      ]
+    },
+    {
+      "slug": "pyoopel",
+      "name": "Pyoopel",
+      "oneLiner": "A self-paced online-course site — share trading plus a CBSE class-10 maths course that has grown into an adaptive tutor — alongside a catalogue of exam-prep courses and the public support pages for my apps.",
+      "status": "active",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Claude API"
+      ],
+      "links": {
+        "live": "https://www.pyoopel.com",
+        "Class 10 Maths course": "https://www.pyoopel.com/courses/cbse-10-maths"
+      },
+      "currentMilestone": "The class-10 maths course stopped being a set of static pages and became an adaptive tutor. Its 101 authored steps now sit on a concept graph, with a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. On top of that sits a decomposition engine: when a student gets a check wrong, a language model generates two to four smaller steps beneath the one she failed — but only behind a deterministic gate that recomputes every arithmetic claim before she sees it, and falls back to the hand-written hint ladder rather than showing anything unverified. It ships switched off until a key is configured, so it has not yet been graded against its own eval set. The course is also now the curriculum engine for a separate revision app, which is what is currently shaping its internals.",
+      "started": "2025-09-03",
+      "lastActive": "2026-07-25",
+      "timeline": [
+        {
+          "date": "2026-07-25",
+          "title": "A feature that had never once worked in production — and failed silently",
+          "summary": "The tutor's 'break this into smaller steps' feature turned out to have been broken on the live site since the day it shipped. It read its teaching spec from a file path assembled at runtime, which the build's dependency tracing could not see, so the file was never bundled into the deployed function and every single request failed. The interesting part is the failure mode: the error was caught inside a block that treats problems as 'the model produced bad content', so a missing-file deployment fault appeared in the logs as a content rejection and pointed the blame squarely at the prompt. The fix was as much about taxonomy as about tracing — failures are now classified by who has to act on them, so 'the deploy is wrong' can never again disguise itself as 'the model misbehaved'. The rest of the session opened the mastery model up for spaced review and made the step renderer chapter-agnostic, so a sister project can run short daily sessions over the same material."
+        },
+        {
+          "date": "2026-07-24",
+          "title": "The maths course becomes an adaptive tutor",
+          "summary": "Ten focused commits turned 101 static lesson steps into something that responds to the student: the teaching method written down as a spec, a concept graph tagging every step, a model that weights recent evidence more heavily than old, on-device progress, and a map of what is solid. The centrepiece is a generation pipeline with a deterministic verifier in front of it — every arithmetic claim a model writes is recomputed before a student sees it, and the gate rejects all-or-nothing, catching false equations, factorisations that don't multiply back, and worst of all wrong answer keys, which would tell a correct student she was wrong. It deliberately declines to judge what it cannot check, because unverifiable is not the same as wrong. A rejection is treated as a normal outcome rather than an error: the student simply gets the hand-written hints she would have had anyway. Also fixed the type-checking gate that had been reporting a meaningless red for weeks — it now genuinely passes."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "A green check that was never actually checking",
+          "summary": "Running the project's own quality gates for the weekly review turned up something worse than the known styling debt: the type-checking gate had never been running at all. Without the compiler installed locally the command was silently resolving to an unrelated placeholder package and failing for a reason that had nothing to do with the code — the most misleading kind of red, because it looks like debt you already know about."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Adopted a new automated check — and found it's the one site still failing it",
+          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
+        },
+        {
+          "date": "2026-07-14",
+          "text": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+        },
+        {
+          "date": "2025-09-03",
+          "dateEnd": "2026-06-23",
+          "title": "Course catalogue and the apps' landing pages (backfilled)",
+          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
         }
       ]
     },

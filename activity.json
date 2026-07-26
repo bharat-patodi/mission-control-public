@@ -1,7 +1,35 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-25T14:03:51Z",
+  "generatedAt": "2026-07-26T17:22:10Z",
   "days": [
+    {
+      "date": "2026-07-26",
+      "count": 4,
+      "items": [
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 11
+        },
+        {
+          "project": "party-kitty",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 4
+        },
+        {
+          "project": "das-material",
+          "type": "research",
+          "label": "Render-approach evaluation"
+        },
+        {
+          "project": "party-kitty",
+          "type": "research",
+          "label": "Venue sourcing and verification"
+        }
+      ]
+    },
     {
       "date": "2026-07-25",
       "count": 3,
