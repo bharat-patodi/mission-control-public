@@ -1,7 +1,29 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-30T09:20:51Z",
+  "generatedAt": "2026-07-30T18:36:55Z",
   "projects": [
+    {
+      "slug": "aakhir-q",
+      "name": "Aakhir-Q",
+      "oneLiner": "Skip the physical queue — scan a code at a shop, clinic or temple and watch your place in line from anywhere, with nothing to install.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)"
+      ],
+      "links": {},
+      "statusLine": "Just started — the idea and the stack are settled, the throwaway demo is next.",
+      "nextMove": "Build the four-screen stub demo, timeboxed to two days, then start booking venue interviews.",
+      "currentMilestone": "Brand new. Some places are predictably, miserably crowded — a hospital registration desk, a sweet shop the week before a festival, a temple queue on an auspicious day — and all of them still run the line the way they did thirty years ago. The idea is to make joining a queue as easy as scanning a code, with no app and no account, so people can go and sit somewhere else. Two bets are being kept deliberately apart, because only one can be tested in four weeks: that a frictionless, trustworthy queue on your phone actually makes people leave the line (one venue, three busy days, observable by eye), and separately that a hospital, a sweet shop and a temple are really the same thing wearing different clothes. The second one has a written counter-argument to test rather than assume — the queue may be shared while the rules for who goes next are not, and if those rules are where all the difficulty lives, a general product loses to a specialised one everywhere. The venue, not the visitor, is the first customer: a queue exists because a venue creates one, and only the venue can change how it runs.",
+      "started": "2026-07-30",
+      "lastActive": "2026-07-30",
+      "timeline": [
+        {
+          "date": "2026-07-30",
+          "title": "Kickoff: a one-pager that argues with its own thesis",
+          "summary": "Started a new project and took it through the structured kickoff in a day: the problem written down, the first customer identified as the venue rather than the visitor, and the stack picked. Two things were done deliberately rather than optimistically. The big thesis — that queues at a hospital, a sweet shop and a temple are one product rather than a hundred — was separated from the small, testable bet, because only the small one can be checked in four weeks and merging them is how you end up with a demo nobody can prove wrong. And the strongest argument against that thesis was written into the plan rather than discovered later: the queue itself may be common while the rules for who gets served next are not, and if those rules carry the real complexity then a general tool is worse than a specialised one at every single venue. The claim that nothing like this exists was also marked down as an assumption to go and verify, since competing products do exist and the first venue owner asked will name them."
+        }
+      ]
+    },
     {
       "slug": "das-material",
       "name": "Das Material",
@@ -17,12 +39,18 @@
         "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
         "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
       },
-      "statusLine": "Recolouring now works off the car's own photograph; nothing since that switch has been on a phone.",
-      "nextMove": "Cut a fresh dev build and check the photo lane on a real device — four sessions overdue.",
-      "currentMilestone": "The long-open question of how to make a vehicle look genuinely like the owner's car got answered, and it turned out not to be a question about picking a better image generator. What makes a car recognisable — the grille pattern, the badge, the light signature, the chrome line around the windows, the panel gaps — is only a few millimetres of surface relief. That detail lives in a photograph and is destroyed by turning the photograph into 3D geometry: a model small enough to ship to a phone simply cannot hold it, no matter which tool builds the model. So the 3D reconstruction route was retired in favour of one that keeps the picture's own pixels and repaints only the bodywork, working out which pixels are paint by comparing the same car in two colours — whatever changed is paint, whatever stayed is glass, tyres, chrome, badges and lamps. The result recolours across the full palette while every identifying detail survives, and ships smaller than the 3D model it replaces. The tool now scores its own input and refuses source images it does not trust, and the whole process is written down so the next vehicle is a repeat rather than a rediscovery. Seeing it on a real phone is the pivotal open item.",
+      "statusLine": "The car is built from five of its own photographs; the blotchy patches on it are largely gone.",
+      "nextMove": "Fix the test suite so it runs on Windows — port the working version from the other project.",
+      "currentMilestone": "Turning one good-looking car into a repeatable process: a single command takes a vehicle's reference images and produces a textured, recolourable 3D model in about five minutes, with every step measured rather than eyeballed. The car is now painted with five of its own views, including a real overhead one, and its owner confirmed on a phone that most of the patchiness is gone. The honest limit is that the automated quality score has now disagreed with a human looking at a real phone three times running — most recently on a change that scored twice as well as the passing bar and was rejected on sight — so the score is trusted to catch things getting worse, and not to choose between two good versions. The remaining milestone is running the whole pipeline on a second, very different vehicle: until that works without editing any code, 'it is a process' is a hypothesis.",
       "started": "2026-07-07",
-      "lastActive": "2026-07-26",
+      "lastActive": "2026-07-30",
       "timeline": [
+        {
+          "date": "2026-07-27",
+          "dateEnd": "2026-07-30",
+          "title": "The patchy car: finding what actually fed each pixel, and a quality score that could not see the roof",
+          "summary": "The 3D car had visible patches on it, and two rounds of fixes had aimed at the wrong thing — first the surface finish, then the model being too coarse. The answer came from a two-minute trick instead of another theory: flood one region of the car's texture with a garish colour and re-render, so every patch fed by that region lights up. All of them did. The patches were the roof, bonnet and boot — the parts no camera had ever photographed, which the tool had been inventing by smearing the side view sideways. A real overhead photograph had been available for a day but was switched off after making things worse; the cause turned out to be a single hardcoded threshold tuned for a windscreen's angle, which sent the shallower rear window to the invented roof instead of to its own photograph. With that fixed the overhead view earned its place, and the owner confirmed on a phone that most of the patchiness had gone. The bigger find was in the measuring tool: it graded the car from four directions, all horizontal, so the roof — over 40% of what you see at the angle the app opens on, and the exact thing under argument — had never been graded by anything at all. Two other things were worth as much as the fixes: a promising improvement scored twice as well as the passing bar, was shipped, and was then rejected outright by its owner on a real phone, which makes three such disagreements in a row and demotes the score to a safety net rather than a judge; and a planned week of work on the surface finish was cancelled after one measurement showed it could not possibly have been the cause."
+        },
         {
           "date": "2026-07-26",
           "title": "The render bet, settled: a car’s identity lives in pixels, not geometry",
@@ -66,6 +94,70 @@
           "date": "2026-07-08",
           "title": "A v0 you can hold — 3D vehicle profiles you can spin",
           "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
+        }
+      ]
+    },
+    {
+      "slug": "founder-hub",
+      "name": "Founder Hub",
+      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Supabase Edge Functions",
+        "PostHog"
+      ],
+      "links": {},
+      "statusLine": "Two projects’ to-dos had been silently invisible on the phone for three weeks; both are back.",
+      "nextMove": "Build a fresh Android build — four sessions overdue and the last one predates the redesign.",
+      "currentMilestone": "A personal dashboard app for my own projects. This round was a data-loss bug worth more than the feature it broke: the app kept its own frozen copy of the project list in two separate places, so to-dos tagged for either of the two most recently added projects were quietly filed to an inbox and then dropped from the screen entirely — no error, no empty state, nothing. Two real to-dos had been sitting invisible for three weeks. The list is now read live from its single source of truth and the shorthand is interpreted on the server, which means the fix reached the already-installed app without rebuilding it. The dashboard also stopped printing a 200-word paragraph where a status line belonged: each project now leads with where it stands and what to do next. The design system underneath remains a deliberately strict two colours, with depth drawn as a solid edge rather than a shadow.",
+      "started": "2026-06-25",
+      "lastActive": "2026-07-30",
+      "timeline": [
+        {
+          "date": "2026-07-30",
+          "title": "A hardcoded list that silently swallowed two projects’ to-dos",
+          "summary": "A to-do tagged for either of the two newest projects would vanish. Not fail — vanish: filed to an inbox by the server, then dropped from the phone screen entirely by a second, separate hardcoded copy of the project list being used as a filter rather than a sort order. Two real to-dos had been in the store, listed correctly on the laptop, and invisible on the phone since the 7th of the month, with no error and no empty state to hint at it. Both copies are gone; the list is now read live from the one file that defines it, and the tag shorthand is interpreted on the server where that live list is — which meant the already-installed app was fixed without rebuilding it. Tag matching also stopped being case- and punctuation-exact, since the name you naturally type on a phone is rarely the exact internal spelling, and an ambiguous tag now resolves to nothing rather than guessing, because a wrong destination is worse than a recoverable one. Alongside: the project cards were rewritten to lead with a one-line status and the single next action instead of a 200-word paragraph, and the test suite was made to actually run on Windows — it had been failing for a shell-syntax reason on a codebase where every test passed, which is the kind of red light people learn to ignore."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "Book becomes Learn",
+          "summary": "Renamed the Book tab to Learn and gave it a per-course progress card, so study progress and the architecture notes share one surface. The rename follows the scope rather than leading it."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "The palette shrank to two values — and the fix was a missing layer, not a wrong colour",
+          "summary": "Re-synced the app with the design system that authors it, after last session's redesign had quietly drifted away from it. The interesting part was the diagnosis: the colours weren't wrong, the structure was. Screens were reading raw palette values directly, with no layer in between saying what each value was *for* — so the only way to build a dark mode was to swap the raw values, which is why it kept coming out inverted and wrong. Putting that role layer back makes dark mode a straight swap of two values, with no per-screen special-casing anywhere. The design system also dropped its soft-shadow card style, for a reason worth keeping: a shadow needs a third tone, and a two-value system doesn't have one. Depth is now a 3px edge in the opposite value, one hero card per screen carries the inverted fill, and a whole gradient library came out with the effect it existed to paint. Also recorded the link to the design project itself for the first time — nothing pointed at it before, which is exactly why the drift went unnoticed for a session."
+        },
+        {
+          "date": "2026-07-16",
+          "title": "A full black-and-white redesign, and fixing why the app wouldn't open on the phone",
+          "summary": "Applied a complete black-and-white visual redesign across every screen, sourced from a from-scratch design system — a strict four-colour palette where meaning comes from shape and weight, never colour — plus a live light/dark mode toggle. Dark mode took two false starts before it was right: a literal colour-swap read as correct on paper but was nearly unreadable on the phone, and a next attempt introduced new colours that broke the palette's own four-colour rule. The version that stuck reassigns which role each of the same four colours plays per theme, so every part of the UI stays correctly readable automatically, and every card in the app — not just the accent moments — now sits as a bold block of contrast against its page. Also traced down why the app had stopped opening on a real phone: it had drifted onto a newer platform version than the phone's installed testing app supported, and pinned it back in line."
+        },
+        {
+          "date": "2026-07-10",
+          "title": "The architecture handbook becomes a phone-side triage surface",
+          "summary": "The in-app architecture handbook grew triage powers: chapters now sort by freshness and each shows when it was last reviewed (“reviewed 5d ago” / “not reviewed yet”), a collapsed section lists the concepts flagged for future chapters with how long each has been waiting, and every chapter ends with tappable links to its related chapters. The backend call that serves the book now carries that extra data in a backward-compatible, read-only way — so the whole book backlog can be triaged from the phone without opening a laptop. A fresh sideloadable build is the remaining step to get it on-device."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
+          "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
+        },
+        {
+          "date": "2026-07-03",
+          "title": "Shipped the YouTube + Google Play features, then a size pass",
+          "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
+        },
+        {
+          "date": "2026-06-26",
+          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
+          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
+        },
+        {
+          "date": "2026-06-25",
+          "title": "A private metrics dashboard that keeps secrets off the phone",
+          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
         }
       ]
     },
@@ -330,65 +422,6 @@
           "dateEnd": "2026-06-23",
           "title": "Course catalogue and the apps' landing pages (backfilled)",
           "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
-        }
-      ]
-    },
-    {
-      "slug": "founder-hub",
-      "name": "Founder Hub",
-      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Supabase Edge Functions",
-        "PostHog"
-      ],
-      "links": {},
-      "statusLine": "Five tabs on a strict two-value design system; the installed build predates the whole redesign.",
-      "nextMove": "Build a fresh sideloadable APK — three sessions of redesign have never been seen on the phone.",
-      "currentMilestone": "Five sections — product metrics, a marketing view, a synced todo list, an architecture handbook, and a Mission view — now on a strict two-value design system: one near-black and one off-white, and nothing else. Depth comes from a 3px edge rather than a shadow, because a shadow needs a third tone the palette doesn't have. The app is back in step with the design tool that authors the system, and that link is finally recorded so drift gets caught automatically. A fresh sideloadable build is owed to get two sessions of redesign on-device; the Google Play and YouTube number feeds stay wired and waiting on their access keys. The Book tab is now Learn, carrying per-course study progress alongside the architecture notes. A fresh sideload build is the standing gap — the installed one predates the whole design overhaul.",
-      "started": "2026-06-25",
-      "lastActive": "2026-07-18",
-      "timeline": [
-        {
-          "date": "2026-07-18",
-          "title": "Book becomes Learn",
-          "summary": "Renamed the Book tab to Learn and gave it a per-course progress card, so study progress and the architecture notes share one surface. The rename follows the scope rather than leading it."
-        },
-        {
-          "date": "2026-07-17",
-          "title": "The palette shrank to two values — and the fix was a missing layer, not a wrong colour",
-          "summary": "Re-synced the app with the design system that authors it, after last session's redesign had quietly drifted away from it. The interesting part was the diagnosis: the colours weren't wrong, the structure was. Screens were reading raw palette values directly, with no layer in between saying what each value was *for* — so the only way to build a dark mode was to swap the raw values, which is why it kept coming out inverted and wrong. Putting that role layer back makes dark mode a straight swap of two values, with no per-screen special-casing anywhere. The design system also dropped its soft-shadow card style, for a reason worth keeping: a shadow needs a third tone, and a two-value system doesn't have one. Depth is now a 3px edge in the opposite value, one hero card per screen carries the inverted fill, and a whole gradient library came out with the effect it existed to paint. Also recorded the link to the design project itself for the first time — nothing pointed at it before, which is exactly why the drift went unnoticed for a session."
-        },
-        {
-          "date": "2026-07-16",
-          "title": "A full black-and-white redesign, and fixing why the app wouldn't open on the phone",
-          "summary": "Applied a complete black-and-white visual redesign across every screen, sourced from a from-scratch design system — a strict four-colour palette where meaning comes from shape and weight, never colour — plus a live light/dark mode toggle. Dark mode took two false starts before it was right: a literal colour-swap read as correct on paper but was nearly unreadable on the phone, and a next attempt introduced new colours that broke the palette's own four-colour rule. The version that stuck reassigns which role each of the same four colours plays per theme, so every part of the UI stays correctly readable automatically, and every card in the app — not just the accent moments — now sits as a bold block of contrast against its page. Also traced down why the app had stopped opening on a real phone: it had drifted onto a newer platform version than the phone's installed testing app supported, and pinned it back in line."
-        },
-        {
-          "date": "2026-07-10",
-          "title": "The architecture handbook becomes a phone-side triage surface",
-          "summary": "The in-app architecture handbook grew triage powers: chapters now sort by freshness and each shows when it was last reviewed (“reviewed 5d ago” / “not reviewed yet”), a collapsed section lists the concepts flagged for future chapters with how long each has been waiting, and every chapter ends with tappable links to its related chapters. The backend call that serves the book now carries that extra data in a backward-compatible, read-only way — so the whole book backlog can be triaged from the phone without opening a laptop. A fresh sideloadable build is the remaining step to get it on-device."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
-          "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
-        },
-        {
-          "date": "2026-07-03",
-          "title": "Shipped the YouTube + Google Play features, then a size pass",
-          "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
-        },
-        {
-          "date": "2026-06-26",
-          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
-          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "A private metrics dashboard that keeps secrets off the phone",
-          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
         }
       ]
     },

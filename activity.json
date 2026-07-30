@@ -1,22 +1,53 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-30T09:21:17Z",
+  "generatedAt": "2026-07-30T18:37:02Z",
   "days": [
     {
       "date": "2026-07-30",
-      "count": 2,
+      "count": 8,
       "items": [
+        {
+          "project": "aakhir-q",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 4
+        },
         {
           "project": "das-material",
           "type": "commit",
           "label": "Commits",
-          "commits": 1
+          "commits": 9
         },
         {
           "project": "founder-hub",
           "type": "commit",
           "label": "Commits",
           "commits": 7
+        },
+        {
+          "project": "das-material",
+          "type": "research",
+          "label": "Render-pipeline diagnosis"
+        },
+        {
+          "project": "founder-hub",
+          "type": "research",
+          "label": "Roster data-flow audit"
+        },
+        {
+          "project": "founder-hub",
+          "type": "design",
+          "label": "Mission tab redesign"
+        },
+        {
+          "project": "aakhir-q",
+          "type": "writing",
+          "label": "Product one-pager"
+        },
+        {
+          "project": "das-material",
+          "type": "ops",
+          "label": "Measurement rig upgrade"
         }
       ]
     },
