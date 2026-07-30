@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-26T17:21:59Z",
+  "generatedAt": "2026-07-30T08:25:49Z",
   "projects": [
     {
       "slug": "das-material",
@@ -17,6 +17,8 @@
         "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
         "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
       },
+      "statusLine": "Recolouring now works off the car's own photograph; nothing since that switch has been on a phone.",
+      "nextMove": "Cut a fresh dev build and check the photo lane on a real device — four sessions overdue.",
       "currentMilestone": "The long-open question of how to make a vehicle look genuinely like the owner's car got answered, and it turned out not to be a question about picking a better image generator. What makes a car recognisable — the grille pattern, the badge, the light signature, the chrome line around the windows, the panel gaps — is only a few millimetres of surface relief. That detail lives in a photograph and is destroyed by turning the photograph into 3D geometry: a model small enough to ship to a phone simply cannot hold it, no matter which tool builds the model. So the 3D reconstruction route was retired in favour of one that keeps the picture's own pixels and repaints only the bodywork, working out which pixels are paint by comparing the same car in two colours — whatever changed is paint, whatever stayed is glass, tyres, chrome, badges and lamps. The result recolours across the full palette while every identifying detail survives, and ships smaller than the 3D model it replaces. The tool now scores its own input and refuses source images it does not trust, and the whole process is written down so the next vehicle is a repeat rather than a rediscovery. Seeing it on a real phone is the pivotal open item.",
       "started": "2026-07-07",
       "lastActive": "2026-07-26",
@@ -83,6 +85,8 @@
         "Test on Android": "https://play.google.com/apps/testing/com.beeoop.partykitty",
         "Test on Android (internal)": "https://play.google.com/apps/internaltest/4701407934167275299"
       },
+      "statusLine": "In closed testing with real groups running real money through it; a tester hit a login hang.",
+      "nextMove": "Rebuild the test binary so it carries the login fix, then verify live tambola on two phones.",
       "currentMilestone": "Closed testing on the Play Store, and the app now has real groups using it for real money — which is where this month's most useful lessons came from. The release build that had been outstanding for two weeks is finally made, and the live tambola game's end-game loop is complete: recorded winners, a landscape ticket view, replay on the same tickets. A first real month of use then surfaced two problems no amount of design had predicted, both about who is actually in a given month rather than who is in the group: someone on the dues list who had never joined, and someone added after the party who the group agreed should still be included. Both had to be fixed by hand, so there's now an operator tool for it — with guards that refuse outright when real money is attached, and a single narrow override for the one judgement a database cannot make. Since then, a defect found in ordinary use was fixed: opening the date-planning flow from the main card dead-ended the host on a screen saying no poll existed, while backing out and trying again worked — the screen was re-deriving which party it meant from a cache that answers instantly with slightly stale data, so the first read committed to the wrong one. The venue list also grew into a second city, with a review pass that cut two entries which had good contact details but no evidence they actually host this kind of party.",
       "started": "2026-05-17",
       "lastActive": "2026-07-26",
@@ -234,6 +238,8 @@
         "Push notifications"
       ],
       "links": {},
+      "statusLine": "Restarted with a new shape — app-only revision plus an evening parent nudge; backend not built yet.",
+      "nextMove": "Stand up the backend foundation, ending with the permissions smoke test over a child's data.",
       "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. The open question is unchanged and recorded as such: demand is still unproven, and the only user conversation so far was a negative signal.",
       "started": "2026-06-11",
       "lastActive": "2026-07-25",
@@ -284,6 +290,8 @@
         "live": "https://www.pyoopel.com",
         "Class 10 Maths course": "https://www.pyoopel.com/courses/cbse-10-maths"
       },
+      "statusLine": "The class-10 maths course is now an adaptive tutor on a concept graph; its engine is ungraded.",
+      "nextMove": "Document the model API key, then run the evaluation suite for the tutor's first real score.",
       "currentMilestone": "The class-10 maths course stopped being a set of static pages and became an adaptive tutor. Its 101 authored steps now sit on a concept graph, with a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. On top of that sits a decomposition engine: when a student gets a check wrong, a language model generates two to four smaller steps beneath the one she failed — but only behind a deterministic gate that recomputes every arithmetic claim before she sees it, and falls back to the hand-written hint ladder rather than showing anything unverified. It ships switched off until a key is configured, so it has not yet been graded against its own eval set. The course is also now the curriculum engine for a separate revision app, which is what is currently shaping its internals.",
       "started": "2025-09-03",
       "lastActive": "2026-07-25",
@@ -336,6 +344,8 @@
         "PostHog"
       ],
       "links": {},
+      "statusLine": "Five tabs on a strict two-value design system; the installed build predates the whole redesign.",
+      "nextMove": "Build a fresh sideloadable APK — three sessions of redesign have never been seen on the phone.",
       "currentMilestone": "Five sections — product metrics, a marketing view, a synced todo list, an architecture handbook, and a Mission view — now on a strict two-value design system: one near-black and one off-white, and nothing else. Depth comes from a 3px edge rather than a shadow, because a shadow needs a third tone the palette doesn't have. The app is back in step with the design tool that authors the system, and that link is finally recorded so drift gets caught automatically. A fresh sideloadable build is owed to get two sessions of redesign on-device; the Google Play and YouTube number feeds stay wired and waiting on their access keys. The Book tab is now Learn, carrying per-course study progress alongside the architecture notes. A fresh sideload build is the standing gap — the installed one predates the whole design overhaul.",
       "started": "2026-06-25",
       "lastActive": "2026-07-18",
@@ -395,6 +405,8 @@
         "Zod"
       ],
       "links": {},
+      "statusLine": "Hardening phase — every gate green, and the database now proves which migrations are live.",
+      "nextMove": "Run the end-to-end signup smoke test that confirms the access-control fix landed.",
       "currentMilestone": "Hardening phase, gates first. A new check reads the database's own record of which migrations are actually applied — and running it closed the repo's oldest open item by proving a pending fix had already gone live. Every gate now passes.",
       "started": "2025-09-02",
       "lastActive": "2026-07-18",
@@ -468,6 +480,8 @@
       "links": {
         "Privacy": "https://www.pyoopel.com/apps/wrong-is-right/privacy"
       },
+      "statusLine": "Between features — suite and gates green, but the project was never linked to its database here.",
+      "nextMove": "Link the project to its database, then apply the pending schema sync.",
       "currentMilestone": "Between features. Test suite and convention gates are in place and green. A new migration check reports an honest 'not set up here' rather than a false pass — this project was never linked to its database on this machine, which is worth knowing before trusting anything about its schema.",
       "started": "2026-04-22",
       "lastActive": "2026-07-18",
@@ -540,6 +554,8 @@
       "links": {
         "live": "https://tuition-one.vercel.app"
       },
+      "statusLine": "One chapter, interactive and used in real tutoring sessions; untouched for four weeks.",
+      "nextMove": "Decide whether it grows past the one chapter or stays a finished page for one student.",
       "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
       "started": "2026-06-29",
       "lastActive": "2026-07-01",
