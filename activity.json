@@ -1,7 +1,61 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-26T17:22:10Z",
+  "generatedAt": "2026-07-30T09:21:17Z",
   "days": [
+    {
+      "date": "2026-07-30",
+      "count": 2,
+      "items": [
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        },
+        {
+          "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 7
+        }
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "count": 1,
+      "items": [
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 32
+        }
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "count": 1,
+      "items": [
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 5
+        }
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "count": 1,
+      "items": [
+        {
+          "project": "das-material",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 18
+        }
+      ]
+    },
     {
       "date": "2026-07-26",
       "count": 4,
@@ -10,7 +64,7 @@
           "project": "das-material",
           "type": "commit",
           "label": "Commits",
-          "commits": 11
+          "commits": 13
         },
         {
           "project": "party-kitty",
@@ -721,7 +775,7 @@
       "count": 1,
       "items": [
         {
-          "project": "mister-tutor",
+          "project": "pyoopel",
           "type": "research",
           "label": "Teaching-method + first-session planning"
         }
@@ -732,12 +786,12 @@
       "count": 2,
       "items": [
         {
-          "project": "mister-tutor",
+          "project": "pyoopel",
           "type": "ship",
           "label": "Production deploy (Vercel)"
         },
         {
-          "project": "mister-tutor",
+          "project": "pyoopel",
           "type": "design",
           "label": "Duotone visual redesign"
         }
@@ -748,12 +802,12 @@
       "count": 2,
       "items": [
         {
-          "project": "mister-tutor",
+          "project": "pyoopel",
           "type": "research",
           "label": "Distilled NCERT Real Numbers chapter into a teaching plan"
         },
         {
-          "project": "mister-tutor",
+          "project": "pyoopel",
           "type": "design",
           "label": "Built the app's UI design system"
         }

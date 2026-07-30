@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-30T08:25:49Z",
+  "generatedAt": "2026-07-30T09:20:51Z",
   "projects": [
     {
       "slug": "das-material",
@@ -537,43 +537,6 @@
           "dateEnd": "2026-04-28",
           "title": "Zero to released v1 in a week",
           "summary": "Built and released the full game in six days: the pick-wrong mechanic with time bonuses and streak multipliers, a seeded daily challenge identical for every player worldwide, true/false rounds with explanation cards, shareable score cards, and translations."
-        }
-      ]
-    },
-    {
-      "slug": "mister-tutor",
-      "name": "mister-tutor",
-      "oneLiner": "A teaching companion for a CBSE class-10 student preparing for boards — a single, fluid page that walks through a maths chapter end to end, built and refined during real tutoring sessions.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Vercel"
-      ],
-      "links": {
-        "live": "https://tuition-one.vercel.app"
-      },
-      "statusLine": "One chapter, interactive and used in real tutoring sessions; untouched for four weeks.",
-      "nextMove": "Decide whether it grows past the one chapter or stays a finished page for one student.",
-      "currentMilestone": "A single, focused teaching page for one CBSE class-10 student — the Real Numbers chapter, now interactive with a step-by-step practice engine and hands-on manipulatives, deployed and refined during real tutoring sessions.",
-      "started": "2026-06-29",
-      "lastActive": "2026-07-01",
-      "timeline": [
-        {
-          "date": "2026-07-01",
-          "title": "Made the Real Numbers page interactive — practice and manipulatives",
-          "summary": "Turned the Real Numbers teaching page from something you read into something you do: a practice engine that walks through questions with hints that unfold one step at a time, and live, hands-on manipulatives — an interactive factor tree and a Highest-Common-Factor / Lowest-Common-Multiple explorer — so a student can work the ideas rather than only watch them. Also began preparing the chapter's teaching material the way it's actually taught in a session: broken into progressively smaller pieces until each one clicks, ahead of the first live tutoring session."
-        },
-        {
-          "date": "2026-06-30",
-          "title": "Reshaped into one focused teaching page — and deployed it live",
-          "summary": "Collapsed an earlier multi-screen prototype into a single, fluid page that teaches one maths chapter (Real Numbers) end to end — the key idea, the core theorems with worked examples, a full irrationality proof, the textbook exercises, and a ready-to-run session plan — with the official textbook and exemplar PDFs one tap away in a sticky bar. Gave it a bold two-colour design sampled from a reference image and tuned for readability, then deployed it live so it can be used during real tutoring sessions. Also refocused the project around one real student and tutor using it continuously rather than a round of user interviews."
-        },
-        {
-          "date": "2026-06-29",
-          "title": "From idea to a designed, usable study-companion v0 in a day",
-          "summary": "Kicked off a study companion for a CBSE class-10 student: wrote the one-pager, then built a mobile-first web app — a daily focus card, a colour-coded topic-mastery map, and practice and progress views — running on placeholder data as a stimulus for upcoming user interviews. Turned the first maths chapter (Real Numbers) into an interactive teaching page built from the official textbook: the core theorems, a worked irrationality proof, textbook practice, and a ready-to-run 40-minute session plan. Then rebuilt the whole interface into a real design system — colour tokens, a distinctive type pairing, a shared component layer, consistent icons, and considered motion — after a first flat draft didn't hold up. Kept the bulky textbook files out of version control."
         }
       ]
     }
