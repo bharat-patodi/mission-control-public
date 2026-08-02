@@ -1,7 +1,99 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-01T16:46:32Z",
+  "generatedAt": "2026-08-02T17:58:59Z",
   "projects": [
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
+      "status": "active",
+      "stack": [
+        "React Native (Expo)",
+        "Nhost (Postgres / GraphQL)",
+        "Push notifications"
+      ],
+      "links": {},
+      "statusLine": "Restarted with a new shape — app-only revision plus an evening parent nudge; backend not built yet.",
+      "nextMove": "Stand up the backend foundation, ending with the permissions smoke test over a child's data.",
+      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. The open question is unchanged and recorded as such: demand is still unproven, and the only user conversation so far was a negative signal.",
+      "started": "2026-06-11",
+      "lastActive": "2026-08-02",
+      "timeline": [
+        {
+          "date": "2026-07-25",
+          "title": "Pivot: from a chat service to an app, reversing three decisions",
+          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "Still stalled",
+          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
+        },
+        {
+          "date": "2026-07-15",
+          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
+        },
+        {
+          "date": "2026-06-13",
+          "title": "First family interview — logged as a counter-signal",
+          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+        },
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+        }
+      ]
+    },
+    {
+      "slug": "aakhir-q",
+      "name": "Aakhir-Q",
+      "oneLiner": "Skip the physical queue — scan a code at a shop, clinic or temple and watch your place in line from anywhere, with nothing to install.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)"
+      ],
+      "links": {},
+      "statusLine": "Just started — the idea and the stack are settled, the throwaway demo is next.",
+      "nextMove": "Build the four-screen stub demo, timeboxed to two days, then start booking venue interviews.",
+      "currentMilestone": "Brand new. Some places are predictably, miserably crowded — a hospital registration desk, a sweet shop the week before a festival, a temple queue on an auspicious day — and all of them still run the line the way they did thirty years ago. The idea is to make joining a queue as easy as scanning a code, with no app and no account, so people can go and sit somewhere else. Two bets are being kept deliberately apart, because only one can be tested in four weeks: that a frictionless, trustworthy queue on your phone actually makes people leave the line (one venue, three busy days, observable by eye), and separately that a hospital, a sweet shop and a temple are really the same thing wearing different clothes. The second one has a written counter-argument to test rather than assume — the queue may be shared while the rules for who goes next are not, and if those rules are where all the difficulty lives, a general product loses to a specialised one everywhere. The venue, not the visitor, is the first customer: a queue exists because a venue creates one, and only the venue can change how it runs.",
+      "started": "2026-07-30",
+      "lastActive": "2026-08-02",
+      "timeline": [
+        {
+          "date": "2026-07-30",
+          "title": "Kickoff: a one-pager that argues with its own thesis",
+          "summary": "Started a new project and took it through the structured kickoff in a day: the problem written down, the first customer identified as the venue rather than the visitor, and the stack picked. Two things were done deliberately rather than optimistically. The big thesis — that queues at a hospital, a sweet shop and a temple are one product rather than a hundred — was separated from the small, testable bet, because only the small one can be checked in four weeks and merging them is how you end up with a demo nobody can prove wrong. And the strongest argument against that thesis was written into the plan rather than discovered later: the queue itself may be common while the rules for who gets served next are not, and if those rules carry the real complexity then a general tool is worse than a specialised one at every single venue. The claim that nothing like this exists was also marked down as an assumption to go and verify, since competing products do exist and the first venue owner asked will name them."
+        }
+      ]
+    },
+    {
+      "slug": "aloud",
+      "name": "Aloud",
+      "oneLiner": "Rehearse a talk out loud and get the specific feedback a friendly human won't give you.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)"
+      ],
+      "links": {},
+      "statusLine": "Just started — the idea and the stack are settled; who it's actually for is still open.",
+      "nextMove": "Decide who this is for — working professionals or kids — before booking any interviews.",
+      "currentMilestone": "Brand new. Almost everyone who has to speak in public has one particular talk they are dreading, with a date on it — a conference session, a readout to leadership, a thesis defence — and the advice they get is \"just practise\", which is correct and useless. There is nowhere to practise: rehearsing alone gives you no idea whether your opening landed or whether your actual point arrives eleven minutes into a fifteen-minute slot, and rehearsing in front of a friend reliably produces the least useful sentence in the language, \"that was great.\" The bet is that the scarce thing here is not coaching expertise but an audience that listens on demand and tells the truth. The wedge is the date itself: it creates urgency, gives the job a natural end, and produces one unambiguous moment where you find out whether any of it helped. Four possible shapes for the first real version are on the table and are deliberately not being chosen yet — that decision waits for interviews rather than taste. The immediate work is a throwaway four-screen demo, plus an experiment that needs no software at all, and one question that has to be answered before either: the intended user was never actually specified, and the two candidate answers are different products.",
+      "started": "2026-07-30",
+      "lastActive": "2026-08-02",
+      "timeline": [
+        {
+          "date": "2026-07-31",
+          "title": "Kickoff: an audience on demand, and an experiment that needs no app",
+          "summary": "Started a new project and took it through the structured kickoff in a morning: the problem written down, the hypothesis stated as something falsifiable, the stack picked, and no code written on purpose. Two choices carry most of the weight. The first is that the smallest version of this experiment involves no software whatsoever — find five people with a talk in the next month, have each send a phone recording of one rehearsal, and return a written critique within the hour. The measured signal is deliberately not whether they liked the feedback, but whether a second recording arrives within a week without being asked; if it never does, the idea can die in week one for the price of five emails rather than after a month of building. The second is a small technical line drawn early: the parts of the feedback that are arithmetic — pace against the time budget, filler-word counts with timestamps, where the real point actually arrives — are computed from the transcript rather than asked of a language model, which is reserved for the one genuinely hard judgement of what the three biggest problems are. A cheaper model was ruled out by name on the grounds it would produce generic praise, which is exactly the failure the product exists to avoid. Video and body-language analysis were excluded for a reason worth recording: a camera makes people not want to press record at all. The honest gap coming out of the day is that the intended user was never specified and got assumed — a working professional with a conference talk, versus the original idea of helping kids — and those are two different products with two different sets of people to go and talk to, so nothing downstream is safe until it is settled."
+        }
+      ]
+    },
     {
       "slug": "das-material",
       "name": "Das Material",
@@ -17,12 +109,17 @@
         "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
         "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
       },
-      "statusLine": "The scooter is in the app now, but a quarter of what you see on it is invented rather than photographed.",
-      "nextMove": "Shoot a top-down reference of the scooter and rebuild — that is the invented quarter.",
-      "currentMilestone": "The test of whether one good-looking vehicle was a fluke or a repeatable process: run the whole pipeline on a second, very different vehicle — a scooter rather than a car. It works. Reference images to a finished, checked 3D model took about four minutes against a thirty-minute target, and the input quality passed on the first attempt. It also exposed ten places the process was quietly broken, most of them inside a stage that had never once run: it is skipped whenever an earlier result is cached, and the first vehicle always had that cache. The scooter ships with its problems written down rather than hidden — at the angle the app opens on, about a quarter of the visible surface is one no camera ever photographed, invented by smearing a side-on photo across the top. Fixing it needs two more reference images. Two findings were worth the exercise on their own: the 3D reconstruction inflates every vehicle by roughly the same amount, so that is the tool’s bias rather than one vehicle’s; and a quality threshold tuned on a car does not transfer to a two-wheeler, whose outline is full of real holes and therefore scores lower at the same visual quality.",
+      "statusLine": "The scooter's patchy surface traced to its reference photo, not to the 3D model.",
+      "nextMove": "Regenerate the scooter's reference photo with its real proportions pinned, then rebuild.",
+      "currentMilestone": "Building one repeatable process that turns a handful of reference images into a 3D model of a specific vehicle that you can spin around and repaint in your own colour. Two vehicles have been through it. The open problem for a fortnight was that the scooter came out visibly patchy, and every attempt to fix it aimed at the 3D shape. It turned out the shape was fine and the reference photograph was wrong — which is a hard thing for the pipeline to notice, because it grades its own output by comparing it to that same photograph. The next move is one image generation, not a better 3D model or a paid service.",
       "started": "2026-07-07",
-      "lastActive": "2026-08-01",
+      "lastActive": "2026-08-02",
       "timeline": [
+        {
+          "date": "2026-08-02",
+          "title": "The 3D model was innocent: a reference photo a quarter out of proportion",
+          "summary": "Spent the day chasing why one vehicle renders patchy while the other looks right, and found the answer one layer below where everyone had been looking. Every quality check in this pipeline compares the finished render against the reference photograph it was built from — so if the photograph itself draws the vehicle in the wrong proportions, it scores perfectly against itself while every correct 3D model scores badly against it. The scooter's reference draws it about a quarter too long and low. What finally proved it was buying nothing: a 3D model generated by a completely different commercial service, which had never seen our reference images, scored identically to the in-house one — and then both models agreed with each other, and with the real vehicle's measurements, against the photograph. Two independent makers agreeing against the reference is what points at the reference. The wrong conclusion had survived five separate investigations. Two checks now print the mismatch automatically, one of them a minute into the process rather than twenty. Along the way: a fix for surfaces being rendered as polished mirror, and a real bug in the file reader that made any outside 3D model measure as a perfect cube — inside the very code that is supposed to catch a model being the wrong shape."
+        },
         {
           "date": "2026-08-01",
           "title": "The second vehicle: proving the pipeline is a process, and finding ten places it was not",
@@ -81,50 +178,6 @@
       ]
     },
     {
-      "slug": "aloud",
-      "name": "Aloud",
-      "oneLiner": "Rehearse a talk out loud and get the specific feedback a friendly human won't give you.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)"
-      ],
-      "links": {},
-      "statusLine": "Just started — the idea and the stack are settled; who it's actually for is still open.",
-      "nextMove": "Decide who this is for — working professionals or kids — before booking any interviews.",
-      "currentMilestone": "Brand new. Almost everyone who has to speak in public has one particular talk they are dreading, with a date on it — a conference session, a readout to leadership, a thesis defence — and the advice they get is \"just practise\", which is correct and useless. There is nowhere to practise: rehearsing alone gives you no idea whether your opening landed or whether your actual point arrives eleven minutes into a fifteen-minute slot, and rehearsing in front of a friend reliably produces the least useful sentence in the language, \"that was great.\" The bet is that the scarce thing here is not coaching expertise but an audience that listens on demand and tells the truth. The wedge is the date itself: it creates urgency, gives the job a natural end, and produces one unambiguous moment where you find out whether any of it helped. Four possible shapes for the first real version are on the table and are deliberately not being chosen yet — that decision waits for interviews rather than taste. The immediate work is a throwaway four-screen demo, plus an experiment that needs no software at all, and one question that has to be answered before either: the intended user was never actually specified, and the two candidate answers are different products.",
-      "started": "2026-07-30",
-      "lastActive": "2026-07-31",
-      "timeline": [
-        {
-          "date": "2026-07-31",
-          "title": "Kickoff: an audience on demand, and an experiment that needs no app",
-          "summary": "Started a new project and took it through the structured kickoff in a morning: the problem written down, the hypothesis stated as something falsifiable, the stack picked, and no code written on purpose. Two choices carry most of the weight. The first is that the smallest version of this experiment involves no software whatsoever — find five people with a talk in the next month, have each send a phone recording of one rehearsal, and return a written critique within the hour. The measured signal is deliberately not whether they liked the feedback, but whether a second recording arrives within a week without being asked; if it never does, the idea can die in week one for the price of five emails rather than after a month of building. The second is a small technical line drawn early: the parts of the feedback that are arithmetic — pace against the time budget, filler-word counts with timestamps, where the real point actually arrives — are computed from the transcript rather than asked of a language model, which is reserved for the one genuinely hard judgement of what the three biggest problems are. A cheaper model was ruled out by name on the grounds it would produce generic praise, which is exactly the failure the product exists to avoid. Video and body-language analysis were excluded for a reason worth recording: a camera makes people not want to press record at all. The honest gap coming out of the day is that the intended user was never specified and got assumed — a working professional with a conference talk, versus the original idea of helping kids — and those are two different products with two different sets of people to go and talk to, so nothing downstream is safe until it is settled."
-        }
-      ]
-    },
-    {
-      "slug": "aakhir-q",
-      "name": "Aakhir-Q",
-      "oneLiner": "Skip the physical queue — scan a code at a shop, clinic or temple and watch your place in line from anywhere, with nothing to install.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)"
-      ],
-      "links": {},
-      "statusLine": "Just started — the idea and the stack are settled, the throwaway demo is next.",
-      "nextMove": "Build the four-screen stub demo, timeboxed to two days, then start booking venue interviews.",
-      "currentMilestone": "Brand new. Some places are predictably, miserably crowded — a hospital registration desk, a sweet shop the week before a festival, a temple queue on an auspicious day — and all of them still run the line the way they did thirty years ago. The idea is to make joining a queue as easy as scanning a code, with no app and no account, so people can go and sit somewhere else. Two bets are being kept deliberately apart, because only one can be tested in four weeks: that a frictionless, trustworthy queue on your phone actually makes people leave the line (one venue, three busy days, observable by eye), and separately that a hospital, a sweet shop and a temple are really the same thing wearing different clothes. The second one has a written counter-argument to test rather than assume — the queue may be shared while the rules for who goes next are not, and if those rules are where all the difficulty lives, a general product loses to a specialised one everywhere. The venue, not the visitor, is the first customer: a queue exists because a venue creates one, and only the venue can change how it runs.",
-      "started": "2026-07-30",
-      "lastActive": "2026-07-30",
-      "timeline": [
-        {
-          "date": "2026-07-30",
-          "title": "Kickoff: a one-pager that argues with its own thesis",
-          "summary": "Started a new project and took it through the structured kickoff in a day: the problem written down, the first customer identified as the venue rather than the visitor, and the stack picked. Two things were done deliberately rather than optimistically. The big thesis — that queues at a hospital, a sweet shop and a temple are one product rather than a hundred — was separated from the small, testable bet, because only the small one can be checked in four weeks and merging them is how you end up with a demo nobody can prove wrong. And the strongest argument against that thesis was written into the plan rather than discovered later: the queue itself may be common while the rules for who gets served next are not, and if those rules carry the real complexity then a general tool is worse than a specialised one at every single venue. The claim that nothing like this exists was also marked down as an assumption to go and verify, since competing products do exist and the first venue owner asked will name them."
-        }
-      ]
-    },
-    {
       "slug": "founder-hub",
       "name": "Founder Hub",
       "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
@@ -135,12 +188,17 @@
         "PostHog"
       ],
       "links": {},
-      "statusLine": "Two projects’ to-dos had been silently invisible on the phone for three weeks; both are back.",
-      "nextMove": "Build a fresh Android build — four sessions overdue and the last one predates the redesign.",
+      "statusLine": "The black-and-white launcher icon is done; the phone build carrying it is five sessions overdue.",
+      "nextMove": "Cut a fresh Android build — the new icon has never been seen on a real phone.",
       "currentMilestone": "A personal dashboard app for my own projects. This round was a data-loss bug worth more than the feature it broke: the app kept its own frozen copy of the project list in two separate places, so to-dos tagged for either of the two most recently added projects were quietly filed to an inbox and then dropped from the screen entirely — no error, no empty state, nothing. Two real to-dos had been sitting invisible for three weeks. The list is now read live from its single source of truth and the shorthand is interpreted on the server, which means the fix reached the already-installed app without rebuilding it. The dashboard also stopped printing a 200-word paragraph where a status line belonged: each project now leads with where it stands and what to do next. The design system underneath remains a deliberately strict two colours, with depth drawn as a solid edge rather than a shadow.",
       "started": "2026-06-25",
-      "lastActive": "2026-07-30",
+      "lastActive": "2026-08-02",
       "timeline": [
+        {
+          "date": "2026-08-02",
+          "title": "A black-and-white app icon, and design drift that fails a test",
+          "summary": "Replaced the old blue app icon with a black-and-white mark matching the rest of the interface, generating every size Android asks for plus the store listing image — and the files got dramatically smaller on the way. Separately, the design system now keeps a local copy of its stylesheet with an automated check that the phone app still matches it, so the two drifting apart becomes a failing test instead of something spotted by eye later."
+        },
         {
           "date": "2026-07-30",
           "title": "A hardcoded list that silently swallowed two projects’ to-dos",
@@ -189,6 +247,80 @@
       ]
     },
     {
+      "slug": "nsrl-crm",
+      "name": "NSRL CRM",
+      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
+      "status": "active",
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Supabase",
+        "Zod"
+      ],
+      "links": {},
+      "statusLine": "Hardening phase — every gate green, and the database now proves which migrations are live.",
+      "nextMove": "Run the end-to-end signup smoke test that confirms the access-control fix landed.",
+      "currentMilestone": "Hardening phase, gates first. A new check reads the database's own record of which migrations are actually applied — and running it closed the repo's oldest open item by proving a pending fix had already gone live. Every gate now passes.",
+      "started": "2025-09-02",
+      "lastActive": "2026-08-02",
+      "timeline": [
+        {
+          "date": "2026-07-18",
+          "title": "A design direction written down properly",
+          "summary": "Turned a loose Bauhaus theme draft into a written source-of-truth document, so the standing question becomes execute-or-shelve rather than keep-drafting."
+        },
+        {
+          "date": "2026-07-16",
+          "title": "A gate that asks the database instead of trusting the commit message",
+          "summary": "Added a check that reads the live database's migration ledger and verifies a migration was genuinely applied, rather than trusting a note someone left in a commit message. It closed this project's oldest open item on its first run: the fix had in fact been applied days earlier, and the note saying otherwise simply had no way to find out. The point generalises — 'written and committed' and 'actually live' are different states, and only the second one counts."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "New automated checks catch a real security gap and a date-validation bug",
+          "summary": "Retired a set of old, hand-run database scripts that a couple of files were still (incorrectly) pointing to as the source of truth — the real, versioned migrations had quietly become the actual schema months ago. Then built three automated checks that catch what a type-checker can't: one of them found and closed a genuine access-control gap in how new memberships were created, and another caught a date-validation bug where a slightly malformed date (like February 30th) was accepted by the form and only rejected — confusingly — by the database. Also added a first layer of automated tests, timezone-aware for an Indian audience."
+        },
+        {
+          "date": "2026-07-03",
+          "title": "A security and code-quality audit, closed out",
+          "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
+        },
+        {
+          "date": "2026-07-02",
+          "title": "Finished the payroll attendance summary; friendly error messages everywhere",
+          "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
+        },
+        {
+          "date": "2026-06-24",
+          "title": "Started a monthly attendance summary for payroll",
+          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
+        },
+        {
+          "date": "2026-06-20",
+          "title": "Driver attendance, end to end",
+          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
+        },
+        {
+          "date": "2026-05-27",
+          "dateEnd": "2026-05-30",
+          "title": "Full relational CRM in four days",
+          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
+        },
+        {
+          "date": "2025-10-02",
+          "dateEnd": "2025-10-30",
+          "title": "Tenancy and CRUD architecture",
+          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
+        },
+        {
+          "date": "2025-09-02",
+          "dateEnd": "2025-09-29",
+          "title": "Foundation",
+          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
+        }
+      ]
+    },
+    {
       "slug": "party-kitty",
       "name": "PartyKitty",
       "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
@@ -208,7 +340,7 @@
       "nextMove": "Rebuild the test binary so it carries the login fix, then verify live tambola on two phones.",
       "currentMilestone": "Closed testing on the Play Store, and the app now has real groups using it for real money — which is where this month's most useful lessons came from. The release build that had been outstanding for two weeks is finally made, and the live tambola game's end-game loop is complete: recorded winners, a landscape ticket view, replay on the same tickets. A first real month of use then surfaced two problems no amount of design had predicted, both about who is actually in a given month rather than who is in the group: someone on the dues list who had never joined, and someone added after the party who the group agreed should still be included. Both had to be fixed by hand, so there's now an operator tool for it — with guards that refuse outright when real money is attached, and a single narrow override for the one judgement a database cannot make. Since then, a defect found in ordinary use was fixed: opening the date-planning flow from the main card dead-ended the host on a screen saying no poll existed, while backing out and trying again worked — the screen was re-deriving which party it meant from a cache that answers instantly with slightly stale data, so the first read committed to the wrong one. The venue list also grew into a second city, with a review pass that cut two entries which had good contact details but no evidence they actually host this kind of party.",
       "started": "2026-05-17",
-      "lastActive": "2026-07-26",
+      "lastActive": "2026-08-02",
       "timeline": [
         {
           "date": "2026-07-26",
@@ -347,54 +479,6 @@
       ]
     },
     {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
-      "status": "active",
-      "stack": [
-        "React Native (Expo)",
-        "Nhost (Postgres / GraphQL)",
-        "Push notifications"
-      ],
-      "links": {},
-      "statusLine": "Restarted with a new shape — app-only revision plus an evening parent nudge; backend not built yet.",
-      "nextMove": "Stand up the backend foundation, ending with the permissions smoke test over a child's data.",
-      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. The open question is unchanged and recorded as such: demand is still unproven, and the only user conversation so far was a negative signal.",
-      "started": "2026-06-11",
-      "lastActive": "2026-07-25",
-      "timeline": [
-        {
-          "date": "2026-07-25",
-          "title": "Pivot: from a chat service to an app, reversing three decisions",
-          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
-        },
-        {
-          "date": "2026-07-18",
-          "title": "Still stalled",
-          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
-        },
-        {
-          "date": "2026-07-15",
-          "text": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
-        }
-      ]
-    },
-    {
       "slug": "pyoopel",
       "name": "Pyoopel",
       "oneLiner": "A self-paced online-course site — share trading plus a CBSE class-10 maths course that has grown into an adaptive tutor — alongside a catalogue of exam-prep courses and the public support pages for my apps.",
@@ -413,7 +497,7 @@
       "nextMove": "Document the model API key, then run the evaluation suite for the tutor's first real score.",
       "currentMilestone": "The class-10 maths course stopped being a set of static pages and became an adaptive tutor. Its 101 authored steps now sit on a concept graph, with a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. On top of that sits a decomposition engine: when a student gets a check wrong, a language model generates two to four smaller steps beneath the one she failed — but only behind a deterministic gate that recomputes every arithmetic claim before she sees it, and falls back to the hand-written hint ladder rather than showing anything unverified. It ships switched off until a key is configured, so it has not yet been graded against its own eval set. The course is also now the curriculum engine for a separate revision app, which is what is currently shaping its internals.",
       "started": "2025-09-03",
-      "lastActive": "2026-07-25",
+      "lastActive": "2026-08-02",
       "timeline": [
         {
           "date": "2026-07-25",
@@ -453,80 +537,6 @@
       ]
     },
     {
-      "slug": "nsrl-crm",
-      "name": "NSRL CRM",
-      "oneLiner": "Multi-tenant logistics CRM — vehicles, drivers, trips, shipments, bookings, invoices, documents and driver attendance for a transport operation.",
-      "status": "active",
-      "stack": [
-        "Next.js 15",
-        "React 19",
-        "TypeScript",
-        "Supabase",
-        "Zod"
-      ],
-      "links": {},
-      "statusLine": "Hardening phase — every gate green, and the database now proves which migrations are live.",
-      "nextMove": "Run the end-to-end signup smoke test that confirms the access-control fix landed.",
-      "currentMilestone": "Hardening phase, gates first. A new check reads the database's own record of which migrations are actually applied — and running it closed the repo's oldest open item by proving a pending fix had already gone live. Every gate now passes.",
-      "started": "2025-09-02",
-      "lastActive": "2026-07-18",
-      "timeline": [
-        {
-          "date": "2026-07-18",
-          "title": "A design direction written down properly",
-          "summary": "Turned a loose Bauhaus theme draft into a written source-of-truth document, so the standing question becomes execute-or-shelve rather than keep-drafting."
-        },
-        {
-          "date": "2026-07-16",
-          "title": "A gate that asks the database instead of trusting the commit message",
-          "summary": "Added a check that reads the live database's migration ledger and verifies a migration was genuinely applied, rather than trusting a note someone left in a commit message. It closed this project's oldest open item on its first run: the fix had in fact been applied days earlier, and the note saying otherwise simply had no way to find out. The point generalises — 'written and committed' and 'actually live' are different states, and only the second one counts."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "New automated checks catch a real security gap and a date-validation bug",
-          "summary": "Retired a set of old, hand-run database scripts that a couple of files were still (incorrectly) pointing to as the source of truth — the real, versioned migrations had quietly become the actual schema months ago. Then built three automated checks that catch what a type-checker can't: one of them found and closed a genuine access-control gap in how new memberships were created, and another caught a date-validation bug where a slightly malformed date (like February 30th) was accepted by the form and only rejected — confusingly — by the database. Also added a first layer of automated tests, timezone-aware for an Indian audience."
-        },
-        {
-          "date": "2026-07-03",
-          "title": "A security and code-quality audit, closed out",
-          "summary": "Worked through a backlog of code-quality findings from an earlier review. Removed two leftover debug surfaces that could have exposed a signed-in user's session token, fixed a bug where driver names were showing as blank on the dashboard after an earlier data-model change, and tightened up a data-access gap in the documents feature so every table now double-checks it belongs to the right organisation. Also closed a handful of smaller hardening and cleanup items. Checked the app's overall size and dependencies while at it — already lean, nothing to trim there."
-        },
-        {
-          "date": "2026-07-02",
-          "title": "Finished the payroll attendance summary; friendly error messages everywhere",
-          "summary": "Finished the monthly attendance-and-payroll summary that had been left mid-build. Then replaced raw, technical error messages across every form and API in the app — a badly formatted email, for instance, used to surface as a wall of validation code; it now shows one plain sentence, checked both as you type and again on the server."
-        },
-        {
-          "date": "2026-06-24",
-          "title": "Started a monthly attendance summary for payroll",
-          "summary": "Began a monthly per-driver attendance summary aimed at payroll. Added an organisation-maintained holiday calendar and treats Sundays and holidays as paid rest days, worked out from the calendar rather than entered by hand — with the option to override a particular day for a particular driver when reality differs."
-        },
-        {
-          "date": "2026-06-20",
-          "title": "Driver attendance, end to end",
-          "summary": "Built a driver attendance feature: a daily register where a manager picks a date and marks each driver present, absent, on leave or half-day, plus a monthly column on the drivers list showing days worked with a hover breakdown. Saves are one row per driver per day and designed to be safely repeatable, and drivers left unmarked are deliberately not recorded rather than defaulted. Also cleaned up production builds to strip debug logging."
-        },
-        {
-          "date": "2026-05-27",
-          "dateEnd": "2026-05-30",
-          "title": "Full relational CRM in four days",
-          "summary": "Revived the project with a concentrated build: trips with lifecycle rules (capacity checks, double-booking prevention), shipments with auto-status, bookings, invoices, and a documents module with per-organization storage quotas. Reworked drivers as standalone roster records — most drivers never log in, so requiring an account was the wrong model. Role-gated every mutating API."
-        },
-        {
-          "date": "2025-10-02",
-          "dateEnd": "2025-10-30",
-          "title": "Tenancy and CRUD architecture",
-          "summary": "Settled the multi-tenant security model: tenancy enforced at two independent layers (database row-level security plus repository-level scoping) so a missed filter fails closed instead of leaking data. Built a generic typed CRUD repository that every table reuses."
-        },
-        {
-          "date": "2025-09-02",
-          "dateEnd": "2025-09-29",
-          "title": "Foundation",
-          "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
-        }
-      ]
-    },
-    {
       "slug": "wrong-is-right",
       "name": "Wrong Is Right",
       "oneLiner": "Trivia game with one twist: you win by picking the wrong answer.",
@@ -544,7 +554,7 @@
       "nextMove": "Link the project to its database, then apply the pending schema sync.",
       "currentMilestone": "Between features. Test suite and convention gates are in place and green. A new migration check reports an honest 'not set up here' rather than a false pass — this project was never linked to its database on this machine, which is worth knowing before trusting anything about its schema.",
       "started": "2026-04-22",
-      "lastActive": "2026-07-18",
+      "lastActive": "2026-08-02",
       "timeline": [
         {
           "date": "2026-07-18",
