@@ -1,7 +1,83 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-03T18:35:55Z",
+  "generatedAt": "2026-08-08T12:57:07Z",
   "days": [
+    {
+      "date": "2026-08-08",
+      "count": 3,
+      "items": [
+        {
+          "project": "aakhir-q",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 14
+        },
+        {
+          "project": "aakhir-q",
+          "type": "design",
+          "label": "Design-system sync and reconciliation"
+        },
+        {
+          "project": "aakhir-q",
+          "type": "ops",
+          "label": "Dev toolchain and CI gate repair"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "count": 1,
+      "items": [
+        {
+          "project": "aakhir-q",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 12
+        }
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "count": 1,
+      "items": [
+        {
+          "project": "aakhir-q",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 5
+        }
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "count": 2,
+      "items": [
+        {
+          "project": "aakhir-q",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 8
+        },
+        {
+          "project": "founder-hub",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 1
+        }
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "count": 1,
+      "items": [
+        {
+          "project": "aakhir-q",
+          "type": "commit",
+          "label": "Commits",
+          "commits": 11
+        }
+      ]
+    },
     {
       "date": "2026-08-03",
       "count": 3,
