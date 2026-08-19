@@ -1,42 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-13T04:15:00Z",
+  "generatedAt": "2026-08-19T05:30:00Z",
   "projects": [
-    {
-      "slug": "aakhir-q",
-      "name": "Aakhir-Q",
-      "oneLiner": "Skip the physical queue — scan a code at a shop, clinic or temple and watch your place in line from anywhere, with nothing to install.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Next.js",
-        "Firebase/Firestore",
-        "TypeScript"
-      ],
-      "links": {},
-      "statusLine": "Backend built and proven isolated — then found the entire design pass already finished in the cloud.",
-      "nextMove": "Pull the finished screen designs down from the design tool and record them against each screen.",
-      "currentMilestone": "The throwaway demo is done and superseded. The real v1 is a zero-install web page for visitors plus a phone app for staff, both on one design system. The data layer is written — schema, security rules, the two visitor endpoints, and a seed — and the rule that one venue can never read another's queue is checked by attempt against a local database, not assumed from the policy text. Nineteen automated checks now guard the repo. What is left of the backend needs the hosted project to exist, which is a single account-creation step. Running alongside it is work that needs nothing external: the design pass turned out to have already run in the cloud, with a finished picture for every screen, and the repository never learned about it — so those pictures now have to be brought down and recorded. There is also a first Android build, deliberately containing no backend at all, purely for judging type, colour and layout on real hardware. The demo is at the end of the month, and the four venue-owner conversations meant to run alongside the build still have not started — they remain the biggest risk to the ordering model the whole schema rests on.",
-      "started": "2026-07-30",
-      "lastActive": "2026-08-09",
-      "timeline": [
-        {
-          "date": "2026-08-09",
-          "title": "Eighteen finished screen designs, sitting in the cloud unnoticed",
-          "summary": "Set out to give the design pass the visual input it never had — a moodboard — and found the pass itself had already run. Asking the design tool what it actually held returned the whole thing: every step of the direction work, a finished picture for all fourteen registered screens, and around forty-five exploration images. Meanwhile three separate places in the repository still said it had never happened, one of them a line written earlier by me. The cause is a one-way street: the sync tool pushes local work up and nothing ever pulls, and the automated screen check reads an empty design cell as a placeholder to skip rather than a claim to verify — so every check stayed green for four days while finished work sat where nothing was looking. Bringing those pictures down is now its own piece of work. The moodboard was written anyway, for a direction already locked and audited, mostly for the one part of it that has no other copy: an inventory of the real-world things this product lives among. It then moved out of the repository into the design tool, because an inspiration board belongs where it can be browsed and replaced rather than bloating every copy of the code — and that move costs the automated check its ability to verify the board exists at all, so the check was cut back to only what plain local code can honestly decide instead of being left as one that always passes. Also named the signature element, the single thing the product should be remembered by, so future additions can be measured against it rather than each being individually reasonable."
-        },
-        {
-          "date": "2026-08-08",
-          "title": "Two checks that had gone dark, and a texture pulled down from the cloud",
-          "summary": "Pulled a retuned texture from the design tool and finished the chain it unblocked, then found two automated checks that had never run on this machine — including the one proving venues can't read each other's queues. Fixed the cause in the repo rather than on the laptop, so it stays fixed everywhere."
-        },
-        {
-          "date": "2026-07-30",
-          "title": "Kickoff: a one-pager that argues with its own thesis",
-          "summary": "Started a new project and took it through the structured kickoff in a day: the problem written down, the first customer identified as the venue rather than the visitor, and the stack picked. Two things were done deliberately rather than optimistically. The big thesis — that queues at a hospital, a sweet shop and a temple are one product rather than a hundred — was separated from the small, testable bet, because only the small one can be checked in four weeks and merging them is how you end up with a demo nobody can prove wrong. And the strongest argument against that thesis was written into the plan rather than discovered later: the queue itself may be common while the rules for who gets served next are not, and if those rules carry the real complexity then a general tool is worse than a specialised one at every single venue. The claim that nothing like this exists was also marked down as an assumption to go and verify, since competing products do exist and the first venue owner asked will name them."
-        }
-      ]
-    },
     {
       "slug": "das-material",
       "name": "Das Material",
@@ -52,12 +17,22 @@
         "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
         "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
       },
-      "statusLine": "First installable Android build now exists; the document vault stays locked by a missing permission.",
+      "statusLine": "Vault still locked by a missing storage permission; the 3D pipeline's blocker is now one photo away.",
       "nextMove": "Grant the storage permission on the backend key, then run the migration that creates the vault.",
-      "currentMilestone": "Two tracks ran in parallel. The 3D-model process is still paused on the same thing: one vehicle's reference photograph is about a quarter out of proportion, and every quality check in the pipeline grades against that photograph — so a wrong reference cannot be caught from inside. Regenerating it is a manual step and nothing moved there today. Meanwhile the app grew the half it was always missing: a per-vehicle document vault, a service-history timeline, and service dates that now flow into the same reminders and countdown list as insurance and pollution certificates. The timeline works end to end; the vault is written but cannot store anything until a file-storage permission is switched on for the backend. Also shipped: a panel of real specifications pulled out of the manufacturer's 520-page owner's manual — which turned out to contain none of the numbers people boast about (no power, no top speed, no mileage; those live in brochures), and to need a different extraction mode entirely, because the first one scrambled the tables and had already published the vehicle's maximum loaded weight under the label for its empty weight. And the vehicle render no longer scrolls off the screen: it shrinks to 60% and stays. Two quieter fixes: every button was dimming its own label while pressed, far enough to fail contrast rules; and the automated render-quality score was given a rule that catches a specific way it had been fooled three times — a change that improves the total while quietly degrading the one part a human eye actually notices.",
+      "currentMilestone": "The 3D-model pipeline spent this stretch proving two ideas wrong on purpose, and building somewhere to keep that knowledge. Rebuilding a vehicle's mesh with different topology — three separate methods — changed nothing measurable: all three scored identically against the reference photograph, and the method that produced the tidiest internal texture map scored worst overall, which retires \"a tidier map\" as a lever worth pulling. A second idea — painting upward-facing surfaces flat when no overhead photograph exists — was the pipeline's own stated default and also lost; it survives as an option rather than the rule. Both results went into a new ledger of experiments, with a verdict, a number and a plain \"retry when\" on every row, backfilled with all eleven measurements taken so far. On a pipeline this cheap to measure, the expensive mistake is re-running something that already lost. The real blocker is unchanged and still needs a person: one vehicle's reference photograph is about a quarter out of proportion, and every quality check grades against that photograph, so it cannot be caught from the inside. What did change is the cost of fixing it. The prompt that generates a corrected photograph is now produced by one command with the real dimensions written into it, and a new check measures a single test image before the other three are ever generated — an instruction the written process had asked for since the start of the month and which was impossible to follow, because the only code that could measure a photograph demanded the complete finished set first. A third vehicle was also registered, an SUV picked specifically because it stresses the shape classifier rather than repeating a body type already proven. On the app side nothing moved: the document vault still cannot store a file until a storage permission is switched on for the backend, and the Android build made a week and a half ago is still waiting to be installed on a phone.",
       "started": "2026-07-07",
-      "lastActive": "2026-08-09",
+      "lastActive": "2026-08-18",
       "timeline": [
+        {
+          "date": "2026-08-18",
+          "title": "Two experiments lost, and a ledger so they stay lost",
+          "summary": "Rebuilding the vehicle mesh with different topology was the last plausible fix for a torn seam in the texture, and it failed cleanly: three different methods, the same budget, the same photographs, and all three landed on an identical score. One of them welded shut the see-through gaps a two-wheeler has and cost seven times the tolerance. The most interesting part is the one that looked promising — the method whose internal texture map was visibly tidier scored worse on every measure, so tidiness turns out not to be evidence of quality here. That result, plus an older one from a few days earlier where the pipeline's own stated default lost to the thing it was meant to replace, went into a new experiments ledger: one row per experiment, with the verdict, the number, and the condition under which it is worth trying again. It is an index rather than a copy — rows point at wherever the finding already lives, because keeping two copies is how one of them goes stale, which this project has paid for before. A companion tool now counts the texture map instead of leaving it to be eyeballed, and is deliberately labelled a probe rather than a quality gate, for exactly the reason the experiment just demonstrated."
+        },
+        {
+          "date": "2026-08-15",
+          "title": "A rule that could not be followed, and the check that makes it possible",
+          "summary": "The written process has said since the start of the month: generate one test photograph of a vehicle first, measure it, and only then generate the rest. That instruction was unfollowable. The only code that could measure a vehicle photograph ran at the very end of the pipeline and required the complete set of four views plus a second colour edit — exactly the work a single test view exists to avoid committing to. So the rule pointed at a tool that could not accept its input, and the one vehicle that skipped it cost roughly a fortnight of wrong diagnoses. There is now a check that takes one image. It deliberately reuses the same measuring code every later stage uses rather than its own: the first version rolled its own and was wrong by nine percent — most of the allowed tolerance — because a contact shadow spreads outward below the tyres. It was proved by replay rather than by assertion, reproducing both finished vehicles to within a rounding error, and it fails the known-bad photograph by twenty-six percent from a single picture. The tolerance was pointedly not tightened to force that result, which would be fitting the ruler to the thing being measured. Alongside it, the per-vehicle prompt document was deleted and replaced by a generator: the boilerplate lives once and a vehicle is a row of data, because the hand-written version was seventy percent a copy of the template and two copies drift apart."
+        },
         {
           "date": "2026-08-09",
           "title": "The first installable build, and where its configuration has to live",
@@ -133,6 +108,125 @@
           "date": "2026-07-08",
           "title": "A v0 you can hold — 3D vehicle profiles you can spin",
           "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
+        }
+      ]
+    },
+    {
+      "slug": "founder-hub",
+      "name": "Founder Hub",
+      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Supabase Edge Functions",
+        "PostHog"
+      ],
+      "links": {},
+      "statusLine": "A newer test build now exists as well — and like the one before it, nobody has installed it.",
+      "nextMove": "Install the newest test build and look at the redesigned dashboard on a real phone.",
+      "currentMilestone": "A personal dashboard app for my own projects, now built, passing every check, and still never opened on a phone. The most recent change fixed the dashboard burying the one thing it exists for: the main tab was listing three weeks of daily activity between the summary grid at the top and the project cards below it, so the line telling me where each project stands sat several screens down. The feed now sits behind a single collapsed row, and tapping a day in the grid still opens that day directly, independently of whether the feed is open. A fresh test build was cut from that change minutes after it landed, which supersedes the one from a fortnight earlier. Underneath, the app reads its project list live from a single source of truth rather than a frozen copy — the fix for a bug that had been quietly swallowing to-dos tagged for two projects for three weeks, and which reached the already-installed app without a rebuild because the shorthand is now interpreted on the server. The design system remains a deliberately strict two colours with depth drawn as a solid edge rather than a shadow. The outstanding item has not changed in six sessions and is not a build: it is a two-minute install.",
+      "started": "2026-06-25",
+      "lastActive": "2026-08-16",
+      "timeline": [
+        {
+          "date": "2026-08-16",
+          "title": "The feed stopped burying the thing the screen is for",
+          "summary": "The dashboard's main tab existed to answer one question — where does each project stand, and what is the next move — and it was answering it several screens below the fold, because three weeks of daily activity sat between the summary grid and the project cards. The feed is still there and still complete; it is now behind one collapsed row that costs a single line when shut. Tapping a day in the grid deliberately still opens that day's detail directly under it, whether or not the feed is expanded, because the two are different ways in and coupling them would make the drill-down depend on a state nobody set. A new test build was made from the change immediately afterwards."
+        },
+        {
+          "date": "2026-08-08",
+          "title": "A next step that was chasing work already done",
+          "summary": "This project's own list said a fresh phone build was six sessions overdue and that the new black-and-white icon had never been inside one. The build service says otherwise: there are two finished builds since the date that claim was pinned to, and the more recent one was made from the icon change itself. So everything supposedly missing from a binary has been sitting inside one for a fortnight, and what is actually owed is installing it and looking at it — a five-minute job rather than a build. A second item on the same list pointed at a question that had been settled and closed two weeks earlier. Both corrected. The one genuinely outstanding item survived the check: the design system has local changes that were never pushed back to the tool that authors it."
+        },
+        {
+          "date": "2026-08-05",
+          "title": "A standing motto on the home screen",
+          "summary": "Added a standing motto under the home-screen title, set off by a rule rather than a card so it doesn't compete with the first metric."
+        },
+        {
+          "date": "2026-08-02",
+          "title": "A black-and-white app icon, and design drift that fails a test",
+          "summary": "Replaced the old blue app icon with a black-and-white mark matching the rest of the interface, generating every size Android asks for plus the store listing image — and the files got dramatically smaller on the way. Separately, the design system now keeps a local copy of its stylesheet with an automated check that the phone app still matches it, so the two drifting apart becomes a failing test instead of something spotted by eye later."
+        },
+        {
+          "date": "2026-07-30",
+          "title": "A hardcoded list that silently swallowed two projects’ to-dos",
+          "summary": "A to-do tagged for either of the two newest projects would vanish. Not fail — vanish: filed to an inbox by the server, then dropped from the phone screen entirely by a second, separate hardcoded copy of the project list being used as a filter rather than a sort order. Two real to-dos had been in the store, listed correctly on the laptop, and invisible on the phone since the 7th of the month, with no error and no empty state to hint at it. Both copies are gone; the list is now read live from the one file that defines it, and the tag shorthand is interpreted on the server where that live list is — which meant the already-installed app was fixed without rebuilding it. Tag matching also stopped being case- and punctuation-exact, since the name you naturally type on a phone is rarely the exact internal spelling, and an ambiguous tag now resolves to nothing rather than guessing, because a wrong destination is worse than a recoverable one. Alongside: the project cards were rewritten to lead with a one-line status and the single next action instead of a 200-word paragraph, and the test suite was made to actually run on Windows — it had been failing for a shell-syntax reason on a codebase where every test passed, which is the kind of red light people learn to ignore."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "Book becomes Learn",
+          "summary": "Renamed the Book tab to Learn and gave it a per-course progress card, so study progress and the architecture notes share one surface. The rename follows the scope rather than leading it."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "The palette shrank to two values — and the fix was a missing layer, not a wrong colour",
+          "summary": "Re-synced the app with the design system that authors it, after last session's redesign had quietly drifted away from it. The interesting part was the diagnosis: the colours weren't wrong, the structure was. Screens were reading raw palette values directly, with no layer in between saying what each value was *for* — so the only way to build a dark mode was to swap the raw values, which is why it kept coming out inverted and wrong. Putting that role layer back makes dark mode a straight swap of two values, with no per-screen special-casing anywhere. The design system also dropped its soft-shadow card style, for a reason worth keeping: a shadow needs a third tone, and a two-value system doesn't have one. Depth is now a 3px edge in the opposite value, one hero card per screen carries the inverted fill, and a whole gradient library came out with the effect it existed to paint. Also recorded the link to the design project itself for the first time — nothing pointed at it before, which is exactly why the drift went unnoticed for a session."
+        },
+        {
+          "date": "2026-07-16",
+          "title": "A full black-and-white redesign, and fixing why the app wouldn't open on the phone",
+          "summary": "Applied a complete black-and-white visual redesign across every screen, sourced from a from-scratch design system — a strict four-colour palette where meaning comes from shape and weight, never colour — plus a live light/dark mode toggle. Dark mode took two false starts before it was right: a literal colour-swap read as correct on paper but was nearly unreadable on the phone, and a next attempt introduced new colours that broke the palette's own four-colour rule. The version that stuck reassigns which role each of the same four colours plays per theme, so every part of the UI stays correctly readable automatically, and every card in the app — not just the accent moments — now sits as a bold block of contrast against its page. Also traced down why the app had stopped opening on a real phone: it had drifted onto a newer platform version than the phone's installed testing app supported, and pinned it back in line."
+        },
+        {
+          "date": "2026-07-10",
+          "title": "The architecture handbook becomes a phone-side triage surface",
+          "summary": "The in-app architecture handbook grew triage powers: chapters now sort by freshness and each shows when it was last reviewed (“reviewed 5d ago” / “not reviewed yet”), a collapsed section lists the concepts flagged for future chapters with how long each has been waiting, and every chapter ends with tappable links to its related chapters. The backend call that serves the book now carries that extra data in a backward-compatible, read-only way — so the whole book backlog can be triaged from the phone without opening a laptop. A fresh sideloadable build is the remaining step to get it on-device."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
+          "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
+        },
+        {
+          "date": "2026-07-03",
+          "title": "Shipped the YouTube + Google Play features, then a size pass",
+          "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
+        },
+        {
+          "date": "2026-06-26",
+          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
+          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
+        },
+        {
+          "date": "2026-06-25",
+          "title": "A private metrics dashboard that keeps secrets off the phone",
+          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
+        }
+      ]
+    },
+    {
+      "slug": "aakhir-q",
+      "name": "Aakhir-Q",
+      "oneLiner": "Skip the physical queue — scan a code at a shop, clinic or temple and watch your place in line from anywhere, with nothing to install.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Next.js",
+        "Firebase/Firestore",
+        "TypeScript"
+      ],
+      "links": {},
+      "statusLine": "Backend built and proven isolated — then found the entire design pass already finished in the cloud.",
+      "nextMove": "Pull the finished screen designs down from the design tool and record them against each screen.",
+      "currentMilestone": "The throwaway demo is done and superseded. The real v1 is a zero-install web page for visitors plus a phone app for staff, both on one design system. The data layer is written — schema, security rules, the two visitor endpoints, and a seed — and the rule that one venue can never read another's queue is checked by attempt against a local database, not assumed from the policy text. Nineteen automated checks now guard the repo. What is left of the backend needs the hosted project to exist, which is a single account-creation step. Running alongside it is work that needs nothing external: the design pass turned out to have already run in the cloud, with a finished picture for every screen, and the repository never learned about it — so those pictures now have to be brought down and recorded. There is also a first Android build, deliberately containing no backend at all, purely for judging type, colour and layout on real hardware. The demo is at the end of the month, and the four venue-owner conversations meant to run alongside the build still have not started — they remain the biggest risk to the ordering model the whole schema rests on.",
+      "started": "2026-07-30",
+      "lastActive": "2026-08-09",
+      "timeline": [
+        {
+          "date": "2026-08-09",
+          "title": "Eighteen finished screen designs, sitting in the cloud unnoticed",
+          "summary": "Set out to give the design pass the visual input it never had — a moodboard — and found the pass itself had already run. Asking the design tool what it actually held returned the whole thing: every step of the direction work, a finished picture for all fourteen registered screens, and around forty-five exploration images. Meanwhile three separate places in the repository still said it had never happened, one of them a line written earlier by me. The cause is a one-way street: the sync tool pushes local work up and nothing ever pulls, and the automated screen check reads an empty design cell as a placeholder to skip rather than a claim to verify — so every check stayed green for four days while finished work sat where nothing was looking. Bringing those pictures down is now its own piece of work. The moodboard was written anyway, for a direction already locked and audited, mostly for the one part of it that has no other copy: an inventory of the real-world things this product lives among. It then moved out of the repository into the design tool, because an inspiration board belongs where it can be browsed and replaced rather than bloating every copy of the code — and that move costs the automated check its ability to verify the board exists at all, so the check was cut back to only what plain local code can honestly decide instead of being left as one that always passes. Also named the signature element, the single thing the product should be remembered by, so future additions can be measured against it rather than each being individually reasonable."
+        },
+        {
+          "date": "2026-08-08",
+          "title": "Two checks that had gone dark, and a texture pulled down from the cloud",
+          "summary": "Pulled a retuned texture from the design tool and finished the chain it unblocked, then found two automated checks that had never run on this machine — including the one proving venues can't read each other's queues. Fixed the cause in the repo rather than on the laptop, so it stays fixed everywhere."
+        },
+        {
+          "date": "2026-07-30",
+          "title": "Kickoff: a one-pager that argues with its own thesis",
+          "summary": "Started a new project and took it through the structured kickoff in a day: the problem written down, the first customer identified as the venue rather than the visitor, and the stack picked. Two things were done deliberately rather than optimistically. The big thesis — that queues at a hospital, a sweet shop and a temple are one product rather than a hundred — was separated from the small, testable bet, because only the small one can be checked in four weeks and merging them is how you end up with a demo nobody can prove wrong. And the strongest argument against that thesis was written into the plan rather than discovered later: the queue itself may be common while the rules for who gets served next are not, and if those rules carry the real complexity then a general tool is worse than a specialised one at every single venue. The claim that nothing like this exists was also marked down as an assumption to go and verify, since competing products do exist and the first venue owner asked will name them."
         }
       ]
     },
@@ -214,85 +308,6 @@
           "date": "2026-07-31",
           "title": "Kickoff: an audience on demand, and an experiment that needs no app",
           "summary": "Started a new project and took it through the structured kickoff in a morning: the problem written down, the hypothesis stated as something falsifiable, the stack picked, and no code written on purpose. Two choices carry most of the weight. The first is that the smallest version of this experiment involves no software whatsoever — find five people with a talk in the next month, have each send a phone recording of one rehearsal, and return a written critique within the hour. The measured signal is deliberately not whether they liked the feedback, but whether a second recording arrives within a week without being asked; if it never does, the idea can die in week one for the price of five emails rather than after a month of building. The second is a small technical line drawn early: the parts of the feedback that are arithmetic — pace against the time budget, filler-word counts with timestamps, where the real point actually arrives — are computed from the transcript rather than asked of a language model, which is reserved for the one genuinely hard judgement of what the three biggest problems are. A cheaper model was ruled out by name on the grounds it would produce generic praise, which is exactly the failure the product exists to avoid. Video and body-language analysis were excluded for a reason worth recording: a camera makes people not want to press record at all. The honest gap coming out of the day is that the intended user was never specified and got assumed — a working professional with a conference talk, versus the original idea of helping kids — and those are two different products with two different sets of people to go and talk to, so nothing downstream is safe until it is settled."
-        }
-      ]
-    },
-    {
-      "slug": "founder-hub",
-      "name": "Founder Hub",
-      "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Supabase Edge Functions",
-        "PostHog"
-      ],
-      "links": {},
-      "statusLine": "The phone build everyone was waiting on already exists — it has simply never been installed.",
-      "nextMove": "Install the existing test build and check the new icon and theme on a real phone.",
-      "currentMilestone": "A personal dashboard app for my own projects. The most recent round was a data-loss bug worth more than the feature it broke: the app kept its own frozen copy of the project list in two separate places, so to-dos tagged for either of the two most recently added projects were quietly filed to an inbox and then dropped from the screen entirely — no error, no empty state, nothing. Two real to-dos had been sitting invisible for three weeks. The list is now read live from its single source of truth and the shorthand is interpreted on the server, which means the fix reached the already-installed app without rebuilding it. The dashboard also stopped printing a 200-word paragraph where a status line belonged: each project now leads with where it stands and what to do next. The design system underneath remains a deliberately strict two colours, with depth drawn as a solid edge rather than a shadow. The one correction worth recording is about this project's own list rather than its code: the top item claimed a phone build was long overdue, and the build service showed two finished builds since, the newer one made from the very change the item said was missing. Installing it is the outstanding work.",
-      "started": "2026-06-25",
-      "lastActive": "2026-08-08",
-      "timeline": [
-        {
-          "date": "2026-08-08",
-          "title": "A next step that was chasing work already done",
-          "summary": "This project's own list said a fresh phone build was six sessions overdue and that the new black-and-white icon had never been inside one. The build service says otherwise: there are two finished builds since the date that claim was pinned to, and the more recent one was made from the icon change itself. So everything supposedly missing from a binary has been sitting inside one for a fortnight, and what is actually owed is installing it and looking at it — a five-minute job rather than a build. A second item on the same list pointed at a question that had been settled and closed two weeks earlier. Both corrected. The one genuinely outstanding item survived the check: the design system has local changes that were never pushed back to the tool that authors it."
-        },
-        {
-          "date": "2026-08-05",
-          "title": "A standing motto on the home screen",
-          "summary": "Added a standing motto under the home-screen title, set off by a rule rather than a card so it doesn't compete with the first metric."
-        },
-        {
-          "date": "2026-08-02",
-          "title": "A black-and-white app icon, and design drift that fails a test",
-          "summary": "Replaced the old blue app icon with a black-and-white mark matching the rest of the interface, generating every size Android asks for plus the store listing image — and the files got dramatically smaller on the way. Separately, the design system now keeps a local copy of its stylesheet with an automated check that the phone app still matches it, so the two drifting apart becomes a failing test instead of something spotted by eye later."
-        },
-        {
-          "date": "2026-07-30",
-          "title": "A hardcoded list that silently swallowed two projects’ to-dos",
-          "summary": "A to-do tagged for either of the two newest projects would vanish. Not fail — vanish: filed to an inbox by the server, then dropped from the phone screen entirely by a second, separate hardcoded copy of the project list being used as a filter rather than a sort order. Two real to-dos had been in the store, listed correctly on the laptop, and invisible on the phone since the 7th of the month, with no error and no empty state to hint at it. Both copies are gone; the list is now read live from the one file that defines it, and the tag shorthand is interpreted on the server where that live list is — which meant the already-installed app was fixed without rebuilding it. Tag matching also stopped being case- and punctuation-exact, since the name you naturally type on a phone is rarely the exact internal spelling, and an ambiguous tag now resolves to nothing rather than guessing, because a wrong destination is worse than a recoverable one. Alongside: the project cards were rewritten to lead with a one-line status and the single next action instead of a 200-word paragraph, and the test suite was made to actually run on Windows — it had been failing for a shell-syntax reason on a codebase where every test passed, which is the kind of red light people learn to ignore."
-        },
-        {
-          "date": "2026-07-18",
-          "title": "Book becomes Learn",
-          "summary": "Renamed the Book tab to Learn and gave it a per-course progress card, so study progress and the architecture notes share one surface. The rename follows the scope rather than leading it."
-        },
-        {
-          "date": "2026-07-17",
-          "title": "The palette shrank to two values — and the fix was a missing layer, not a wrong colour",
-          "summary": "Re-synced the app with the design system that authors it, after last session's redesign had quietly drifted away from it. The interesting part was the diagnosis: the colours weren't wrong, the structure was. Screens were reading raw palette values directly, with no layer in between saying what each value was *for* — so the only way to build a dark mode was to swap the raw values, which is why it kept coming out inverted and wrong. Putting that role layer back makes dark mode a straight swap of two values, with no per-screen special-casing anywhere. The design system also dropped its soft-shadow card style, for a reason worth keeping: a shadow needs a third tone, and a two-value system doesn't have one. Depth is now a 3px edge in the opposite value, one hero card per screen carries the inverted fill, and a whole gradient library came out with the effect it existed to paint. Also recorded the link to the design project itself for the first time — nothing pointed at it before, which is exactly why the drift went unnoticed for a session."
-        },
-        {
-          "date": "2026-07-16",
-          "title": "A full black-and-white redesign, and fixing why the app wouldn't open on the phone",
-          "summary": "Applied a complete black-and-white visual redesign across every screen, sourced from a from-scratch design system — a strict four-colour palette where meaning comes from shape and weight, never colour — plus a live light/dark mode toggle. Dark mode took two false starts before it was right: a literal colour-swap read as correct on paper but was nearly unreadable on the phone, and a next attempt introduced new colours that broke the palette's own four-colour rule. The version that stuck reassigns which role each of the same four colours plays per theme, so every part of the UI stays correctly readable automatically, and every card in the app — not just the accent moments — now sits as a bold block of contrast against its page. Also traced down why the app had stopped opening on a real phone: it had drifted onto a newer platform version than the phone's installed testing app supported, and pinned it back in line."
-        },
-        {
-          "date": "2026-07-10",
-          "title": "The architecture handbook becomes a phone-side triage surface",
-          "summary": "The in-app architecture handbook grew triage powers: chapters now sort by freshness and each shows when it was last reviewed (“reviewed 5d ago” / “not reviewed yet”), a collapsed section lists the concepts flagged for future chapters with how long each has been waiting, and every chapter ends with tappable links to its related chapters. The backend call that serves the book now carries that extra data in a backward-compatible, read-only way — so the whole book backlog can be triaged from the phone without opening a laptop. A fresh sideloadable build is the remaining step to get it on-device."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A live Mission view with an activity heatmap, plus an icon and design refresh",
-          "summary": "Added a Mission view that reads my own public portfolio and activity data and renders every project as a card alongside a GitHub-style activity heatmap whose cells tap open to show that day's work — so the phone mirrors the website with no rebuild, updating itself each time the portfolio is published. Gave the app a new icon, splash and favicon set and ran a design pass across all tabs, with project links now shown as tappable chips. Renamed the marketing tab and split it into YouTube and X sections, and built a fresh sideloadable Android build so all of it is usable on the phone."
-        },
-        {
-          "date": "2026-07-03",
-          "title": "Shipped the YouTube + Google Play features, then a size pass",
-          "summary": "Committed and shipped the YouTube stats view and Google Play numbers work that had been sitting ready since the previous session. Then ran a code review focused on app size: the code itself was already solid, so the pass mostly cut weight — removed three unused native packages and about half a megabyte of leftover template images and dead code."
-        },
-        {
-          "date": "2026-06-26",
-          "title": "Synced todo + handbook tabs, a custom icon and swipe nav, and two new number sources",
-          "summary": "Turned the last two placeholder tabs into working features: the todo list and the architecture handbook now read and write straight from a private Git repository through small passcode-protected serverless functions, so the phone and laptop always share one source of truth — an edit on either side shows up on the other. Headline metrics are computed on the server, so a metric can change with a redeploy and no new app build. Later the same day, gave the app a real identity — a custom glowing icon and the ability to swipe between tabs — and added two new at-a-glance number sources: Google Play stats (installs, rating, crashes, reviews) folded into the metrics view, and a new YouTube tab pulling channel and video numbers across all the products. Both new sources run as small key-protected serverless functions — wired and ready, waiting on their access credentials and a fresh build."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "A private metrics dashboard that keeps secrets off the phone",
-          "summary": "Built a personal Android dashboard that shows key product numbers at a glance. The analytics key is never shipped inside the app — a small passcode-gated serverless function holds it and runs a fixed set of read-only queries, so the installed app carries zero secrets. Chose a native app over a web page to sidestep browser limits when calling analytics, and reused infrastructure already in place for the backend rather than adding another vendor."
         }
       ]
     },
