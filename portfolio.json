@@ -1,7 +1,247 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-19T05:30:00Z",
+  "generatedAt": "2026-09-11T03:46:36Z",
   "projects": [
+    {
+      "slug": "party-kitty",
+      "name": "PartyKitty",
+      "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Supabase",
+        "PostHog",
+        "EAS"
+      ],
+      "links": {
+        "live": "https://partykitty.expo.app",
+        "Test on Android": "https://play.google.com/apps/testing/com.beeoop.partykitty",
+        "Test on Android (internal)": "https://play.google.com/apps/internaltest/4701407934167275299"
+      },
+      "statusLine": "Real groups, real money; host handover shipped to the server but the test build is six weeks behind.",
+      "nextMove": "Verify the new month-creation and month-closing rules against the live database with a real account.",
+      "currentMilestone": "Closed testing on the Play Store, with real groups running real money through the app — which is still where the most useful lessons come from. The month's work was handing over the host's seat: the person who hosted last month can now start the next one, and the seat can be passed to someone else mid-month. That looked like a small permissions change and wasn't. Creating a month is two writes — the month itself, then one dues row per member — and \"hosted last month\" stops being true the instant the first write lands, so no rule phrased around that person survives both. It became one database transaction with a single authorisation check up front, which also removed a half-created month the old two-step path could leave behind. Alongside it, two rules that had only ever lived in the interface now live in the database as well: a closed month stays closed, and a month can't be rewritten after it settles. The monthly draw for who hosts next also stopped living in memory only — groups were going off to WhatsApp to discuss a name and coming back to a different result — so it now survives the app closing, restores without replaying the animation, and deliberately doesn't look celebratory until it's made final, because the real hazard is a pending draw that looks committed. Real use also produced a third roster lesson: three people joined having already paid two hosts for months that were already closed, fixed by hand with a note on every row. The gap that now matters most is delivery, not code — everything above is on the server, and the newest build on a tester's phone is from mid-July.",
+      "started": "2026-05-17",
+      "lastActive": "2026-08-31",
+      "timeline": [
+        {
+          "date": "2026-08-29",
+          "dateEnd": "2026-08-31",
+          "title": "Handing over the host's seat, and making a closed month really closed",
+          "summary": "The person who hosted last month can now start the next one, and the host's seat can be handed over mid-month — which needed more than a permissions tweak, because creating a month is two writes and \"hosted last month\" stops being true the moment the first one lands. It became a single database transaction with one authorisation check up front, which also removed a half-created month the old two-step path could leave behind. The draw for who hosts next also stopped living in memory only — groups were going off to discuss a name and coming back to a different result — and a third lesson from real use arrived alongside it: three people joined having already paid two hosts for months that were already closed."
+        },
+        {
+          "date": "2026-08-08",
+          "title": "Tooling sync only",
+          "summary": "A shared workflow file refreshed from its canonical copy; no product work. Every automated check passes and the design system shows no drift. The outstanding item is unchanged and now confirmed against the build service: the newest release binary still predates the login fix a tester reported, so it needs rebuilding before anything gets verified on real phones."
+        },
+        {
+          "date": "2026-07-26",
+          "title": "A dead end that only appeared on first tap, and a venue list that reached a second city",
+          "summary": "Tapping “decide the date” from the main card dropped the host on a screen insisting no date poll existed; backing out and tapping again worked every time. The launcher passed no identifier, so the screen re-derived which party it meant from a cache keyed to the group — the kind that answers instantly with possibly-stale data and then refreshes — and the very first read committed to whatever was already there. Now the screen is told which party it is for, rather than inferring it. Logged as a known issue with the root cause written out, since the interesting part is the failure mode rather than the fix. Separately, venue seeding reached a second city: four entries added there, five more in an outer suburb of the first, and a review that cut two previously-added rows — both had solid contact details but nothing showing they actually host this kind of party, and fit alone is not the bar. Contact numbers are taken from each venue’s own website after finding that one aggregator number fronts several unrelated venues, and that one hotel publishes a different number on a booking site than on its own."
+        },
+        {
+          "date": "2026-07-20",
+          "title": "Two things the software could not say, and the feature that got redesigned because of them",
+          "summary": "A month of real use produced two roster problems from opposite directions: a member on the dues list who had never actually joined, leaving the ledger permanently short by her share, and a member added the day after the party who the host agreed should still be part of it, invisible to the month because the dues list is written once when the party is created. Fixing them by hand meant building a proper removal path first — one that refuses when someone has paid, when the month is settled, when she is hosting, or when she is the last admin, and that keeps a full snapshot of anything it deletes. Writing each guard in terms of who it protects is what exposed a bug in one of them: it was blocking a member who had no stake in the month at all, on the strength of other people's payments. Both incidents went into a new log for real occurrences that are neither bugs nor feature requests, and together they reframed a shelved feature — the problem was never 'removing a member', it's that the month's roster is a snapshot and reality drifts from it in both directions."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "The release build, and finishing the tambola end-game",
+          "summary": "Built the release binary that had been pending for two weeks and configured the store submission track. Completed the live tambola loop: the host can record winners so there's no end-of-game confusion, players get a self-marking mode by default, tickets rotate into a full-screen landscape view without losing their marks, and a finished game can be replayed on the same tickets. Also capped the login verification call so a hung request can't leave the spinner turning forever — a fix that, it turned out at week's end, landed two hours after the build was cut and so isn't in anyone's hands yet."
+        },
+        {
+          "date": "2026-07-16",
+          "title": "A fee change that half-applied every time, and the rule that says no",
+          "summary": "Hardened the money side of the app, server-first. The headline bug: changing a group's monthly fee fired three separate writes with no transaction around them, and the third one was permitted under a different rule than the first two — so whenever the person making the change wasn't the current party host, the first two writes committed and the third was rejected. Since hosting rotates around the group and being an admin doesn't, that mismatch was the *normal* case, and it left the group's fee and its member dues disagreeing with no way to see or repair it from inside the app. It's now a single all-or-nothing operation that checks permission itself. The tempting fix — widening the existing rule to admit admins — was deliberately rejected: it would have opened a different hole, in the same shape as one closed a migration earlier. A separate pass also tightened the rules on what a member may change on her own ledger row, restoring what those rules had always claimed in their own comments but never actually enforced. Both are invisible from the app itself; no behaviour changed. Also ran the feature gate on a member-removal feature and the answer came back *don't build it* — no user has ever asked for it, it'd be used about once a year, and it would rewrite the permission layer underneath work that hasn't been verified on a phone yet."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Closed a database drift gap, and pulled 22 stray colours back into the design system",
+          "summary": "Found and fixed a gap where two real database objects had been living only in files marked as data rather than in the versioned migration history — invisible unless you knew to look, and would have silently vanished on a from-scratch rebuild. Then swept 22 hardcoded colours back into the shared design-token file, mostly copy-paste that had drifted from the system without anyone deciding it should; one genuine gap surfaced in the process — gold-on-gold text that had been correctly hand-fixed in two places because the proper token simply didn't exist yet, which it now does."
+        },
+        {
+          "date": "2026-07-14",
+          "title": "A planning pass that reconciled the specs with what shipped",
+          "summary": "Planning pass across three milestones — folded in weeks of drift and reconciled the specs against what had actually shipped."
+        },
+        {
+          "date": "2026-07-10",
+          "title": "Live multiplayer tambola for the party room",
+          "summary": "Turned the app's tambola (housie) from a single-phone number-caller into a game the whole group plays together on their own phones. The host draws numbers on her phone and every player's ticket marks itself automatically in real time, with a private “you've got a line — call it!” nudge on the winner's own screen — no public announcement, so she still shouts it out the way the game is meant to be played. Each player taps to claim which ticket is hers so the app knows whose is whose. It went through a full pre-build review (is it worth building now, what could break, how it flows), then the build, and closed with a security review (a player can't grab someone else's ticket mid-game) and a usability review (clearer wording so no one sits waiting for the app to announce a win). Also made the Venues directory work across two cities with a toggle. Next: trying it on real phones in an actual party. The Play Store tester links are now published on this page too — both the closed-testing track (the current one to join) and the original internal-testing track."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A curated venues directory, a new build, and launch-screen fixes",
+          "summary": "Built a new Venues tab: a read-only, browsable directory of party venues for one city to start, each with a tap-to-call or WhatsApp contact and a host action to set one as this month's venue. It's a hand-curated list rather than scraped, so it can ship with genuinely real places — which also means it stays empty and needs its venue list populated before it's useful, the one thing gating the feature. Put a fresh build on the Play Store's testing track, and fixed two launch problems a tester hit: replaced the stock loading screen with a branded splash so there's no flash into the app, and capped a startup step that could otherwise hang the app open until it was force-closed and reopened."
+        },
+        {
+          "date": "2026-07-02",
+          "title": "A full-codebase review turns up five real bugs",
+          "summary": "Ran a thorough pass over the whole app looking for bugs and rough edges, and found five worth fixing: a dismissed welcome card in one group was silently hiding it in every other group; a screen meant to show \"everyone's responded\" could never actually reach that state; a light-mode flash on startup; a payment screen that didn't live-update when someone else marked themselves paid; and a create-group button that stayed clickable while silently doing nothing on empty input. Alongside the fixes, tightened up the money-handling code paths so the balance display goes through one shared calculation everywhere instead of separate copies, and a badly-formatted payment ID now gets caught with a friendly message instead of silently breaking the pay link. Also trimmed one more unused native dependency."
+        },
+        {
+          "date": "2026-06-28",
+          "title": "A design-system pipeline and an auto-checked screen registry",
+          "summary": "Put the project's visual design system on rails: it can now be pushed to a shared design canvas as a single source of truth, and a new check verifies — automatically, at the end of each work session — that every screen in the app is accounted for, with its design and its code kept in step (it currently tracks all 28 screens). Also introduced a lightweight planning step before any new feature is built: a short, recorded brief that weighs whether it's worth it, what could break, and which screens it touches, so a feature gets thought through before code rather than during. Built as a reusable setup so the same workflow carries across projects."
+        },
+        {
+          "date": "2026-06-27",
+          "title": "Sharing a party update as an image now works on the web",
+          "summary": "Fixed the image-share feature on the web version, which had been quietly failing for every web user. When you send a party update or a settled-month summary, the app turns the on-screen card into a picture and hands it to your phone or browser's share menu to post into WhatsApp. On the web this had three separate breakages stacked on top of each other — the underlying screenshot tool doesn't run in a browser, the browser's share couldn't carry the generated picture, and the share was being triggered a fraction too late for the browser to permit it. Reworked the web path to capture the card directly in the browser and to show a small preview-and-share step, so the share menu opens reliably; on browsers that can't share a picture, it now saves it so you can attach it yourself. Also replaced a raw technical error on the sign-in screen with a plain 'check the number and try again' message. Still to be confirmed on a real device."
+        },
+        {
+          "date": "2026-06-25",
+          "title": "The web app no longer blanks on cold start or after a redeploy",
+          "summary": "Fixed two ways the web build could show a blank screen. Startup no longer waits indefinitely on resources like fonts and settings — it shows a splash, offers a retry after a few seconds, and as a last resort renders with whatever has loaded, so one stalled step can't freeze the screen. And after a new web deploy, a returning visitor whose browser had cached the old page now recovers automatically instead of breaking on a file that no longer exists. Added lightweight startup tracking to confirm the real cause in production."
+        },
+        {
+          "date": "2026-06-23",
+          "title": "A review-and-cleanup sweep: hardening, doc accuracy, and a privacy fix",
+          "summary": "Ran a thorough review pass over the whole codebase. Tightened a few security edges — phone numbers are now sanitised before being dropped into dialer and WhatsApp links, and a powerful internal database-maintenance function was locked down so ordinary app users can't reach it. Removed some duplicated code and brought the project's documentation back in line with what the app actually does today, after a few weeks of fast changes had let it drift. A multi-pass review of the changes turned up no real bugs — the one flagged issue was checked and proven a false alarm. Finally, corrected the privacy policy: the analytics tool does receive members' names as a label, so that's now disclosed plainly in both the in-repo policy and the public privacy page, rather than describing the analytics as fully anonymous."
+        },
+        {
+          "date": "2026-06-22",
+          "title": "Live member updates, a revamped date flow, and the store listing finished",
+          "summary": "Membership changes now propagate live to all open screens via a realtime channel — renames, new additions — so no one needs to manually reload. Added a per-person food-and-drink preferences view in the party coordination screen, and made phone numbers visible in the members list with one-tap calling and WhatsApp. Reworked the date-decision flow to match how it actually gets used: proposing a single fixed date now runs a proper confirm-and-RSVP rather than a one-option comparison poll, and hosts can re-open a vote after a date has already been agreed. Completed the Play Store listing — a branded 1024×500 feature graphic, finalized store tags and privacy URL, and scripts to normalize the screenshot set."
+        },
+        {
+          "date": "2026-06-21",
+          "title": "Play Store data-safety prep, a privacy fix, and welcome messages",
+          "summary": "Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo."
+        },
+        {
+          "date": "2026-06-20",
+          "title": "First build uploaded to the Play Store",
+          "summary": "Uploaded the first Android build for internal testing, and published the privacy-policy and account-deletion pages a store listing requires. Polished the profile screen along the way — the light/dark toggle now leads with a sun/moon icon and a clear label, and some food and payment wording was tidied across all three languages."
+        },
+        {
+          "date": "2026-06-18",
+          "title": "English as the default language, and a code-cleanup pass",
+          "summary": "Switched the app's default language to English, with Hinglish and Kannada now opt-in from the profile — a product call that English should be the baseline while the regional voices stay one tap away. None of the existing translations changed, only which one shows first. Finished the last untranslated corner from the day before — the food and drink preference labels — so the whole app now follows the language switcher. Then ran a cleanup pass over the recently written code: folded nine copies of an identical screen wrapper into one shared component, merged two byte-for-byte identical data modules into a single parameterised one, and removed some now-unnecessary type escape hatches — all pure restructuring with no change in behaviour, kept honest by the type-checker, linter and tests. One rule held throughout: anything the app sends out to the whole group stays in a single fixed language, so everyone reads the same message whoever sent it."
+        },
+        {
+          "date": "2026-06-17",
+          "title": "Three-language support across the whole app",
+          "summary": "Added English, Hinglish and Kannada across the entire app, with a switcher in the profile that repaints every screen in place the instant you change language. Built a small in-house translation system rather than pulling in a library: one canonical English key set that the other languages are type-checked against, so a piece of text can't quietly ship half-translated. Then worked through every screen and shared component — the dues ledger, date polls, food and menu planning, the host picker, tambola, and the rest. One deliberate rule throughout: anything that leaves the app for the whole group — the WhatsApp messages, the shareable status images, the printable tambola tickets — stays in a single fixed language, so a mixed-language group all reads the same thing whoever sent it; dates stay in English too. The Kannada is a machine draft awaiting a native-speaker review, and one set of food-preference labels is queued for a later pass. Verified by the type-checker, linter and tests; on-device verification still to come."
+        },
+        {
+          "date": "2026-06-15",
+          "title": "A spin-the-wheel host picker, and tidying the party screen",
+          "summary": "Added a spin-the-wheel alternative to the existing draw for picking the next host — a real choice the user can flip between, remembered on their device. Restructured the screen so switching is instant: the data loads once in a shell that stays put while only the picker swaps, after a first version that reloaded everything on every toggle. Also surfaced the chosen menu and games on the party card and its shareable status image, pulled every action onto that one card, gave the date screen a one-tap way back to the party, and replaced the placeholder app icons with the real branded set. Refreshed the live web build."
+        },
+        {
+          "date": "2026-06-13",
+          "title": "\"Pick the next host\" — a fair, animated draw",
+          "summary": "Built a feature straight from a customer request: a playful draw that picks who hosts the next gathering from whoever hasn't hosted yet this rotation, then sets up the next month with that host. Who's eligible is derived from the group's real history — everyone hosts once, then the rotation resets on its own — and is covered by unit tests. The draw stays re-rollable for fun while the step that actually creates the next month is the binding one, and it sits alongside the existing path for when the host is already known. Shipped to the live web build."
+        },
+        {
+          "date": "2026-06-08",
+          "title": "Hardening after real-world use",
+          "summary": "Fixed the failures only real usage finds: an onboarding deadlock, auth flows hanging on spinners, sign-out breaking on web (React Native's Alert is a silent no-op there), and phone-number paste handling."
+        },
+        {
+          "date": "2026-06-03",
+          "dateEnd": "2026-06-05",
+          "title": "WhatsApp share-outs and first production build",
+          "summary": "Built a share layer that pushes generated images into the group's WhatsApp — live party-status snapshots and month-end settled-ledger summaries — plus handover flows for date polls and food preferences. First production Android build completed. Deliberately deferred deep-link infrastructure as premature at current scale."
+        },
+        {
+          "date": "2026-06-01",
+          "dateEnd": "2026-06-02",
+          "title": "Design system: Velvet Gulmohar",
+          "summary": "A bold-festive design reset, landed safely: backward-compatible design tokens first, then a full component layer (buttons, cards, sheets, chips and more), then every screen migrated. Dark mode became the default with an in-place reactive toggle."
+        },
+        {
+          "date": "2026-05-29",
+          "dateEnd": "2026-05-31",
+          "title": "New information architecture",
+          "summary": "Rebuilt navigation around how a real host describes the app: a home listing all your kitty groups, each opening into a stack of months, each month a party hub where the coordination features live. Added multi-kitty membership, admin settings, and archived groups."
+        },
+        {
+          "date": "2026-05-23",
+          "dateEnd": "2026-05-26",
+          "title": "Five features, Hinglish copy, analytics",
+          "summary": "Shipped date-decide polls, food preferences, tambola with themed tickets and a calling board, and a living party card. Rewrote every user-facing string in Hinglish for the actual audience. Wired a PostHog event funnel to measure whether the core ledger loop is really used. Closed with a documentation audit reconciling plans with the shipped app."
+        },
+        {
+          "date": "2026-05-17",
+          "dateEnd": "2026-05-22",
+          "title": "Kickoff to working ledger in six days",
+          "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
+        }
+      ]
+    },
+    {
+      "slug": "pyoopel",
+      "name": "Pyoopel",
+      "oneLiner": "A self-paced online-course site — share trading plus a CBSE class-10 maths course that has grown into an adaptive tutor — alongside a catalogue of exam-prep courses and the public support pages for my apps.",
+      "status": "active",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Claude API"
+      ],
+      "links": {
+        "live": "https://www.pyoopel.com",
+        "Class 10 Maths course": "https://www.pyoopel.com/courses/cbse-10-maths"
+      },
+      "statusLine": "The maths course's adaptive layer was measured as unreachable, so the chapter itself got fixed instead.",
+      "nextMove": "Clear the last sixty-one hardcoded colours — the one project still failing the shared style check.",
+      "currentMilestone": "The class-10 maths course is an adaptive tutor: 101 authored steps on a concept graph, a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. What changed this month is that the adaptive layer got measured rather than extended. The plan was to pre-write the step-by-step breakdowns instead of generating them per student; the review instead proved the panel those breakdowns appear in was unreachable on thirty-one of the chapter's thirty-four checks, because both halves of its trigger condition were independently impossible to satisfy. So the whole adaptive apparatus was serving three questions out of a hundred and one, and the honest verdict was to cut the feature and leave the engine switched off until there is one real student. The work went instead to what a stuck student actually hits: a second try on multiple-choice questions with three or more options (deliberately not on two-option ones, where striking one out hands over the answer), a real second hint on the twenty-two questions that had only one, and the press, focus and disabled states the stylesheet turned out not to contain at all. Three further defects were found by opening the page rather than by any automated check — a type reset flattening every exponent on the site, seven word pairs printing jammed together, and a message telling a stuck student there was nothing more to explain when nothing had actually run. The open item is stated plainly in the brief: nobody has yet watched a real student get stuck, so all of this is still reasoning about a moment that hasn't happened.",
+      "started": "2025-09-03",
+      "lastActive": "2026-08-21",
+      "timeline": [
+        {
+          "date": "2026-08-20",
+          "dateEnd": "2026-08-21",
+          "title": "A feature review that cut the feature, and three defects only a browser could find",
+          "summary": "The plan was to pre-write the tutor's step-by-step breakdowns instead of generating them per student. The review instead proved the panel they appear in was unreachable on thirty-one of the chapter's thirty-four checks — two trigger conditions that each turned out to be impossible — so the adaptive machinery was serving three questions out of a hundred and one, and the work went to what a stuck student actually hits: a second try on multiple-choice questions with three or more options, a real second hint on the twenty-two that had only one, and the press, focus and disabled states the stylesheet did not contain at all. Three more defects surfaced by opening the page rather than from any automated check: a type reset was flattening every exponent on the site, two of them printing arithmetic that contradicted the correct answer on the same line; seven word pairs were printing jammed together; and a missing configuration was telling a stuck student there was nothing more to explain about her question when nothing had run at all."
+        },
+        {
+          "date": "2026-08-08",
+          "title": "Tooling sync only — and the last project failing the shared style check",
+          "summary": "A shared workflow file refreshed from its canonical copy; no product work. Type-checking and the test suite pass. The style check is still red at sixty-one hardcoded colours across a couple of older components — unchanged for three weeks, and this is now the only project in the set still failing it. What it waits on is one decision about the neutral end of the palette, not a find-and-replace."
+        },
+        {
+          "date": "2026-07-25",
+          "title": "A feature that had never once worked in production — and failed silently",
+          "summary": "The tutor's 'break this into smaller steps' feature turned out to have been broken on the live site since the day it shipped. It read its teaching spec from a file path assembled at runtime, which the build's dependency tracing could not see, so the file was never bundled into the deployed function and every single request failed. The interesting part is the failure mode: the error was caught inside a block that treats problems as 'the model produced bad content', so a missing-file deployment fault appeared in the logs as a content rejection and pointed the blame squarely at the prompt. The fix was as much about taxonomy as about tracing — failures are now classified by who has to act on them, so 'the deploy is wrong' can never again disguise itself as 'the model misbehaved'. The rest of the session opened the mastery model up for spaced review and made the step renderer chapter-agnostic, so a sister project can run short daily sessions over the same material."
+        },
+        {
+          "date": "2026-07-24",
+          "title": "The maths course becomes an adaptive tutor",
+          "summary": "Ten focused commits turned 101 static lesson steps into something that responds to the student: the teaching method written down as a spec, a concept graph tagging every step, a model that weights recent evidence more heavily than old, on-device progress, and a map of what is solid. The centrepiece is a generation pipeline with a deterministic verifier in front of it — every arithmetic claim a model writes is recomputed before a student sees it, and the gate rejects all-or-nothing, catching false equations, factorisations that don't multiply back, and worst of all wrong answer keys, which would tell a correct student she was wrong. It deliberately declines to judge what it cannot check, because unverifiable is not the same as wrong. A rejection is treated as a normal outcome rather than an error: the student simply gets the hand-written hints she would have had anyway. Also fixed the type-checking gate that had been reporting a meaningless red for weeks — it now genuinely passes."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "A green check that was never actually checking",
+          "summary": "Running the project's own quality gates for the weekly review turned up something worse than the known styling debt: the type-checking gate had never been running at all. Without the compiler installed locally the command was silently resolving to an unrelated placeholder package and failing for a reason that had nothing to do with the code — the most misleading kind of red, because it looks like debt you already know about."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Adopted a new automated check — and found it's the one site still failing it",
+          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
+        },
+        {
+          "date": "2026-07-14",
+          "title": "App-support pages for a sibling project",
+          "summary": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
+        },
+        {
+          "date": "2026-07-07",
+          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
+          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
+        },
+        {
+          "date": "2025-09-03",
+          "dateEnd": "2026-06-23",
+          "title": "Course catalogue and the apps' landing pages (backfilled)",
+          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
+        }
+      ]
+    },
     {
       "slug": "das-material",
       "name": "Das Material",
@@ -387,234 +627,6 @@
           "dateEnd": "2025-09-29",
           "title": "Foundation",
           "summary": "Scaffolded the app — dashboard, core pages, authentication and roles, database schema — with a mobile-first, duotone visual identity in vanilla CSS."
-        }
-      ]
-    },
-    {
-      "slug": "party-kitty",
-      "name": "PartyKitty",
-      "oneLiner": "App for Indian kitty groups — monthly dues ledger plus party coordination (date polls, food preferences, tambola), replacing the WhatsApp + paper + Excel workflow.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Supabase",
-        "PostHog",
-        "EAS"
-      ],
-      "links": {
-        "live": "https://partykitty.expo.app",
-        "Test on Android": "https://play.google.com/apps/testing/com.beeoop.partykitty",
-        "Test on Android (internal)": "https://play.google.com/apps/internaltest/4701407934167275299"
-      },
-      "statusLine": "In closed testing with real groups running real money through it; a tester hit a login hang.",
-      "nextMove": "Rebuild the test binary so it carries the login fix, then verify live tambola on two phones.",
-      "currentMilestone": "Closed testing on the Play Store, and the app now has real groups using it for real money — which is where this month's most useful lessons came from. The release build that had been outstanding for two weeks is finally made, and the live tambola game's end-game loop is complete: recorded winners, a landscape ticket view, replay on the same tickets. A first real month of use then surfaced two problems no amount of design had predicted, both about who is actually in a given month rather than who is in the group: someone on the dues list who had never joined, and someone added after the party who the group agreed should still be included. Both had to be fixed by hand, so there's now an operator tool for it — with guards that refuse outright when real money is attached, and a single narrow override for the one judgement a database cannot make. Since then, a defect found in ordinary use was fixed: opening the date-planning flow from the main card dead-ended the host on a screen saying no poll existed, while backing out and trying again worked — the screen was re-deriving which party it meant from a cache that answers instantly with slightly stale data, so the first read committed to the wrong one. The venue list also grew into a second city, with a review pass that cut two entries which had good contact details but no evidence they actually host this kind of party.",
-      "started": "2026-05-17",
-      "lastActive": "2026-08-08",
-      "timeline": [
-        {
-          "date": "2026-08-08",
-          "title": "Tooling sync only",
-          "summary": "A shared workflow file refreshed from its canonical copy; no product work. Every automated check passes and the design system shows no drift. The outstanding item is unchanged and now confirmed against the build service: the newest release binary still predates the login fix a tester reported, so it needs rebuilding before anything gets verified on real phones."
-        },
-        {
-          "date": "2026-07-26",
-          "title": "A dead end that only appeared on first tap, and a venue list that reached a second city",
-          "summary": "Tapping “decide the date” from the main card dropped the host on a screen insisting no date poll existed; backing out and tapping again worked every time. The launcher passed no identifier, so the screen re-derived which party it meant from a cache keyed to the group — the kind that answers instantly with possibly-stale data and then refreshes — and the very first read committed to whatever was already there. Now the screen is told which party it is for, rather than inferring it. Logged as a known issue with the root cause written out, since the interesting part is the failure mode rather than the fix. Separately, venue seeding reached a second city: four entries added there, five more in an outer suburb of the first, and a review that cut two previously-added rows — both had solid contact details but nothing showing they actually host this kind of party, and fit alone is not the bar. Contact numbers are taken from each venue’s own website after finding that one aggregator number fronts several unrelated venues, and that one hotel publishes a different number on a booking site than on its own."
-        },
-        {
-          "date": "2026-07-20",
-          "title": "Two things the software could not say, and the feature that got redesigned because of them",
-          "summary": "A month of real use produced two roster problems from opposite directions: a member on the dues list who had never actually joined, leaving the ledger permanently short by her share, and a member added the day after the party who the host agreed should still be part of it, invisible to the month because the dues list is written once when the party is created. Fixing them by hand meant building a proper removal path first — one that refuses when someone has paid, when the month is settled, when she is hosting, or when she is the last admin, and that keeps a full snapshot of anything it deletes. Writing each guard in terms of who it protects is what exposed a bug in one of them: it was blocking a member who had no stake in the month at all, on the strength of other people's payments. Both incidents went into a new log for real occurrences that are neither bugs nor feature requests, and together they reframed a shelved feature — the problem was never 'removing a member', it's that the month's roster is a snapshot and reality drifts from it in both directions."
-        },
-        {
-          "date": "2026-07-18",
-          "title": "The release build, and finishing the tambola end-game",
-          "summary": "Built the release binary that had been pending for two weeks and configured the store submission track. Completed the live tambola loop: the host can record winners so there's no end-of-game confusion, players get a self-marking mode by default, tickets rotate into a full-screen landscape view without losing their marks, and a finished game can be replayed on the same tickets. Also capped the login verification call so a hung request can't leave the spinner turning forever — a fix that, it turned out at week's end, landed two hours after the build was cut and so isn't in anyone's hands yet."
-        },
-        {
-          "date": "2026-07-16",
-          "title": "A fee change that half-applied every time, and the rule that says no",
-          "summary": "Hardened the money side of the app, server-first. The headline bug: changing a group's monthly fee fired three separate writes with no transaction around them, and the third one was permitted under a different rule than the first two — so whenever the person making the change wasn't the current party host, the first two writes committed and the third was rejected. Since hosting rotates around the group and being an admin doesn't, that mismatch was the *normal* case, and it left the group's fee and its member dues disagreeing with no way to see or repair it from inside the app. It's now a single all-or-nothing operation that checks permission itself. The tempting fix — widening the existing rule to admit admins — was deliberately rejected: it would have opened a different hole, in the same shape as one closed a migration earlier. A separate pass also tightened the rules on what a member may change on her own ledger row, restoring what those rules had always claimed in their own comments but never actually enforced. Both are invisible from the app itself; no behaviour changed. Also ran the feature gate on a member-removal feature and the answer came back *don't build it* — no user has ever asked for it, it'd be used about once a year, and it would rewrite the permission layer underneath work that hasn't been verified on a phone yet."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Closed a database drift gap, and pulled 22 stray colours back into the design system",
-          "summary": "Found and fixed a gap where two real database objects had been living only in files marked as data rather than in the versioned migration history — invisible unless you knew to look, and would have silently vanished on a from-scratch rebuild. Then swept 22 hardcoded colours back into the shared design-token file, mostly copy-paste that had drifted from the system without anyone deciding it should; one genuine gap surfaced in the process — gold-on-gold text that had been correctly hand-fixed in two places because the proper token simply didn't exist yet, which it now does."
-        },
-        {
-          "date": "2026-07-14",
-          "title": "A planning pass that reconciled the specs with what shipped",
-          "summary": "Planning pass across three milestones — folded in weeks of drift and reconciled the specs against what had actually shipped."
-        },
-        {
-          "date": "2026-07-10",
-          "title": "Live multiplayer tambola for the party room",
-          "summary": "Turned the app's tambola (housie) from a single-phone number-caller into a game the whole group plays together on their own phones. The host draws numbers on her phone and every player's ticket marks itself automatically in real time, with a private “you've got a line — call it!” nudge on the winner's own screen — no public announcement, so she still shouts it out the way the game is meant to be played. Each player taps to claim which ticket is hers so the app knows whose is whose. It went through a full pre-build review (is it worth building now, what could break, how it flows), then the build, and closed with a security review (a player can't grab someone else's ticket mid-game) and a usability review (clearer wording so no one sits waiting for the app to announce a win). Also made the Venues directory work across two cities with a toggle. Next: trying it on real phones in an actual party. The Play Store tester links are now published on this page too — both the closed-testing track (the current one to join) and the original internal-testing track."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A curated venues directory, a new build, and launch-screen fixes",
-          "summary": "Built a new Venues tab: a read-only, browsable directory of party venues for one city to start, each with a tap-to-call or WhatsApp contact and a host action to set one as this month's venue. It's a hand-curated list rather than scraped, so it can ship with genuinely real places — which also means it stays empty and needs its venue list populated before it's useful, the one thing gating the feature. Put a fresh build on the Play Store's testing track, and fixed two launch problems a tester hit: replaced the stock loading screen with a branded splash so there's no flash into the app, and capped a startup step that could otherwise hang the app open until it was force-closed and reopened."
-        },
-        {
-          "date": "2026-07-02",
-          "title": "A full-codebase review turns up five real bugs",
-          "summary": "Ran a thorough pass over the whole app looking for bugs and rough edges, and found five worth fixing: a dismissed welcome card in one group was silently hiding it in every other group; a screen meant to show \"everyone's responded\" could never actually reach that state; a light-mode flash on startup; a payment screen that didn't live-update when someone else marked themselves paid; and a create-group button that stayed clickable while silently doing nothing on empty input. Alongside the fixes, tightened up the money-handling code paths so the balance display goes through one shared calculation everywhere instead of separate copies, and a badly-formatted payment ID now gets caught with a friendly message instead of silently breaking the pay link. Also trimmed one more unused native dependency."
-        },
-        {
-          "date": "2026-06-28",
-          "title": "A design-system pipeline and an auto-checked screen registry",
-          "summary": "Put the project's visual design system on rails: it can now be pushed to a shared design canvas as a single source of truth, and a new check verifies — automatically, at the end of each work session — that every screen in the app is accounted for, with its design and its code kept in step (it currently tracks all 28 screens). Also introduced a lightweight planning step before any new feature is built: a short, recorded brief that weighs whether it's worth it, what could break, and which screens it touches, so a feature gets thought through before code rather than during. Built as a reusable setup so the same workflow carries across projects."
-        },
-        {
-          "date": "2026-06-27",
-          "title": "Sharing a party update as an image now works on the web",
-          "summary": "Fixed the image-share feature on the web version, which had been quietly failing for every web user. When you send a party update or a settled-month summary, the app turns the on-screen card into a picture and hands it to your phone or browser's share menu to post into WhatsApp. On the web this had three separate breakages stacked on top of each other — the underlying screenshot tool doesn't run in a browser, the browser's share couldn't carry the generated picture, and the share was being triggered a fraction too late for the browser to permit it. Reworked the web path to capture the card directly in the browser and to show a small preview-and-share step, so the share menu opens reliably; on browsers that can't share a picture, it now saves it so you can attach it yourself. Also replaced a raw technical error on the sign-in screen with a plain 'check the number and try again' message. Still to be confirmed on a real device."
-        },
-        {
-          "date": "2026-06-25",
-          "title": "The web app no longer blanks on cold start or after a redeploy",
-          "summary": "Fixed two ways the web build could show a blank screen. Startup no longer waits indefinitely on resources like fonts and settings — it shows a splash, offers a retry after a few seconds, and as a last resort renders with whatever has loaded, so one stalled step can't freeze the screen. And after a new web deploy, a returning visitor whose browser had cached the old page now recovers automatically instead of breaking on a file that no longer exists. Added lightweight startup tracking to confirm the real cause in production."
-        },
-        {
-          "date": "2026-06-23",
-          "title": "A review-and-cleanup sweep: hardening, doc accuracy, and a privacy fix",
-          "summary": "Ran a thorough review pass over the whole codebase. Tightened a few security edges — phone numbers are now sanitised before being dropped into dialer and WhatsApp links, and a powerful internal database-maintenance function was locked down so ordinary app users can't reach it. Removed some duplicated code and brought the project's documentation back in line with what the app actually does today, after a few weeks of fast changes had let it drift. A multi-pass review of the changes turned up no real bugs — the one flagged issue was checked and proven a false alarm. Finally, corrected the privacy policy: the analytics tool does receive members' names as a label, so that's now disclosed plainly in both the in-repo policy and the public privacy page, rather than describing the analytics as fully anonymous."
-        },
-        {
-          "date": "2026-06-22",
-          "title": "Live member updates, a revamped date flow, and the store listing finished",
-          "summary": "Membership changes now propagate live to all open screens via a realtime channel — renames, new additions — so no one needs to manually reload. Added a per-person food-and-drink preferences view in the party coordination screen, and made phone numbers visible in the members list with one-tap calling and WhatsApp. Reworked the date-decision flow to match how it actually gets used: proposing a single fixed date now runs a proper confirm-and-RSVP rather than a one-option comparison poll, and hosts can re-open a vote after a date has already been agreed. Completed the Play Store listing — a branded 1024×500 feature graphic, finalized store tags and privacy URL, and scripts to normalize the screenshot set."
-        },
-        {
-          "date": "2026-06-21",
-          "title": "Play Store data-safety prep, a privacy fix, and welcome messages",
-          "summary": "Worked through the Play Store app-content and data-safety questionnaire by auditing it against the actual code rather than a written spec — which caught two mistakes in the draft: an allergies note mis-filed as health data, and location quietly being collected. Fixed the location leak at its source — analytics was deriving an approximate city from each request, so that was disabled and raw network addresses are no longer stored, honouring the app no-location promise. From a hands-on user walkthrough, added the missing welcome messaging: a celebratory group-kickoff card when a new kitty is created, and a ready-to-share “you have been added” note for each new member, so the host can post them straight into WhatsApp. Refreshed the live web demo."
-        },
-        {
-          "date": "2026-06-20",
-          "title": "First build uploaded to the Play Store",
-          "summary": "Uploaded the first Android build for internal testing, and published the privacy-policy and account-deletion pages a store listing requires. Polished the profile screen along the way — the light/dark toggle now leads with a sun/moon icon and a clear label, and some food and payment wording was tidied across all three languages."
-        },
-        {
-          "date": "2026-06-18",
-          "title": "English as the default language, and a code-cleanup pass",
-          "summary": "Switched the app's default language to English, with Hinglish and Kannada now opt-in from the profile — a product call that English should be the baseline while the regional voices stay one tap away. None of the existing translations changed, only which one shows first. Finished the last untranslated corner from the day before — the food and drink preference labels — so the whole app now follows the language switcher. Then ran a cleanup pass over the recently written code: folded nine copies of an identical screen wrapper into one shared component, merged two byte-for-byte identical data modules into a single parameterised one, and removed some now-unnecessary type escape hatches — all pure restructuring with no change in behaviour, kept honest by the type-checker, linter and tests. One rule held throughout: anything the app sends out to the whole group stays in a single fixed language, so everyone reads the same message whoever sent it."
-        },
-        {
-          "date": "2026-06-17",
-          "title": "Three-language support across the whole app",
-          "summary": "Added English, Hinglish and Kannada across the entire app, with a switcher in the profile that repaints every screen in place the instant you change language. Built a small in-house translation system rather than pulling in a library: one canonical English key set that the other languages are type-checked against, so a piece of text can't quietly ship half-translated. Then worked through every screen and shared component — the dues ledger, date polls, food and menu planning, the host picker, tambola, and the rest. One deliberate rule throughout: anything that leaves the app for the whole group — the WhatsApp messages, the shareable status images, the printable tambola tickets — stays in a single fixed language, so a mixed-language group all reads the same thing whoever sent it; dates stay in English too. The Kannada is a machine draft awaiting a native-speaker review, and one set of food-preference labels is queued for a later pass. Verified by the type-checker, linter and tests; on-device verification still to come."
-        },
-        {
-          "date": "2026-06-15",
-          "title": "A spin-the-wheel host picker, and tidying the party screen",
-          "summary": "Added a spin-the-wheel alternative to the existing draw for picking the next host — a real choice the user can flip between, remembered on their device. Restructured the screen so switching is instant: the data loads once in a shell that stays put while only the picker swaps, after a first version that reloaded everything on every toggle. Also surfaced the chosen menu and games on the party card and its shareable status image, pulled every action onto that one card, gave the date screen a one-tap way back to the party, and replaced the placeholder app icons with the real branded set. Refreshed the live web build."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "\"Pick the next host\" — a fair, animated draw",
-          "summary": "Built a feature straight from a customer request: a playful draw that picks who hosts the next gathering from whoever hasn't hosted yet this rotation, then sets up the next month with that host. Who's eligible is derived from the group's real history — everyone hosts once, then the rotation resets on its own — and is covered by unit tests. The draw stays re-rollable for fun while the step that actually creates the next month is the binding one, and it sits alongside the existing path for when the host is already known. Shipped to the live web build."
-        },
-        {
-          "date": "2026-06-08",
-          "title": "Hardening after real-world use",
-          "summary": "Fixed the failures only real usage finds: an onboarding deadlock, auth flows hanging on spinners, sign-out breaking on web (React Native's Alert is a silent no-op there), and phone-number paste handling."
-        },
-        {
-          "date": "2026-06-03",
-          "dateEnd": "2026-06-05",
-          "title": "WhatsApp share-outs and first production build",
-          "summary": "Built a share layer that pushes generated images into the group's WhatsApp — live party-status snapshots and month-end settled-ledger summaries — plus handover flows for date polls and food preferences. First production Android build completed. Deliberately deferred deep-link infrastructure as premature at current scale."
-        },
-        {
-          "date": "2026-06-01",
-          "dateEnd": "2026-06-02",
-          "title": "Design system: Velvet Gulmohar",
-          "summary": "A bold-festive design reset, landed safely: backward-compatible design tokens first, then a full component layer (buttons, cards, sheets, chips and more), then every screen migrated. Dark mode became the default with an in-place reactive toggle."
-        },
-        {
-          "date": "2026-05-29",
-          "dateEnd": "2026-05-31",
-          "title": "New information architecture",
-          "summary": "Rebuilt navigation around how a real host describes the app: a home listing all your kitty groups, each opening into a stack of months, each month a party hub where the coordination features live. Added multi-kitty membership, admin settings, and archived groups."
-        },
-        {
-          "date": "2026-05-23",
-          "dateEnd": "2026-05-26",
-          "title": "Five features, Hinglish copy, analytics",
-          "summary": "Shipped date-decide polls, food preferences, tambola with themed tickets and a calling board, and a living party card. Rewrote every user-facing string in Hinglish for the actual audience. Wired a PostHog event funnel to measure whether the core ledger loop is really used. Closed with a documentation audit reconciling plans with the shipped app."
-        },
-        {
-          "date": "2026-05-17",
-          "dateEnd": "2026-05-22",
-          "title": "Kickoff to working ledger in six days",
-          "summary": "From blank repo to a live product slice: wrote the one-pager, ran five user interviews (Mom Test style), and let them pick v1 — a dues ledger for the group. Interviews reframed the target user from the host alone to the whole kitty group. Built phone-OTP onboarding and a ledger running on live data, with settle-month and self-pay flows."
-        }
-      ]
-    },
-    {
-      "slug": "pyoopel",
-      "name": "Pyoopel",
-      "oneLiner": "A self-paced online-course site — share trading plus a CBSE class-10 maths course that has grown into an adaptive tutor — alongside a catalogue of exam-prep courses and the public support pages for my apps.",
-      "status": "active",
-      "stack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Claude API"
-      ],
-      "links": {
-        "live": "https://www.pyoopel.com",
-        "Class 10 Maths course": "https://www.pyoopel.com/courses/cbse-10-maths"
-      },
-      "statusLine": "The class-10 maths course is an adaptive tutor on a concept graph; its engine is still ungraded.",
-      "nextMove": "Document the model API key, then run the evaluation suite for the tutor's first real score.",
-      "currentMilestone": "The class-10 maths course stopped being a set of static pages and became an adaptive tutor. Its 101 authored steps now sit on a concept graph, with a model that tracks which ideas are solid and lets confidence decay over time, progress kept on the student's own device, and a map showing where to spend the next twenty minutes. On top of that sits a decomposition engine: when a student gets a check wrong, a language model generates two to four smaller steps beneath the one she failed — but only behind a deterministic gate that recomputes every arithmetic claim before she sees it, and falls back to the hand-written hint ladder rather than showing anything unverified. It ships switched off until a key is configured, so it has not yet been graded against its own eval set. The course is also now the curriculum engine for a separate revision app, which is what is currently shaping its internals.",
-      "started": "2025-09-03",
-      "lastActive": "2026-08-08",
-      "timeline": [
-        {
-          "date": "2026-08-08",
-          "title": "Tooling sync only — and the last project failing the shared style check",
-          "summary": "A shared workflow file refreshed from its canonical copy; no product work. Type-checking and the test suite pass. The style check is still red at sixty-one hardcoded colours across a couple of older components — unchanged for three weeks, and this is now the only project in the set still failing it. What it waits on is one decision about the neutral end of the palette, not a find-and-replace."
-        },
-        {
-          "date": "2026-07-25",
-          "title": "A feature that had never once worked in production — and failed silently",
-          "summary": "The tutor's 'break this into smaller steps' feature turned out to have been broken on the live site since the day it shipped. It read its teaching spec from a file path assembled at runtime, which the build's dependency tracing could not see, so the file was never bundled into the deployed function and every single request failed. The interesting part is the failure mode: the error was caught inside a block that treats problems as 'the model produced bad content', so a missing-file deployment fault appeared in the logs as a content rejection and pointed the blame squarely at the prompt. The fix was as much about taxonomy as about tracing — failures are now classified by who has to act on them, so 'the deploy is wrong' can never again disguise itself as 'the model misbehaved'. The rest of the session opened the mastery model up for spaced review and made the step renderer chapter-agnostic, so a sister project can run short daily sessions over the same material."
-        },
-        {
-          "date": "2026-07-24",
-          "title": "The maths course becomes an adaptive tutor",
-          "summary": "Ten focused commits turned 101 static lesson steps into something that responds to the student: the teaching method written down as a spec, a concept graph tagging every step, a model that weights recent evidence more heavily than old, on-device progress, and a map of what is solid. The centrepiece is a generation pipeline with a deterministic verifier in front of it — every arithmetic claim a model writes is recomputed before a student sees it, and the gate rejects all-or-nothing, catching false equations, factorisations that don't multiply back, and worst of all wrong answer keys, which would tell a correct student she was wrong. It deliberately declines to judge what it cannot check, because unverifiable is not the same as wrong. A rejection is treated as a normal outcome rather than an error: the student simply gets the hand-written hints she would have had anyway. Also fixed the type-checking gate that had been reporting a meaningless red for weeks — it now genuinely passes."
-        },
-        {
-          "date": "2026-07-17",
-          "title": "A green check that was never actually checking",
-          "summary": "Running the project's own quality gates for the weekly review turned up something worse than the known styling debt: the type-checking gate had never been running at all. Without the compiler installed locally the command was silently resolving to an unrelated placeholder package and failing for a reason that had nothing to do with the code — the most misleading kind of red, because it looks like debt you already know about."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Adopted a new automated check — and found it's the one site still failing it",
-          "summary": "Adopted a shared code-quality check across the site's projects. It immediately surfaced pre-existing debt — dozens of hardcoded colours in two older components that should be reading from the shared design tokens instead — now tracked as the next cleanup item."
-        },
-        {
-          "date": "2026-07-14",
-          "title": "App-support pages for a sibling project",
-          "summary": "Added a small set of app-support pages for another project — a landing page plus the privacy and account-deletion pages an Android store listing requires as public URLs."
-        },
-        {
-          "date": "2026-07-07",
-          "title": "A new interactive CBSE class-10 maths course, and a homepage revamp",
-          "summary": "Brought a full CBSE class-10 maths chapter (Real Numbers) into the site as a new course — 101 short, sequential steps a student walks through with next/previous navigation and a contents page, each its own fast-loading page, all generated from a single lesson data file so the course can grow to hundreds of steps without hand-wiring navigation. It carries live, hands-on widgets: an interactive factor tree, an HCF/LCM explorer, and a maths playground, all restyled into the site's own look. Rebuilt the homepage in a fresh visual style that leads with the two courses that are live now while keeping the rest of the catalogue reachable, each course marked as a work in progress."
-        },
-        {
-          "date": "2025-09-03",
-          "dateEnd": "2026-06-23",
-          "title": "Course catalogue and the apps' landing pages (backfilled)",
-          "summary": "The site grew a catalogue of self-paced courses (share trading plus exam-prep tracks like CAT, CLAT, GRE and Bank PO) and also became the home for the companion apps' public landing, privacy and account-deletion pages, which their app-store listings link to."
         }
       ]
     },
