@@ -1,7 +1,203 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-11T03:46:36Z",
+  "generatedAt": "2026-09-18T03:01:34Z",
   "projects": [
+    {
+      "slug": "my-family",
+      "name": "myFamily",
+      "oneLiner": "A shared family app: one structured place for the documents, dates, bills and care a family shares, instead of the WhatsApp group where they get buried.",
+      "status": "active",
+      "stack": [
+        "Mobile (Android-first)",
+        "Stack to be decided"
+      ],
+      "links": {},
+      "statusLine": "One-pager written and the product named; four candidate first features, none picked until family interviews.",
+      "nextMove": "Pick platform, backend and vendors, and scaffold the v0 stimulus for the family interviews.",
+      "currentMilestone": "Working name Parivar. The problem is familiar to anyone in a large Indian family: documents, dates, bills, medicines and decisions all flow through one WhatsApp group and are buried within a week — the ID scan from March is four thousand messages up, two siblings both paid the electrician, a parent's next specialist appointment lives in someone's head. The proposed first user is the family coordinator: the adult child who has become the de-facto admin for a six-to-fifteen-person family across several households, and whom the whole group tags with \"do you have…\". The bet is that retrieval — finding the thing in ten seconds, at the hospital, at eleven at night — is the payoff a chat group can never deliver, and that a family tolerates one more app only if it is built around one specific recurring pain rather than \"a place for everything\". Four candidate first features are written down and deliberately not chosen: a family document vault, a shared family calendar, a who-paid-what ledger, and care coordination for ageing parents. Five family interviews and a two-week manual pilot (a phone number the family forwards things to, a human filing them) decide which one. Mobile only, Android first, no chat, and no AI by default — the one AI surface that might earn its place is \"forward it and the app files it\", and only if manual entry turns out to block adoption; a person confirms everything before the family sees it. Hard deadline: one feature in a pilot family's hands by the end of October, with a binary success measure of three in five pilot families adding real items and coming back to retrieve one.",
+      "started": "2026-09-15",
+      "lastActive": "2026-09-15",
+      "timeline": [
+        {
+          "date": "2026-09-15",
+          "title": "Named, scoped, and given a deadline",
+          "summary": "Day one. The repository was enrolled in the tracking system before any product work so that the earliest decisions — what this is, who it is for, what it is not — are recorded rather than reconstructed. Then the one-pager: the problem, a proposed first user, the hypothesis, four candidate first features with an explicit instruction not to pre-pick, the smallest experiment that could kill the idea (a manual, forward-it-to-a-number pilot with three families, abandoned if forwarding stops after the novelty week), a binary success metric, a long list of things deliberately not being built, and an end-of-October deadline with a week-by-week schedule and one rule for when it slips: cut the interviews, never the build. The open questions are written down too — which families pilot it, whether it works if only two people install it, how sensitive documents are handled before a pilot, and how a parent who uses nothing but WhatsApp gets invited."
+        }
+      ]
+    },
+    {
+      "slug": "aaj-kya-seekha",
+      "name": "Aaj Kya Seekha",
+      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
+      "status": "active",
+      "stack": [
+        "React Native (Expo)",
+        "Nhost (Postgres / GraphQL)",
+        "Push notifications"
+      ],
+      "links": {},
+      "statusLine": "Restarted as app-plus-evening-nudge in late July; seven weeks on, the plan has grown but nothing is built.",
+      "nextMove": "Stand up the backend foundation, ending with the permissions smoke test over a child's data.",
+      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That removed every third-party approval from the critical path. The evening message has since gained a second kind of content, kept deliberately separate from the first: the question drawn from what the kid got right today is earned and stays that way, while four plain questions about the day itself live in a library the parent opens whenever they like, never pushed, so the earned one keeps its meaning as evidence. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. Two things are recorded honestly rather than glossed: demand is still unproven, with the only user conversation so far a negative signal — and seven weeks after the restart, the foundation it defined has still not been started.",
+      "started": "2026-06-11",
+      "lastActive": "2026-09-11",
+      "timeline": [
+        {
+          "date": "2026-09-11",
+          "title": "Four questions about the day, kept apart from the one about the lesson",
+          "summary": "A small design addition with a deliberate boundary. The evening message to a parent is built around one question drawn from something the kid actually got right that day — it is earned, which is what makes it proof of work rather than small talk. Four new questions arrived that are about the day itself (the most boring thing that happened, whether something helped, whether something was new, what you would change), and they are good precisely because a kid who had a bad day can still answer them, which the lesson question structurally cannot offer. They were given their own type with no link to the curriculum, and a home that touches none of the rules governing the push: a library inside the app the parent can open any evening. Folding them into the nightly message would have blurred the one line that makes it worth opening. One question was left open on purpose — whether a day question should also ride along on the evenings the kid skipped because school covered the topic — since there is a real case both ways and it is a one-line change whenever it is decided. Still no code on this project; that is the honest headline."
+        },
+        {
+          "date": "2026-08-08",
+          "title": "Tooling sync only — and three weeks without product work",
+          "summary": "No product work; a shared workflow file was refreshed from its canonical copy. Worth recording plainly rather than dressing up: nineteen days have passed since the restart, the backend foundation that restart defined has not been started, and the only user conversation on record is still the negative one from June."
+        },
+        {
+          "date": "2026-07-25",
+          "title": "Pivot: from a chat service to an app, reversing three decisions",
+          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
+        },
+        {
+          "date": "2026-07-18",
+          "title": "Still stalled",
+          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Tooling sync only",
+          "summary": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
+        },
+        {
+          "date": "2026-06-13",
+          "title": "First family interview — logged as a counter-signal",
+          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
+        },
+        {
+          "date": "2026-06-12",
+          "title": "Schedule slipped a day — deadline held",
+          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
+        },
+        {
+          "date": "2026-06-11",
+          "title": "Idea to a runnable pilot kit in one day",
+          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
+        }
+      ]
+    },
+    {
+      "slug": "das-material",
+      "name": "Das Material",
+      "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
+      "status": "active",
+      "stack": [
+        "Expo (React Native)",
+        "Appwrite",
+        "PostHog",
+        "react-three-fiber"
+      ],
+      "links": {
+        "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
+        "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
+      },
+      "statusLine": "Backend paused, needs a manual restore; the 3D pipeline has a scoreboard now and it reads 0 of 3 vehicles.",
+      "nextMove": "Restore the paused backend, then grant the storage permission and run the vault migration.",
+      "currentMilestone": "The 3D-model pipeline finally has a definition of done, and it is not a number the code can compute: an owner of that exact vehicle, shown the render cold on a phone, recognises it as theirs — three different owners per vehicle, not one. Everything cheaper than that is a stand-in, and a stand-in only gets to act as a quality gate once it has agreed with a real owner eight times in ten. Written down for the first time, the standing is zero of three vehicles accepted: the sedan has one owner's verdict, the scooter is stuck at its reference photograph, and the SUV has no photographs yet. The other number that fell out is the one that had been hiding in prose for two months — the automated score has disagreed with the owner every single time it has been tested, four out of four, which retires it as a way of choosing between builds. The scooter's blocker is now sharper than \"the photograph is out of proportion\": the tool that writes the photograph prompt and the tool that measures the result turned out to be working from two different real-world dimensions for the same vehicle, so a regeneration would have obeyed the prompt and still failed the check, and the prompt generator now refuses to run until the two agree. Settling which figure is right needs a real specification sheet — a person's job, deliberately not guessed in code. Meanwhile the app has no backend at all: the hosted project paused itself after a stretch of inactivity, and a restore is a manual click that also unblocks the document vault's long-missing storage permission. The Android preview build from early August has still never been installed on a phone.",
+      "started": "2026-07-07",
+      "lastActive": "2026-09-11",
+      "timeline": [
+        {
+          "date": "2026-09-11",
+          "title": "A scoreboard, because \"is it working?\" had no answer",
+          "summary": "The honest state of the 3D pipeline was that it kept getting built and nobody could say whether it was working. So the day produced a scoreboard: one north-star test (an owner recognises their vehicle on a phone, cold, three owners per vehicle), a short list of cheap checks ordered by cost, and a ledger of every human verdict so far, with one command that recomputes the headline from it. That headline — no vehicle accepted yet, and the automated score losing to the owner four times out of four — had been true for weeks but lived across two documents and a memory, so nobody acted on it. The logging tool refuses a few things on purpose: it wants the owner's exact words rather than a summary, it will not record \"the metric agreed\" unless the metric's prediction was written down first, and it defaults to \"no comparison\" rather than \"agreed\", because a flattering default is exactly the failure a scoreboard exists to catch. Alongside it, the pre-flight check that measures one reference photograph before three more are generated learned to find its own inputs — it had run almost never, because the sheet locations lived inside a script that starts a full build the moment it is imported — and a known vehicle is now graded against its own real dimensions rather than a deliberately wide body-type band, which turns the long-suspected bad photograph red at last."
+        },
+        {
+          "date": "2026-08-18",
+          "title": "Two experiments lost, and a ledger so they stay lost",
+          "summary": "Rebuilding the vehicle mesh with different topology was the last plausible fix for a torn seam in the texture, and it failed cleanly: three different methods, the same budget, the same photographs, and all three landed on an identical score. One of them welded shut the see-through gaps a two-wheeler has and cost seven times the tolerance. The most interesting part is the one that looked promising — the method whose internal texture map was visibly tidier scored worse on every measure, so tidiness turns out not to be evidence of quality here. That result, plus an older one from a few days earlier where the pipeline's own stated default lost to the thing it was meant to replace, went into a new experiments ledger: one row per experiment, with the verdict, the number, and the condition under which it is worth trying again. It is an index rather than a copy — rows point at wherever the finding already lives, because keeping two copies is how one of them goes stale, which this project has paid for before. A companion tool now counts the texture map instead of leaving it to be eyeballed, and is deliberately labelled a probe rather than a quality gate, for exactly the reason the experiment just demonstrated."
+        },
+        {
+          "date": "2026-08-15",
+          "title": "A rule that could not be followed, and the check that makes it possible",
+          "summary": "The written process has said since the start of the month: generate one test photograph of a vehicle first, measure it, and only then generate the rest. That instruction was unfollowable. The only code that could measure a vehicle photograph ran at the very end of the pipeline and required the complete set of four views plus a second colour edit — exactly the work a single test view exists to avoid committing to. So the rule pointed at a tool that could not accept its input, and the one vehicle that skipped it cost roughly a fortnight of wrong diagnoses. There is now a check that takes one image. It deliberately reuses the same measuring code every later stage uses rather than its own: the first version rolled its own and was wrong by nine percent — most of the allowed tolerance — because a contact shadow spreads outward below the tyres. It was proved by replay rather than by assertion, reproducing both finished vehicles to within a rounding error, and it fails the known-bad photograph by twenty-six percent from a single picture. The tolerance was pointedly not tightened to force that result, which would be fitting the ruler to the thing being measured. Alongside it, the per-vehicle prompt document was deleted and replaced by a generator: the boilerplate lives once and a vehicle is a row of data, because the hand-written version was seventy percent a copy of the template and two copies drift apart."
+        },
+        {
+          "date": "2026-08-09",
+          "title": "The first installable build, and where its configuration has to live",
+          "summary": "Made this project's first standalone Android build. Until now the only build had been a development one, which reads its settings off the laptop that started it; a standalone app gets no such help, because the settings file is deliberately kept out of the repository and the build service only ever receives the repository. Left alone, the app would have launched straight into a 'backend not configured' screen. So the public client settings now live in the build service's own environment — the same pattern a sibling project already uses — while the private server-side keys stay firmly out of it. That distinction is the whole point: the seven values that moved are inlined into any shipped app by construction and were never secret, and the four that are secret were never sent. Also committed the labelled orientation panels generated the day before for both vehicles, after confirming that nothing the app actually draws had changed. Separately, the document vault's blocker was re-checked and is still standing: the backend key has clearly been edited since the last look, but not in the one way that would let it create file storage."
+        },
+        {
+          "date": "2026-08-08",
+          "title": "Regenerating the hero reference, panel by panel",
+          "summary": "Regenerating the hero scooter's reference sheet with proportions pinned, panel by panel, and adding labelled orientation views for both vehicles."
+        },
+        {
+          "date": "2026-08-03",
+          "title": "The owner's manual has none of the numbers people boast about",
+          "summary": "Set out to put the manufacturer's specifications into the app and learned two things by reading all 520 pages of one. First, an owner's manual carries no power, torque, acceleration or mileage figures at all — those are brochure numbers — so the honest version of the feature shows what the manual really has (dimensions, capacities, tyre pressures, fluid grades) under a label that says where it came from. Second, the tool used to pull tables out of the PDF had been scrambling the columns, and had already published the vehicle's maximum loaded weight under the label for its empty weight. That correction shipped on its own, ahead of the feature. The panel keys on the make and model the owner typed, never on the body shape they picked to be drawn — because the sedan shape in the picker is named after one specific car, so an owner of a different sedan selects it quite reasonably and would otherwise have been told his car has another manufacturer's engine. The rest of the day went to the paperwork half of the app — a document vault and a service-history timeline, with service dates joining the existing reminders — and to two fixes worth naming: buttons were dimming their own labels below the contrast floor while held, and the automated render-quality score turned out to be unfixable by re-tuning its weights. Working out exactly why produced a better fix than the one that had been asked for."
+        },
+        {
+          "date": "2026-08-02",
+          "title": "The 3D model was innocent: a reference photo a quarter out of proportion",
+          "summary": "Spent the day chasing why one vehicle renders patchy while the other looks right, and found the answer one layer below where everyone had been looking. Every quality check in this pipeline compares the finished render against the reference photograph it was built from — so if the photograph itself draws the vehicle in the wrong proportions, it scores perfectly against itself while every correct 3D model scores badly against it. The scooter's reference draws it about a quarter too long and low. What finally proved it was buying nothing: a 3D model generated by a completely different commercial service, which had never seen our reference images, scored identically to the in-house one — and then both models agreed with each other, and with the real vehicle's measurements, against the photograph. Two independent makers agreeing against the reference is what points at the reference. The wrong conclusion had survived five separate investigations. Two checks now print the mismatch automatically, one of them a minute into the process rather than twenty. Along the way: a fix for surfaces being rendered as polished mirror, and a real bug in the file reader that made any outside 3D model measure as a perfect cube — inside the very code that is supposed to catch a model being the wrong shape."
+        },
+        {
+          "date": "2026-08-01",
+          "title": "The second vehicle: proving the pipeline is a process, and finding ten places it was not",
+          "summary": "Ran the vehicle pipeline end to end on a scooter — the first time anything but the original car had been through it. The good news came fast: the reference images passed the input check on the first try, and four minutes of compute turned them into a textured, recolourable 3D model that is now in the app. The useful news was the failures. An entire stage of the pipeline had never actually executed, because it is skipped whenever an earlier result already exists and the first vehicle always had one — so the moment a new vehicle reached it, three separate bugs surfaced at once, including one that would have written a huge intermediate file over the finished model. Adding a vehicle and replacing an existing one also turned out to be different jobs: the checklist only covered things that read the model, not the two commands that quietly rebuild it. Looked at on a real phone, the verdict was that the shape is right but the surface is patchy — which matters, because the patchiness is the worst-scoring thing on the automated report and the shape is not, so the score is weighted wrong against what a person actually notices. Flooding each region of the texture with a different colour and re-rendering put a number on it: roughly a quarter of what you see at the app’s opening angle is an invented surface, sitting exactly on the flat parts an owner looks down at. Four candidate fixes were tried and measured, and all four failed, which is its own answer — the fix is two more reference photographs, not another setting."
+        },
+        {
+          "date": "2026-07-27",
+          "dateEnd": "2026-07-30",
+          "title": "The patchy car: finding what actually fed each pixel, and a quality score that could not see the roof",
+          "summary": "The 3D car had visible patches on it, and two rounds of fixes had aimed at the wrong thing — first the surface finish, then the model being too coarse. The answer came from a two-minute trick instead of another theory: flood one region of the car's texture with a garish colour and re-render, so every patch fed by that region lights up. All of them did. The patches were the roof, bonnet and boot — the parts no camera had ever photographed, which the tool had been inventing by smearing the side view sideways. A real overhead photograph had been available for a day but was switched off after making things worse; the cause turned out to be a single hardcoded threshold tuned for a windscreen's angle, which sent the shallower rear window to the invented roof instead of to its own photograph. With that fixed the overhead view earned its place, and the owner confirmed on a phone that most of the patchiness had gone. The bigger find was in the measuring tool: it graded the car from four directions, all horizontal, so the roof — over 40% of what you see at the angle the app opens on, and the exact thing under argument — had never been graded by anything at all. Two other things were worth as much as the fixes: a promising improvement scored twice as well as the passing bar, was shipped, and was then rejected outright by its owner on a real phone, which makes three such disagreements in a row and demotes the score to a safety net rather than a judge; and a planned week of work on the surface finish was cancelled after one measurement showed it could not possibly have been the cause."
+        },
+        {
+          "date": "2026-07-26",
+          "title": "The render bet, settled: a car’s identity lives in pixels, not geometry",
+          "summary": "Spent months treating “make the render look like the owner’s actual car” as a question of finding a better 3D reconstruction. It is not. What makes a car recognisable — grille pattern, badge, light signature, the chrome line around the windows, the panel gaps — is a few millimetres of surface relief, which survives in a photograph and dies when that photograph becomes geometry small enough to ship to a phone. The previously built reconstruction route proved it by shipping a car with no grille, no badge and flat disc wheels. The replacement keeps the picture’s pixels and repaints only the bodywork: given the same studio render of a car in a light and a dark colour, the pixels that changed are paint and the pixels that did not are glass, tyres, chrome, badges and lamps — a split derived from evidence rather than guessed from the shape of the model. It recolours across the whole palette with every identifying detail intact, and ships smaller than the 3D model it replaced. Two lessons were expensive enough to write down: a workaround added for a bad input stayed after the input was fixed and quietly became the defect it was hiding, and four wrong diagnoses in a row came from reasoning off a rendered picture instead of printing the numbers — so the tool now reports what it measured and refuses source images it does not trust."
+        },
+        {
+          "date": "2026-07-22",
+          "title": "A second way to build a vehicle — reconstruct one from reference views; two real models wired in",
+          "summary": "Added a reconstruction route to the model workshop: a handful of AI-generated reference views of a real car become a rough 3D model, which a new pipeline then makes app-ready — welding it into a single paintable body, separating the glass and tyres so they stay dark under whatever paint the owner picks, and baking soft ambient shadow into the recesses for depth without baking in a colour. Two real vehicles went through it end to end, a Honda Activa scooter and a Hyundai Verna car, each added as an opt-in variant that leaves everyone else's vehicles untouched. Also corrected the car paint from an accidental liquid-chrome look to a real finish (colour under clear lacquer, not metal), gave glass, lamps and trim distinct finishes, and fixed a genuine crash that only showed up on a real phone. Finally rebuilt the offline preview tool to run the actual renderer, after the old shortcut turned out to be flattering a broken material and letting a bug slip through to the device."
+        },
+        {
+          "date": "2026-07-17",
+          "title": "Five bugs, one bug: teaching the parts kit to answer \"where is the body here?\"",
+          "summary": "Built a hand-authored hatchback as the control for the rendering bake-off, then reviewed it three times against a rendered contact sheet — and every round found structure, not polish. No wheel arches (the body's underside sat level with the tops of the tyres, so no wheel was ever inside an arch). Wheels standing clear of the bodywork in open air. A windscreen torn open by two surfaces fighting for the same 0.9mm. Mirrors floating a hand's width off the car with no stalk. A cabin sitting on the body like a hat — its roof width turned out to be the wheel-track measurement, copied. Underneath all of it was one recurring mistake, now on its fifth appearance: a part positioned at a remembered constant rather than against the surface it touches. Since the body tapers, any remembered number is wrong by construction — and the only reason to guess was that nothing published the real answer. It does now, so parts ask. Worth noting what didn't help: the automated model checker passes cleanly through every single one of these defects. Only looking at the rendered thing catches them."
+        },
+        {
+          "date": "2026-07-15",
+          "title": "Design-system cleanup: the last few hardcoded colours found, and the launch screen isn't quite finished",
+          "summary": "Cleaned up the last few colours that were hardcoded directly into components instead of pulling from the shared design system — one turned out to be legitimate (a car's actual paint colour, which correctly shouldn't repaint itself when the app's theme changes, so it moved to a data file instead), the other a real gap that's now fixed. That cleanup also surfaced something worth knowing: the app's launch screen still shows stock branding from the starter template rather than the app's own look — noted for whenever it's worth a design pass. This project is now the first in the lineup to pass every automated check clean."
+        },
+        {
+          "date": "2026-07-14",
+          "title": "A month of on-device fixes, and a 3D model that was secretly a car",
+          "summary": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
+        },
+        {
+          "date": "2026-07-13",
+          "title": "The roadmap ahead, written as buildable milestones",
+          "summary": "Turned the next two build stages — a private document vault with service history, and add-a-vehicle-by-photographing-a-document — into detailed, build-ready specs with explicit quality bars (a wrong extracted date counts worse than none). Then mapped nine milestones beyond them, each with its own start gate: store test release, the owed round of user interviews run against the real app, a render pipeline that makes any user's vehicle look showable, accurate per-vehicle facts with a zero-wrong-facts bar, a shareable pride card, light theme and polish, public release, iOS, and a deliberately code-free investigation of a second product category. Also fixed the 3D view so a black car is actually visible, and made the app degrade gracefully in the development sandbox."
+        },
+        {
+          "date": "2026-07-12",
+          "title": "Design pass closed; the core app built on a real component system",
+          "summary": "Closed the design milestone end to end: a style exploration across eight looks settled on a museum-inspired visual language (serif nameplates, a single mint accent, dark theme first), which was then audited — every text pairing passes accessibility contrast in both themes — and rendered as 24 real phone-sized screen mockups with per-screen build notes. Built it in the disciplined order: design tokens in code first, then a shared component kit with no raw colors or sizes anywhere, then the screens composed from that kit — sign-in on real authentication, an add-vehicle form whose save reveals a 3D profile of the car, a reminders view for insurance and emissions-check dates, and local notifications. The backend moved onto versioned, re-runnable database migrations instead of a one-shot setup script."
+        },
+        {
+          "date": "2026-07-10",
+          "title": "v0 confirmed on-device; interview kit ready; a render-realism bake-off planned",
+          "summary": "Closed out the v0 milestone after confirming the app runs on a real phone, and moved into user-interview mode: wrote the working question set — deep on vehicle ownership, anchored in stories about the last time something actually happened, with a short zoom-out testing the broader “own with pride” idea — plus outreach messages designed not to bias the answers, and rules for consent and anonymising notes. Separately, researched how realistic the 3D vehicle display can get, comparing scanning a real car, AI-generated 3D models, catalog models, and pre-rendered spins — and planned a bake-off: one cheap test per approach, scored on which one actually sparks pride, with the winner adopted in the upcoming design pass. Also did a privacy pass ahead of wiring real services: anonymous user ids instead of emails, analytics pinned to EU servers with session recording off, and a living privacy doc that records each decision as it's made."
+        },
+        {
+          "date": "2026-07-08",
+          "title": "A v0 you can hold — 3D vehicle profiles you can spin",
+          "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
+        }
+      ]
+    },
     {
       "slug": "party-kitty",
       "name": "PartyKitty",
@@ -243,115 +439,6 @@
       ]
     },
     {
-      "slug": "das-material",
-      "name": "Das Material",
-      "oneLiner": "A visually stunning home for the things you own — starting with vehicles — that you open with a sense of pride.",
-      "status": "active",
-      "stack": [
-        "Expo (React Native)",
-        "Appwrite",
-        "PostHog",
-        "react-three-fiber"
-      ],
-      "links": {
-        "Privacy": "https://www.pyoopel.com/apps/das-material/privacy",
-        "Delete account": "https://www.pyoopel.com/apps/das-material/delete-account"
-      },
-      "statusLine": "Vault still locked by a missing storage permission; the 3D pipeline's blocker is now one photo away.",
-      "nextMove": "Grant the storage permission on the backend key, then run the migration that creates the vault.",
-      "currentMilestone": "The 3D-model pipeline spent this stretch proving two ideas wrong on purpose, and building somewhere to keep that knowledge. Rebuilding a vehicle's mesh with different topology — three separate methods — changed nothing measurable: all three scored identically against the reference photograph, and the method that produced the tidiest internal texture map scored worst overall, which retires \"a tidier map\" as a lever worth pulling. A second idea — painting upward-facing surfaces flat when no overhead photograph exists — was the pipeline's own stated default and also lost; it survives as an option rather than the rule. Both results went into a new ledger of experiments, with a verdict, a number and a plain \"retry when\" on every row, backfilled with all eleven measurements taken so far. On a pipeline this cheap to measure, the expensive mistake is re-running something that already lost. The real blocker is unchanged and still needs a person: one vehicle's reference photograph is about a quarter out of proportion, and every quality check grades against that photograph, so it cannot be caught from the inside. What did change is the cost of fixing it. The prompt that generates a corrected photograph is now produced by one command with the real dimensions written into it, and a new check measures a single test image before the other three are ever generated — an instruction the written process had asked for since the start of the month and which was impossible to follow, because the only code that could measure a photograph demanded the complete finished set first. A third vehicle was also registered, an SUV picked specifically because it stresses the shape classifier rather than repeating a body type already proven. On the app side nothing moved: the document vault still cannot store a file until a storage permission is switched on for the backend, and the Android build made a week and a half ago is still waiting to be installed on a phone.",
-      "started": "2026-07-07",
-      "lastActive": "2026-08-18",
-      "timeline": [
-        {
-          "date": "2026-08-18",
-          "title": "Two experiments lost, and a ledger so they stay lost",
-          "summary": "Rebuilding the vehicle mesh with different topology was the last plausible fix for a torn seam in the texture, and it failed cleanly: three different methods, the same budget, the same photographs, and all three landed on an identical score. One of them welded shut the see-through gaps a two-wheeler has and cost seven times the tolerance. The most interesting part is the one that looked promising — the method whose internal texture map was visibly tidier scored worse on every measure, so tidiness turns out not to be evidence of quality here. That result, plus an older one from a few days earlier where the pipeline's own stated default lost to the thing it was meant to replace, went into a new experiments ledger: one row per experiment, with the verdict, the number, and the condition under which it is worth trying again. It is an index rather than a copy — rows point at wherever the finding already lives, because keeping two copies is how one of them goes stale, which this project has paid for before. A companion tool now counts the texture map instead of leaving it to be eyeballed, and is deliberately labelled a probe rather than a quality gate, for exactly the reason the experiment just demonstrated."
-        },
-        {
-          "date": "2026-08-15",
-          "title": "A rule that could not be followed, and the check that makes it possible",
-          "summary": "The written process has said since the start of the month: generate one test photograph of a vehicle first, measure it, and only then generate the rest. That instruction was unfollowable. The only code that could measure a vehicle photograph ran at the very end of the pipeline and required the complete set of four views plus a second colour edit — exactly the work a single test view exists to avoid committing to. So the rule pointed at a tool that could not accept its input, and the one vehicle that skipped it cost roughly a fortnight of wrong diagnoses. There is now a check that takes one image. It deliberately reuses the same measuring code every later stage uses rather than its own: the first version rolled its own and was wrong by nine percent — most of the allowed tolerance — because a contact shadow spreads outward below the tyres. It was proved by replay rather than by assertion, reproducing both finished vehicles to within a rounding error, and it fails the known-bad photograph by twenty-six percent from a single picture. The tolerance was pointedly not tightened to force that result, which would be fitting the ruler to the thing being measured. Alongside it, the per-vehicle prompt document was deleted and replaced by a generator: the boilerplate lives once and a vehicle is a row of data, because the hand-written version was seventy percent a copy of the template and two copies drift apart."
-        },
-        {
-          "date": "2026-08-09",
-          "title": "The first installable build, and where its configuration has to live",
-          "summary": "Made this project's first standalone Android build. Until now the only build had been a development one, which reads its settings off the laptop that started it; a standalone app gets no such help, because the settings file is deliberately kept out of the repository and the build service only ever receives the repository. Left alone, the app would have launched straight into a 'backend not configured' screen. So the public client settings now live in the build service's own environment — the same pattern a sibling project already uses — while the private server-side keys stay firmly out of it. That distinction is the whole point: the seven values that moved are inlined into any shipped app by construction and were never secret, and the four that are secret were never sent. Also committed the labelled orientation panels generated the day before for both vehicles, after confirming that nothing the app actually draws had changed. Separately, the document vault's blocker was re-checked and is still standing: the backend key has clearly been edited since the last look, but not in the one way that would let it create file storage."
-        },
-        {
-          "date": "2026-08-08",
-          "title": "Regenerating the hero reference, panel by panel",
-          "summary": "Regenerating the hero scooter's reference sheet with proportions pinned, panel by panel, and adding labelled orientation views for both vehicles."
-        },
-        {
-          "date": "2026-08-03",
-          "title": "The owner's manual has none of the numbers people boast about",
-          "summary": "Set out to put the manufacturer's specifications into the app and learned two things by reading all 520 pages of one. First, an owner's manual carries no power, torque, acceleration or mileage figures at all — those are brochure numbers — so the honest version of the feature shows what the manual really has (dimensions, capacities, tyre pressures, fluid grades) under a label that says where it came from. Second, the tool used to pull tables out of the PDF had been scrambling the columns, and had already published the vehicle's maximum loaded weight under the label for its empty weight. That correction shipped on its own, ahead of the feature. The panel keys on the make and model the owner typed, never on the body shape they picked to be drawn — because the sedan shape in the picker is named after one specific car, so an owner of a different sedan selects it quite reasonably and would otherwise have been told his car has another manufacturer's engine. The rest of the day went to the paperwork half of the app — a document vault and a service-history timeline, with service dates joining the existing reminders — and to two fixes worth naming: buttons were dimming their own labels below the contrast floor while held, and the automated render-quality score turned out to be unfixable by re-tuning its weights. Working out exactly why produced a better fix than the one that had been asked for."
-        },
-        {
-          "date": "2026-08-02",
-          "title": "The 3D model was innocent: a reference photo a quarter out of proportion",
-          "summary": "Spent the day chasing why one vehicle renders patchy while the other looks right, and found the answer one layer below where everyone had been looking. Every quality check in this pipeline compares the finished render against the reference photograph it was built from — so if the photograph itself draws the vehicle in the wrong proportions, it scores perfectly against itself while every correct 3D model scores badly against it. The scooter's reference draws it about a quarter too long and low. What finally proved it was buying nothing: a 3D model generated by a completely different commercial service, which had never seen our reference images, scored identically to the in-house one — and then both models agreed with each other, and with the real vehicle's measurements, against the photograph. Two independent makers agreeing against the reference is what points at the reference. The wrong conclusion had survived five separate investigations. Two checks now print the mismatch automatically, one of them a minute into the process rather than twenty. Along the way: a fix for surfaces being rendered as polished mirror, and a real bug in the file reader that made any outside 3D model measure as a perfect cube — inside the very code that is supposed to catch a model being the wrong shape."
-        },
-        {
-          "date": "2026-08-01",
-          "title": "The second vehicle: proving the pipeline is a process, and finding ten places it was not",
-          "summary": "Ran the vehicle pipeline end to end on a scooter — the first time anything but the original car had been through it. The good news came fast: the reference images passed the input check on the first try, and four minutes of compute turned them into a textured, recolourable 3D model that is now in the app. The useful news was the failures. An entire stage of the pipeline had never actually executed, because it is skipped whenever an earlier result already exists and the first vehicle always had one — so the moment a new vehicle reached it, three separate bugs surfaced at once, including one that would have written a huge intermediate file over the finished model. Adding a vehicle and replacing an existing one also turned out to be different jobs: the checklist only covered things that read the model, not the two commands that quietly rebuild it. Looked at on a real phone, the verdict was that the shape is right but the surface is patchy — which matters, because the patchiness is the worst-scoring thing on the automated report and the shape is not, so the score is weighted wrong against what a person actually notices. Flooding each region of the texture with a different colour and re-rendering put a number on it: roughly a quarter of what you see at the app’s opening angle is an invented surface, sitting exactly on the flat parts an owner looks down at. Four candidate fixes were tried and measured, and all four failed, which is its own answer — the fix is two more reference photographs, not another setting."
-        },
-        {
-          "date": "2026-07-27",
-          "dateEnd": "2026-07-30",
-          "title": "The patchy car: finding what actually fed each pixel, and a quality score that could not see the roof",
-          "summary": "The 3D car had visible patches on it, and two rounds of fixes had aimed at the wrong thing — first the surface finish, then the model being too coarse. The answer came from a two-minute trick instead of another theory: flood one region of the car's texture with a garish colour and re-render, so every patch fed by that region lights up. All of them did. The patches were the roof, bonnet and boot — the parts no camera had ever photographed, which the tool had been inventing by smearing the side view sideways. A real overhead photograph had been available for a day but was switched off after making things worse; the cause turned out to be a single hardcoded threshold tuned for a windscreen's angle, which sent the shallower rear window to the invented roof instead of to its own photograph. With that fixed the overhead view earned its place, and the owner confirmed on a phone that most of the patchiness had gone. The bigger find was in the measuring tool: it graded the car from four directions, all horizontal, so the roof — over 40% of what you see at the angle the app opens on, and the exact thing under argument — had never been graded by anything at all. Two other things were worth as much as the fixes: a promising improvement scored twice as well as the passing bar, was shipped, and was then rejected outright by its owner on a real phone, which makes three such disagreements in a row and demotes the score to a safety net rather than a judge; and a planned week of work on the surface finish was cancelled after one measurement showed it could not possibly have been the cause."
-        },
-        {
-          "date": "2026-07-26",
-          "title": "The render bet, settled: a car’s identity lives in pixels, not geometry",
-          "summary": "Spent months treating “make the render look like the owner’s actual car” as a question of finding a better 3D reconstruction. It is not. What makes a car recognisable — grille pattern, badge, light signature, the chrome line around the windows, the panel gaps — is a few millimetres of surface relief, which survives in a photograph and dies when that photograph becomes geometry small enough to ship to a phone. The previously built reconstruction route proved it by shipping a car with no grille, no badge and flat disc wheels. The replacement keeps the picture’s pixels and repaints only the bodywork: given the same studio render of a car in a light and a dark colour, the pixels that changed are paint and the pixels that did not are glass, tyres, chrome, badges and lamps — a split derived from evidence rather than guessed from the shape of the model. It recolours across the whole palette with every identifying detail intact, and ships smaller than the 3D model it replaced. Two lessons were expensive enough to write down: a workaround added for a bad input stayed after the input was fixed and quietly became the defect it was hiding, and four wrong diagnoses in a row came from reasoning off a rendered picture instead of printing the numbers — so the tool now reports what it measured and refuses source images it does not trust."
-        },
-        {
-          "date": "2026-07-22",
-          "title": "A second way to build a vehicle — reconstruct one from reference views; two real models wired in",
-          "summary": "Added a reconstruction route to the model workshop: a handful of AI-generated reference views of a real car become a rough 3D model, which a new pipeline then makes app-ready — welding it into a single paintable body, separating the glass and tyres so they stay dark under whatever paint the owner picks, and baking soft ambient shadow into the recesses for depth without baking in a colour. Two real vehicles went through it end to end, a Honda Activa scooter and a Hyundai Verna car, each added as an opt-in variant that leaves everyone else's vehicles untouched. Also corrected the car paint from an accidental liquid-chrome look to a real finish (colour under clear lacquer, not metal), gave glass, lamps and trim distinct finishes, and fixed a genuine crash that only showed up on a real phone. Finally rebuilt the offline preview tool to run the actual renderer, after the old shortcut turned out to be flattering a broken material and letting a bug slip through to the device."
-        },
-        {
-          "date": "2026-07-17",
-          "title": "Five bugs, one bug: teaching the parts kit to answer \"where is the body here?\"",
-          "summary": "Built a hand-authored hatchback as the control for the rendering bake-off, then reviewed it three times against a rendered contact sheet — and every round found structure, not polish. No wheel arches (the body's underside sat level with the tops of the tyres, so no wheel was ever inside an arch). Wheels standing clear of the bodywork in open air. A windscreen torn open by two surfaces fighting for the same 0.9mm. Mirrors floating a hand's width off the car with no stalk. A cabin sitting on the body like a hat — its roof width turned out to be the wheel-track measurement, copied. Underneath all of it was one recurring mistake, now on its fifth appearance: a part positioned at a remembered constant rather than against the surface it touches. Since the body tapers, any remembered number is wrong by construction — and the only reason to guess was that nothing published the real answer. It does now, so parts ask. Worth noting what didn't help: the automated model checker passes cleanly through every single one of these defects. Only looking at the rendered thing catches them."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Design-system cleanup: the last few hardcoded colours found, and the launch screen isn't quite finished",
-          "summary": "Cleaned up the last few colours that were hardcoded directly into components instead of pulling from the shared design system — one turned out to be legitimate (a car's actual paint colour, which correctly shouldn't repaint itself when the app's theme changes, so it moved to a data file instead), the other a real gap that's now fixed. That cleanup also surfaced something worth knowing: the app's launch screen still shows stock branding from the starter template rather than the app's own look — noted for whenever it's worth a design pass. This project is now the first in the lineup to pass every automated check clean."
-        },
-        {
-          "date": "2026-07-14",
-          "title": "A month of on-device fixes, and a 3D model that was secretly a car",
-          "summary": "Timed the add flow on a real phone — ~50s against a five-minute bar. Fixed two on-device bugs (a profile that showed only the soonest date, and a 3D render that swallowed taps) and a timezone bug that stored renewal dates as instants, so a late-night entry could land on the wrong calendar day. Added a test suite with no test framework — Node now runs TypeScript natively. Built out the store-release work: hosted privacy and account-deletion pages, a server-side account-deletion function proven end-to-end, and analytics wired behind a single seam. Installed a redesigned app icon and launch screen. Then traced a bike rendering as a car all the way down to the 3D model file itself — it was a car, shipped under a false license credit. Deleted it and built a real, license-clean scooter and motorcycle model from scratch, verified with a new tool that renders any 3D model to an image so it can actually be inspected, and extended that into a small library of vehicle body shapes (motorcycle, hatchback, sedan, SUV, and more). That surfaced a related bug where every two-wheeler had been shown as the same scooter regardless of what it actually was — fixed end to end. Also added the ability to edit or delete a saved vehicle, closing the last major gap in the core flow."
-        },
-        {
-          "date": "2026-07-13",
-          "title": "The roadmap ahead, written as buildable milestones",
-          "summary": "Turned the next two build stages — a private document vault with service history, and add-a-vehicle-by-photographing-a-document — into detailed, build-ready specs with explicit quality bars (a wrong extracted date counts worse than none). Then mapped nine milestones beyond them, each with its own start gate: store test release, the owed round of user interviews run against the real app, a render pipeline that makes any user's vehicle look showable, accurate per-vehicle facts with a zero-wrong-facts bar, a shareable pride card, light theme and polish, public release, iOS, and a deliberately code-free investigation of a second product category. Also fixed the 3D view so a black car is actually visible, and made the app degrade gracefully in the development sandbox."
-        },
-        {
-          "date": "2026-07-12",
-          "title": "Design pass closed; the core app built on a real component system",
-          "summary": "Closed the design milestone end to end: a style exploration across eight looks settled on a museum-inspired visual language (serif nameplates, a single mint accent, dark theme first), which was then audited — every text pairing passes accessibility contrast in both themes — and rendered as 24 real phone-sized screen mockups with per-screen build notes. Built it in the disciplined order: design tokens in code first, then a shared component kit with no raw colors or sizes anywhere, then the screens composed from that kit — sign-in on real authentication, an add-vehicle form whose save reveals a 3D profile of the car, a reminders view for insurance and emissions-check dates, and local notifications. The backend moved onto versioned, re-runnable database migrations instead of a one-shot setup script."
-        },
-        {
-          "date": "2026-07-10",
-          "title": "v0 confirmed on-device; interview kit ready; a render-realism bake-off planned",
-          "summary": "Closed out the v0 milestone after confirming the app runs on a real phone, and moved into user-interview mode: wrote the working question set — deep on vehicle ownership, anchored in stories about the last time something actually happened, with a short zoom-out testing the broader “own with pride” idea — plus outreach messages designed not to bias the answers, and rules for consent and anonymising notes. Separately, researched how realistic the 3D vehicle display can get, comparing scanning a real car, AI-generated 3D models, catalog models, and pre-rendered spins — and planned a bake-off: one cheap test per approach, scored on which one actually sparks pride, with the winner adopted in the upcoming design pass. Also did a privacy pass ahead of wiring real services: anonymous user ids instead of emails, analytics pinned to EU servers with session recording off, and a living privacy doc that records each decision as it's made."
-        },
-        {
-          "date": "2026-07-08",
-          "title": "A v0 you can hold — 3D vehicle profiles you can spin",
-          "summary": "Built the first playable version: a sign-in, a garage of your vehicles, and a vehicle profile centred on a real-time 3D model you can spin on a turntable, lit like a studio shoot. Got it running on a real phone, and explored several starkly different visual treatments for the 3D display to carry into the design phase."
-        }
-      ]
-    },
-    {
       "slug": "founder-hub",
       "name": "Founder Hub",
       "oneLiner": "A personal phone dashboard for keeping an eye on my own products — live metrics, a synced todo list, and a readable architecture handbook in one sideloaded app.",
@@ -467,60 +554,6 @@
           "date": "2026-07-30",
           "title": "Kickoff: a one-pager that argues with its own thesis",
           "summary": "Started a new project and took it through the structured kickoff in a day: the problem written down, the first customer identified as the venue rather than the visitor, and the stack picked. Two things were done deliberately rather than optimistically. The big thesis — that queues at a hospital, a sweet shop and a temple are one product rather than a hundred — was separated from the small, testable bet, because only the small one can be checked in four weeks and merging them is how you end up with a demo nobody can prove wrong. And the strongest argument against that thesis was written into the plan rather than discovered later: the queue itself may be common while the rules for who gets served next are not, and if those rules carry the real complexity then a general tool is worse than a specialised one at every single venue. The claim that nothing like this exists was also marked down as an assumption to go and verify, since competing products do exist and the first venue owner asked will name them."
-        }
-      ]
-    },
-    {
-      "slug": "aaj-kya-seekha",
-      "name": "Aaj Kya Seekha",
-      "oneLiner": "School revision for India — the kid does that day's revision in an app, and the parent gets an evening notification carrying one dinner-table question the kid had just got right.",
-      "status": "active",
-      "stack": [
-        "React Native (Expo)",
-        "Nhost (Postgres / GraphQL)",
-        "Push notifications"
-      ],
-      "links": {},
-      "statusLine": "Restarted with a new shape — app-only revision plus an evening nudge; nothing built in three weeks.",
-      "nextMove": "Stand up the backend foundation, ending with the permissions smoke test over a child's data.",
-      "currentMilestone": "Restarted after six weeks dormant, by changing the product's shape rather than its schedule. A sister project turned out to already hold a working class-10 maths engine — 101 authored steps, a concept graph, a model of which ideas are solid — which solves most of the curriculum problem, so the kid now works in a real app instead of over chat. Three earlier architecture decisions were reversed in the process, each one deleting work rather than deferring it: messaging templates gave way to push notifications, SMS one-time codes to email and password, and the backend was swapped. That was the actual goal — removing every third-party approval from the critical path, which retired two multi-week external verification blockers at a stroke. Next up is the data layer and, above all, a permissions smoke test, since this is authorisation over a child's data. Two things are recorded honestly rather than glossed: demand is still unproven, and the only user conversation so far was a negative signal — and three weeks after the restart, none of the work it defined has actually started.",
-      "started": "2026-06-11",
-      "lastActive": "2026-08-08",
-      "timeline": [
-        {
-          "date": "2026-08-08",
-          "title": "Tooling sync only — and three weeks without product work",
-          "summary": "No product work; a shared workflow file was refreshed from its canonical copy. Worth recording plainly rather than dressing up: nineteen days have passed since the restart, the backend foundation that restart defined has not been started, and the only user conversation on record is still the negative one from June."
-        },
-        {
-          "date": "2026-07-25",
-          "title": "Pivot: from a chat service to an app, reversing three decisions",
-          "summary": "Six weeks dormant with a decision long overdue, this restarted as an app rather than a messaging service — possible because a sister project had meanwhile built a real class-10 maths engine the kid can work through directly. Three earlier decisions were reversed, and the test each had to pass was whether reversing it deleted work rather than merely postponing it. Dropping the messaging platform removed a business-verification process, a set of approval-frozen message templates, a signed webhook with its retry-idempotency handling, several secrets and a recurring per-family cost — but the deciding argument was not cost. It was that template wording freezes at approval, and the wording of that one dinner-table question is the entire hypothesis being tested, so the platform would have locked the copy during exactly the phase meant for learning what works. Switching to email and password removed a telecoms registration; a magic link was rejected too, since in a native app it has to deep-link back in. The reasoning was written into the repository rather than left in a machine-local scratch file, and the superseded milestones were closed with banners instead of deleted, because their question bank and prompts seed the new build. Recorded honestly: none of this adds evidence of demand, which remains the real risk."
-        },
-        {
-          "date": "2026-07-18",
-          "title": "Still stalled",
-          "summary": "No product movement — tooling sync only, for the fourth review running. Recording it plainly: the pilot verdict is overdue and the project is dormant in practice, whatever the label says."
-        },
-        {
-          "date": "2026-07-15",
-          "title": "Tooling sync only",
-          "summary": "Tooling sync only — no product work this session. Pilot recruitment remains the open item."
-        },
-        {
-          "date": "2026-06-13",
-          "title": "First family interview — logged as a counter-signal",
-          "summary": "Ran and recorded the first discovery interview with a prospective family, and wrote it up honestly rather than flatteringly. In a home where a parent already teaches and the child talks freely about their day, the specific gap the product targets didn't show up, and there was no appetite to pay for another study tool. Kept it as data to pressure-test who the real audience is — not a verdict from a single conversation."
-        },
-        {
-          "date": "2026-06-12",
-          "title": "Schedule slipped a day — deadline held",
-          "summary": "A planned day off pushed the pilot schedule back by one day. Rather than sliding the final verdict date with it, kept that deadline fixed and spent one of the buffer days built into the plan — buffers exist to absorb exactly this, and a self-imposed deadline only works if it doesn't move. Also rehearsed the first spoken pitch for recruiting pilot families."
-        },
-        {
-          "date": "2026-06-11",
-          "title": "Idea to a runnable pilot kit in one day",
-          "summary": "Kicked off from a research-backed concept: retrieval practice and spaced repetition are the revision techniques that demonstrably work, and WhatsApp is where Indian families already are. Deliberately wrote zero code — the first test is a fully manual, scripted seven-day experience run by hand with real families: a daily ten-question quiz for the student and one dinner-table prompt for the parent, drawn only from answers the student got right. Drafted the complete kit (day-by-day message script, a 60-question Class 10 bank, an operator manual), then verified every question against the official NCERT textbooks programmatically, catching and fixing three errors."
         }
       ]
     },
